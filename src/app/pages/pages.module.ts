@@ -7,13 +7,20 @@ import { HomeComponent } from './home/home.component';
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
 
+//Modulos
+import { SharedModule } from '../shared/shared.module';
+import { PagesComponent } from './pages.component';
+
+
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    PagesComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     PAGES_ROUTING
   ]
 })
