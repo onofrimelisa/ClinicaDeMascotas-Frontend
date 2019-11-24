@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav 
+        #drawer 
+        class="sidenav sidenav-list"
+        fixedInViewport 
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" 
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" 
+        [opened]="(isHandset$ | async) === false">
+        <mat-toolbar color="primary">
+            <mat-icon class="icon" aria-label="Desplegar menú">menu</mat-icon>
+             Menú
+        </mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item href="#">
+                <mat-icon class="icon" aria-label="Mi Perfil">account_circle</mat-icon>
+                Mi Perfil
+            </a>
+            <a mat-list-item href="#">
+                <mat-icon class="icon" aria-label="Mis Eventos">date_range</mat-icon>
+                Mis Eventos
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button 
+                type="button" 
+                aria-label="Toggle sidenav" 
+                mat-icon-button (click)="drawer.toggle()" 
+                *ngIf="isHandset$ | async">
+                <mat-icon class="icon" aria-label="Desplegar menú">menu</mat-icon>
+            </button>
+            <span> Clinica de Mascotas</span>
+            <span class="spacer"></span>
+            <mat-icon class="icon" aria-hidden="false" aria-label="Usuario verificado">verified_user</mat-icon>
+        </mat-toolbar>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
+</mat-sidenav-container>
