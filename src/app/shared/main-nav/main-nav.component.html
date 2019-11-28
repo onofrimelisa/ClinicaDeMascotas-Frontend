@@ -14,6 +14,10 @@
         <mat-nav-list>
             <h3 mat-subheader><strong>Cuenta</strong></h3>
             <mat-divider></mat-divider>
+            <a mat-list-item (click)="navegar('/dashboard')" routerLinkActive="active">
+                <mat-icon class="icono" aria-label="Dashboard">dashboard</mat-icon>
+                Dashboard
+            </a>
             <a mat-list-item href="#">
                 <mat-icon class="icono" aria-label="Mi Perfil">account_circle</mat-icon>
                 Mi Perfil
@@ -81,6 +85,8 @@
         </mat-toolbar>
         <!-- Navbar -->
         
-        <!-- Add Content Here -->
+        <!-- Add Content Here -->        
+        <h3 class="m-4">{{ titulo }}</h3>
+    
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -12,3 +12,26 @@ body {
 .pointer {
     cursor: pointer;
 }
+
+.page-wrapper {
+    padding-bottom: 60px;
+    position: relative; 
+    margin-left: 0px;
+    padding-top: 70px;
+    display: -webkit-inline-box;
+    text-align: -webkit-right;
+}
+  
+.container-fluid {
+    padding: 25px 25px; 
+}
+
+#main-wrapper {
+    width: 100%;
+    max-width: 1300px;
+    /* height: 100%; */
+    overflow: hidden;
+    margin: 0 auto; 
+    position: absolute;
+    box-sizing: unset !important;
+}

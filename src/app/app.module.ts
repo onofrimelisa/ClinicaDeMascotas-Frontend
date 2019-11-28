@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Rutas
-import { AppRoutingModule } from './app-routing.module';
+import { APP_ROUTING } from './app-routing.module';
 
 //Modulos
 import { PagesModule } from './pages/pages.module';
@@ -20,9 +20,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    PagesModule,
-    SharedModule
+    APP_ROUTING,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
