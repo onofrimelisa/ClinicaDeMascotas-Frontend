@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 220px;
 }
 
 .sidenav .mat-toolbar {
@@ -20,8 +20,9 @@
   z-index: 1;
 }
 
-.icon {
-  padding: 0 14px;
+.icono {
+  /* padding: 2px !important; */
+  margin: 4px;
 }
 
 .spacer {
