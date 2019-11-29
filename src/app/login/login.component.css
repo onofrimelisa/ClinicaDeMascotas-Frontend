@@ -1,0 +1,14 @@
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+mat-form-field {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.border-light {
+    border-color: #663ab7 !important;
+    border-radius: 10px;
+}

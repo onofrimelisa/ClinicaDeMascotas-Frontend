@@ -3,6 +3,7 @@
 
 /* Theme de Angular Material */
 
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 html,
 body {
@@ -15,15 +16,15 @@ body {
 
 .page-wrapper {
     padding-bottom: 60px;
-    position: relative; 
+    position: relative;
     margin-left: 0px;
     padding-top: 70px;
     display: -webkit-inline-box;
     text-align: -webkit-right;
 }
-  
+
 .container-fluid {
-    padding: 25px 25px; 
+    padding: 25px 25px;
 }
 
 #main-wrapper {
@@ -31,7 +32,37 @@ body {
     max-width: 1300px;
     /* height: 100%; */
     overflow: hidden;
-    margin: 0 auto; 
+    margin: 0 auto;
     position: absolute;
     box-sizing: unset !important;
+}
+
+
+/* ESTRUCTURA GENERAL */
+
+
+/* FONT NO ANDA EL FONT FAMILYYYYYYYYYYYYYYYYYYYY*/
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway Black', sans-serif !important;
+}
+
+
+/* BOTONES PRIMARIOS */
+
+button.primary {
+    margin-bottom: 20px;
+}
+
+button.primary:hover {
+    background-color: #3b1d71;
 }

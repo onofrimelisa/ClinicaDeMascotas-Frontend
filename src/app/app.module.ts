@@ -11,17 +11,34 @@ import { SharedModule } from './shared/shared.module';
 
 //Componentes
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+
+// Angular Material
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     APP_ROUTING,
-    PagesModule
+    PagesModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule, 
+    MatGridListModule, 
+    MatIconModule, 
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
