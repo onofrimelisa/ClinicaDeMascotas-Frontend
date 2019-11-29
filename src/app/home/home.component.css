@@ -279,3 +279,8 @@ figure.effect-apollo:hover div {
     -webkit-transition-delay: 0.1s;
     transition-delay: 0.1s;
 }
+
+p.info-ficha {
+    font-size: 15px;
+    font-weight: 600;
+}

@@ -14,10 +14,12 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
-    MainNavComponent
+    MainNavComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
   ],
   exports:[
-    MainNavComponent
+    MainNavComponent, 
+    FooterComponent
   ]
 })
 export class SharedModule { }

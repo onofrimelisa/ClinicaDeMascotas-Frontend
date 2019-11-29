@@ -71,3 +71,10 @@ button.btn-outline-primary:hover {
     border-color: #3b1d71;
     ;
 }
+
+
+/* FOOTER */
+
+footer {
+    bottom: 0;
+}
