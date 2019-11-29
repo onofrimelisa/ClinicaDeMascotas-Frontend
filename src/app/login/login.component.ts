@@ -1,42 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  email: FormControl;
-  password: FormControl;
+  form: FormGroup;  
+  email:string=''; 
+  password:string=''; 
+  constructor( private fb: FormBuilder ) { 
 
-  constructor() { 
-
-    this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.password = new FormControl('', [Validators.required]);
+    this.form = fb.group({  
+      'email' : ['', [Validators.required, Validators.email]],
+      'password' : ['', Validators.required] })
     
 
-  }
-
-  ngOnInit() {
   }
 
   login(){
-    if (this.email.valid && this.password.valid) {
+    if (this.form.valid) {
       console.log("loggeando");
-      console.log(this.email);
-      console.log(this.password);
+      console.log(this.form);
+    }else{
+
+      console.log("error");
+      console.log(this.form);
     }
     
-    console.log("error");
     
   }
 
   getErrorMessage() {
-    return this.email.hasError('required') ? 'Debes completar este campo.' :
-           this.email.hasError('email') ? 'Debes ingrear un email válido.' :
-           this.password.hasError('required') ? 'Debes completar este campo.' :
+    return this.form.controls.email.hasError('required') ? 'Debes completar este campo.' :
+           this.form.controls.email.hasError('email') ? 'Debes ingrear un email válido.' :
+           this.form.controls.password.hasError('required') ? 'Debes completar este campo.' :
               '';
   }
 

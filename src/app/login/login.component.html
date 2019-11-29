@@ -1,26 +1,26 @@
 <div class="text-center">
     <h2>LOGIN</h2>
-    <form (ngSubmit)="login()">
+    <form [formGroup]="form" (ngSubmit)="login()">
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
 
-                <input matInput type="email" [formControl]="email" placeholder="Ingrese su email" name="email">
+                <input matInput type="email" formControlName="email" placeholder="Ingrese su email" name="email">
 
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-error *ngIf="form.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
 
-                <input matInput type="password" [formControl]="password" placeholder="Ingrese su contraseña" name="password">
+                <input matInput type="password" formControlName="password" placeholder="Ingrese su contraseña" name="password">
 
                 <mat-icon matSuffix>vpn_key</mat-icon>
-                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-error *ngIf="form.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
-        <button type="button" class="btn btn-outline-primary">Log in</button>
+        <button type="submit" class="btn btn-outline-primary">Log in</button>
     </form>
 </div>
