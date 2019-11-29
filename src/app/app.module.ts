@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Rutas
 import { APP_ROUTING } from './app-routing.module';
@@ -33,12 +34,15 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     APP_ROUTING,
     PagesModule, 
+    SharedModule,
     MatFormFieldModule, 
     MatInputModule, 
     MatSelectModule, 
     MatGridListModule, 
     MatIconModule, 
-    MatButtonModule
+    MatButtonModule, 
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

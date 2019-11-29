@@ -7,8 +7,3 @@ mat-form-field {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-.border-light {
-    border-color: #663ab7 !important;
-    border-radius: 10px;
-}

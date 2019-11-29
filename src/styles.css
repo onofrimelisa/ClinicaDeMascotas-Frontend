@@ -59,10 +59,15 @@ h6 {
 
 /* BOTONES PRIMARIOS */
 
-button.primary {
+button.btn-outline-primary {
     margin-bottom: 20px;
+    border-color: #3b1d71;
+    color: #3b1d71;
+    ;
 }
 
-button.primary:hover {
+button.btn-outline-primary:hover {
     background-color: #3b1d71;
+    border-color: #3b1d71;
+    ;
 }
