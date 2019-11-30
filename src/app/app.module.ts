@@ -9,11 +9,13 @@ import { APP_ROUTING } from './app-routing.module';
 //Modulos
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
+import { ServiceModule } from './services/service.module';
 
 //Componentes
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PagesComponent } from './pages/pages.component';
 
 // Angular Material
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
@@ -27,14 +29,16 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     APP_ROUTING,
-    PagesModule, 
+    PagesModule,
     SharedModule,
+    ServiceModule, 
     MatFormFieldModule, 
     MatInputModule, 
     MatSelectModule, 

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 //Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
@@ -15,8 +16,8 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    PagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     PAGES_ROUTING
   ],
   exports: [
-    PagesComponent,
+    // PagesComponent,
     DashboardComponent
   ]
 })
