@@ -17,8 +17,28 @@ export class MascotaComponent implements OnInit {
   color:string=''; 
   senias:string=''; 
   veterinario:string=''; 
-  foto:string=''; 
+  foto:string='';
   
+  // Campos select
+  sexos: string[] = [
+    'MASCULINO',
+    'FEMENINO',
+    'OTRO'
+  ];
+  especies: string[] = [
+    'PERRO',
+    'GATO',
+    'HAMSTER',
+    'AVE',
+    'PEZ',
+    'OTRO'
+  ];
+  veterinarios: string[] = [
+    'Veterinario1',
+    'Veterinaro2'
+  ];
+  
+  // Ficha publica
   datosPublicos: FormGroup;
   nombre_publico:boolean; 
   fecha_nacimiento_publico:boolean; 
@@ -71,7 +91,6 @@ export class MascotaComponent implements OnInit {
 
   guardarDatosMascota(){
     console.log(this.datosMascota);
-    
   }
 
   guardarDatosPublicos(){

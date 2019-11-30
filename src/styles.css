@@ -3,8 +3,8 @@
 
 /* Theme de Angular Material */
 
-@import url('https://fonts.googleapis.com/css?family=Raleway');
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 .pointer {
     cursor: pointer;
 }

@@ -18,8 +18,11 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Especie" formControlName="especie" required>
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        <mat-select placeholder="Especie" formControlName="especie">
+                            <mat-option *ngFor="let e of especies" value="{{ e }}">{{ e | titlecase }}</mat-option>
+                        </mat-select>
+                        <!-- <input matInput type="" placeholder="Especie" formControlName="especie" required> -->
+                        <!-- <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error> -->
                     </mat-form-field>
                     <br>
                     <mat-form-field>
@@ -27,8 +30,11 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Sexo" formControlName="sexo" required>
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        <mat-select placeholder="Sexo" formControlName="sexo">
+                            <mat-option *ngFor="let s of sexos" value="{{ s }}">{{ s | titlecase }}</mat-option>
+                        </mat-select>
+                        <!-- <input matInput type="text" placeholder="Sexo" formControlName="sexo" required> -->
+                        <!-- <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error> -->
                     </mat-form-field>
                     <br>
                     <mat-form-field>
@@ -42,9 +48,7 @@
                     <br>
                     <mat-form-field>
                         <mat-select placeholder="Veterinario" formControlName="veterinario">
-                            <mat-option value="veterinario 1">Veterinario 1</mat-option>
-                            <mat-option value="veterinario 2">Veterinario 2</mat-option>
-                            <mat-option value="veterinario 3">Veterinario 3</mat-option>
+                            <mat-option *ngFor="let v of veterinarios" value="{{ v }}">{{ v | titlecase }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <br>
