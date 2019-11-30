@@ -18,11 +18,12 @@ import { LoginComponent } from './login/login.component';
 import { PagesComponent } from './pages/pages.component';
 
 // Angular Material
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -46,7 +47,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule, 
     MatButtonModule, 
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    MatStepperModule, 
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

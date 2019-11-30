@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <mat-horizontal-stepper class="pr-4 row" linear labelPosition="bottom" #stepper>
+        <div class="col-xs-3 col-md-c3 col-lg-3">
+            <!-- DATOS PRIVADOS -->
+            <mat-step [stepControl]="datosMascota">
+                <form [formGroup]="datosMascota">
+                    <ng-template matStepLabel>Datos de tu mascota</ng-template>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Especie" formControlName="especie" required>
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Raza" formControlName="raza">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Sexo" formControlName="sexo" required>
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Color" formControlName="color" required>
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Señas" formControlName="senias">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <mat-select placeholder="Veterinario" formControlName="veterinario">
+                            <mat-option value="veterinario 1">Veterinario 1</mat-option>
+                            <mat-option value="veterinario 2">Veterinario 2</mat-option>
+                            <mat-option value="veterinario 3">Veterinario 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Foto" formControlName="foto" required>
+                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <div>
+                        <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+        </div>
+        <div class="col-xs-3 col-md-c3 col-lg-3">
+            <!-- DATOS PUBLICOS -->
+            <mat-step [stepControl]="datosPublicos">
+                <form [formGroup]="datosPublicos">
+                    <ng-template matStepLabel>Datos para la ficha pública</ng-template>
+
+                    <mat-checkbox formControlName="nombre_publico">{{ datosMascota.controls['nombre'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="fecha_nacimiento_publico">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="especie_publico">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="raza_publico">{{ datosMascota.controls['raza'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="sexo_publico">{{ datosMascota.controls['sexo'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="color_publico">{{ datosMascota.controls['color'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="senias_publico">{{ datosMascota.controls['senias'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="veterinario_publico">{{ datosMascota.controls['veterinario'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="foto_publico">{{ datosMascota.controls['foto'].value }}</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="nombre_duenio_publico">nombre duenio</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="apellido_duenio_publico">apellido duenio</mat-checkbox>
+                    <br>
+                    <mat-checkbox formControlName="telefono_duenio_publico">telefono duenio</mat-checkbox>
+                    <br>
+                    <div>
+                        <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
+                        <button type="button" (click)="guardarDatosPublicos()" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+        </div>
+        <div class="col-xs-3 col-md-c3 col-lg-3">
+            <mat-step>
+                <ng-template matStepLabel>Fin</ng-template>
+                ¡Listo! //esta es una confirmacion para cargar la mascota, si selecciona guardar se guarda, si no se resetea el formulario. Los datos publicos de tu mascota son: //se muestran solo los que selecciono como publicos para que confirme
+                <div>
+                    Datos públicos:
+
+                    <p *ngIf="datosPublicos.controls['nombre_publico'].value">Nombre: {{ datosMascota.controls['nombre'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['fecha_nacimiento_publico'].value">fecha_nacimiento: {{ datosMascota.controls['fecha_nacimiento'].value | date }}</p>
+                    <p *ngIf="datosPublicos.controls['especie_publico'].value">especie: {{ datosMascota.controls['especie'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['raza_publico'].value">raza: {{ datosMascota.controls['raza'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['sexo_publico'].value">sexo: {{ datosMascota.controls['sexo'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['color_publico'].value">color: {{ datosMascota.controls['color'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['senias_publico'].value">senias: {{ datosMascota.controls['senias'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['veterinario_publico'].value">veterinario: {{ datosMascota.controls['veterinario'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['foto_publico'].value">foto: {{ datosMascota.controls['foto'].value }}</p>
+                    <p *ngIf="datosPublicos.controls['nombre_duenio_publico'].value">nombre_duenio: nombre duenio</p>
+                    <p *ngIf="datosPublicos.controls['apellido_duenio_publico'].value">apellido_duenio: apellido duenio</p>
+                    <p *ngIf="datosPublicos.controls['telefono_duenio_publico'].value">telefono_duenio: telefono duenio</p>
+                </div>
+                <div>
+                    <button type="button" class="mr-2 btn btn-outline-secondary btn-sm">Guardar</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="stepper.reset()">Resetear</button>
+                </div>
+            </mat-step>
+        </div>
+    </mat-horizontal-stepper>
+</div>
