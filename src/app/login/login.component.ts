@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from '../services/service.index';
+import { IUsuarioLogin } from '../interfaces/IUsuarioLogin';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,8 @@ export class LoginComponent{
   form: FormGroup;  
   email:string=''; 
   password:string=''; 
-  constructor( private fb: FormBuilder ) { 
+  constructor( private fb: FormBuilder,
+               private authService: AuthService ) { 
 
     this.form = fb.group({  
       'email' : ['', [Validators.required, Validators.email]],
@@ -22,15 +25,13 @@ export class LoginComponent{
 
   login(){
     if (this.form.valid) {
-      console.log("loggeando");
-      console.log(this.form);
-    }else{
-
-      console.log("error");
-      console.log(this.form);
+      let usuario: IUsuarioLogin = {
+        email: this.form.value.email,
+        password: this.form.value.password
+      }
+      this.authService.login(usuario)
+            .subscribe()
     }
-    
-    
   }
 
   getErrorMessage() {
