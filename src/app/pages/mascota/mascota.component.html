@@ -2,7 +2,8 @@
     <mat-horizontal-stepper class="pr-4 row" linear labelPosition="bottom" #stepper>
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- DATOS PRIVADOS -->
-            <mat-step [stepControl]="datosMascota">
+            <!-- [stepControl]="datosMascota" (lo saco porque es incomodo para hacer pruebas) -->
+            <mat-step>
                 <form [formGroup]="datosMascota">
                     <ng-template matStepLabel>Datos de tu mascota</ng-template>
                     <mat-form-field>
@@ -52,12 +53,25 @@
                         </mat-select>
                     </mat-form-field>
                     <br>
+                    <div>
+                        <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+        </div>
+        <div class="col-xs-3 col-md-c3 col-lg-3">
+            <!-- FOTO -->
+            <mat-step>
+                <form [formGroup]="fotoMascota">
+                    <ng-template matStepLabel>Foto de tu mascota</ng-template>
+                    
                     <mat-form-field>
                         <input matInput type="text" placeholder="Foto" formControlName="foto" required>
                         <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
                     </mat-form-field>
                     <div>
-                        <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                        <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
+                        <button type="button" (click)="guardarDatosMascota()" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
                     </div>
                 </form>
             </mat-step>
@@ -84,8 +98,8 @@
                     <br>
                     <mat-checkbox formControlName="veterinario_publico">{{ datosMascota.controls['veterinario'].value }}</mat-checkbox>
                     <br>
-                    <mat-checkbox formControlName="foto_publico">{{ datosMascota.controls['foto'].value }}</mat-checkbox>
-                    <br>
+                    <!-- <mat-checkbox formControlName="foto_publico">{{ fotoMascota.controls['foto'].value }}</mat-checkbox>
+                    <br> -->
                     <mat-checkbox formControlName="nombre_duenio_publico">nombre duenio</mat-checkbox>
                     <br>
                     <mat-checkbox formControlName="apellido_duenio_publico">apellido duenio</mat-checkbox>

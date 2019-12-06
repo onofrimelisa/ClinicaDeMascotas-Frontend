@@ -16,8 +16,25 @@ export class MascotaComponent implements OnInit {
   sexo:string=''; 
   color:string=''; 
   senias:string=''; 
-  veterinario:string=''; 
+  veterinario:string='';
+  
+  fotoMascota: FormGroup;
   foto:string='';
+  
+  // Ficha publica
+  datosPublicos: FormGroup;
+  nombre_publico:boolean; 
+  fecha_nacimiento_publico:boolean; 
+  especie_publico:boolean; 
+  raza_publico:boolean; 
+  sexo_publico:boolean; 
+  color_publico:boolean; 
+  senias_publico:boolean; 
+  veterinario_publico:boolean; 
+  foto_publico:boolean; 
+  nombre_duenio_publico:boolean;
+  apellido_duenio_publico:boolean;
+  telefono_duenio_publico:boolean;
   
   // Campos select
   sexos: string[] = [
@@ -37,21 +54,7 @@ export class MascotaComponent implements OnInit {
     'Veterinario1',
     'Veterinaro2'
   ];
-  
-  // Ficha publica
-  datosPublicos: FormGroup;
-  nombre_publico:boolean; 
-  fecha_nacimiento_publico:boolean; 
-  especie_publico:boolean; 
-  raza_publico:boolean; 
-  sexo_publico:boolean; 
-  color_publico:boolean; 
-  senias_publico:boolean; 
-  veterinario_publico:boolean; 
-  foto_publico:boolean; 
-  nombre_duenio_publico:boolean;
-  apellido_duenio_publico:boolean;
-  telefono_duenio_publico:boolean;
+
 
   constructor(private _formBuilder: FormBuilder) {
 
@@ -64,11 +67,16 @@ export class MascotaComponent implements OnInit {
       sexo: ['', Validators.required],
       color: ['', Validators.required],
       senias: [''],
-      veterinario: [''],
-      foto: ['', Validators.required]
+      veterinario: ['']
+      // foto: ['', Validators.required]
     });
 
-    // DATOS PUBLICOS STEP 2
+    // FOTO STEP 2
+    this.fotoMascota = this._formBuilder.group({
+      foto: ['']
+    });
+
+    // DATOS PUBLICOS STEP 3
     this.datosPublicos = this._formBuilder.group({
       nombre_publico: [false], 
       fecha_nacimiento_publico: [false], 
