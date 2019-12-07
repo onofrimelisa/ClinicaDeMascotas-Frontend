@@ -21,9 +21,15 @@
 <main>
 
     <div class="container-fluid">
-        <div class="row">
+        <div *ngIf="registrar" class="row">
+            <div class="col">
+                <app-registro (eventoCambiar)="cambiarFormulario($event)"></app-registro>
 
-            <div class="col-lg-8">
+            </div>
+        </div>
+
+        <div *ngIf="!registrar" class="row">    
+            <div class="col-lg-7">
                 <div class="row text-center">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio eos ducimus necessitatibus nemo aspernatur quas nobis dolor ipsam quasi eum doloribus reiciendis, sed, nulla qui. In error eligendi earum repellat? Lorem ipsum, dolor sit amet consectetur
                     adipisicing elit. Reiciendis facere eius molestiae voluptates fuga quod eveniet officiis nobis porro sed ratione pariatur sint ut delectus deserunt, repellendus deleniti quibusdam obcaecati. Lorem ipsum, dolor sit amet consectetur
@@ -33,13 +39,10 @@
                     ratione pariatur sint ut delectus deserunt, repellendus deleniti quibusdam obcaecati. Lorem ipsum, dolor sit amet consectetur adi
                 </div>
             </div>
-
             <!-- LOGIN -->
-            <div class="col-lg-4">
-                <app-login></app-login>
-
+            <div class="col-lg-5">
+                <app-login (eventoCambiar)="cambiarFormulario($event)"></app-login>
             </div>
-
         </div>
     </div>
 
@@ -87,3 +90,10 @@
     </div>
 
 </main>
+
+
+
+<!-- footer -->
+<footer>
+    <app-footer></app-footer>
+</footer>

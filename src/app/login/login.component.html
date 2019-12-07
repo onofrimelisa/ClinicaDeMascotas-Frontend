@@ -1,5 +1,5 @@
 <div class="text-center">
-    <h2>LOGIN</h2>
+    <h2>Iniciar Sesión</h2>
     <form [formGroup]="form" (ngSubmit)="login()">
         <div>
             <mat-form-field appearance="outline">
@@ -21,6 +21,11 @@
                 <mat-error *ngIf="form.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
-        <button type="submit" class="btn btn-outline-primary">Log in</button>
+
+        <a class="pointer" (click)="mostrarRegistro()">¿No tenés una cuenta? <strong>¡Regístrate aquí!</strong></a>
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-outline-primary">Enviar</button>
+        </div>
     </form>
 </div>

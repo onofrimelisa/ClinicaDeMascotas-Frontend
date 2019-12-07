@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PagesComponent } from './pages/pages.component';
+import { RegistroComponent } from './registro/registro.component';
 
 // Angular Material
 import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
@@ -24,6 +25,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+
 
 
 @NgModule({
@@ -31,7 +36,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    PagesComponent
+    PagesComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +55,10 @@ import {MatStepperModule} from '@angular/material/stepper';
     FormsModule, 
     ReactiveFormsModule, 
     MatStepperModule, 
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

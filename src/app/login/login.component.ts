@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from '../services/service.index';
 import { IUsuarioLogin } from '../interfaces/IUsuarioLogin';
@@ -9,6 +9,8 @@ import { IUsuarioLogin } from '../interfaces/IUsuarioLogin';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent{
+  
+  @Output() eventoCambiar = new EventEmitter<boolean>();
 
   form: FormGroup;  
   email:string=''; 
@@ -40,5 +42,11 @@ export class LoginComponent{
            this.form.controls.password.hasError('required') ? 'Debes completar este campo.' :
               '';
   }
+
+
+  mostrarRegistro(){
+    this.eventoCambiar.emit(true);
+  }
+  
 
 }
