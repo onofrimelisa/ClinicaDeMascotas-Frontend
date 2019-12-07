@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from '../services/service.index';
-import { IUsuarioLogin } from '../interfaces/IUsuarioLogin';
+import { IUsuarioLogin } from '../interfaces/IUsuario';
 
 @Component({
   selector: 'app-login',

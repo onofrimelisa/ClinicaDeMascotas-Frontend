@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-
-import { IUsuarioLogin } from 'src/app/interfaces/IUsuario';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { map, catchError } from 'rxjs/operators';
+import { IUsuarioNuevo } from 'src/app/interfaces/IUsuario';
+import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 
@@ -12,32 +11,24 @@ const httpOptions = {
     'Content-Type': 'application/json'
   })
 };
-
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-
-  userToken: string;
+export class UsuarioService {
 
   constructor( private http: HttpClient ) { }
-
+  
   // =================================================================
   //                          Operaciones
   // =================================================================
 
-  login( usuario: IUsuarioLogin ) {
-    let url = URL_SERVICIOS + '/login';
+  agregarUsuario(usuario: IUsuarioNuevo) {
+    let url = URL_SERVICIOS + '/usuario';
     
     return this.http.post( url, usuario, httpOptions )
                 .pipe(
-                  map( (res: any) => {
-                    // acá se setearía el token
-                    console.log(res.headers.get("token"));
-                  }),
                   catchError( err => throwError(err.error))  
                 );
-    
   }
 
 }

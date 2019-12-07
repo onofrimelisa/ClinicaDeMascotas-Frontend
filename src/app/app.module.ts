@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DatePipe } from '@angular/common'
 
 //Rutas
 import { APP_ROUTING } from './app-routing.module';
@@ -60,7 +61,9 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     MatNativeDateModule,
     MatFileUploadModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
