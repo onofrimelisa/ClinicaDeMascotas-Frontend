@@ -4,6 +4,7 @@ import { Router, ActivationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-main-nav',
@@ -22,7 +23,8 @@ export class MainNavComponent {
  
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
-              private title: Title) {
+              private title: Title,
+              private authService: AuthService) {
     
       this.getDataRoute().subscribe( data => {
         this.titulo = data.titulo;
@@ -35,7 +37,9 @@ export class MainNavComponent {
     this.router.navigate([path])
   }
   
-
+  logout(){
+    this.authService.logout();
+  }
 
   getDataRoute() {
     return this.router.events
