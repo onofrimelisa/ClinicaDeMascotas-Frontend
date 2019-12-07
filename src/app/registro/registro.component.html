@@ -6,7 +6,7 @@
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- DATOS PRIVADOS -->
             <!-- [stepControl]="datosPersonales" (lo saco porque es incomodo para hacer pruebas) -->
-            <mat-step>
+            <mat-step [stepControl]="datosPersonales">
                 <form [formGroup]="datosPersonales">
                     <ng-template matStepLabel>Datos personales</ng-template>
                     
@@ -73,11 +73,16 @@
             <mat-step>
                 <form [formGroup]="formFoto">
                     <ng-template matStepLabel>Foto</ng-template>
-                    <div class="m-4">
+                    <div class="m-4 row">
                         <button type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
-                        <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+                        <button *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
+                        <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
                     </div>
                     
+                    <div *ngIf="imagenTemp">
+                        <h5>Vista previa</h5>
+                        <img [src]="imagenTemp" class="w150 mb-4">
+                    </div>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
                         <button type="button"  
@@ -113,7 +118,8 @@
                     <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button"  
+                        <button type="button"
+                                (click)="registrarUsuario()"  
                                 class="btn btn-outline-secondary btn-sm" 
                                 matStepperNext>Finalizar</button>
                     </div>

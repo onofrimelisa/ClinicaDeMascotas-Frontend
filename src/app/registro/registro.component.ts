@@ -23,6 +23,7 @@ export class RegistroComponent implements OnInit {
 
   // Foto
   archivo: IFoto = null;
+  imagenTemp: string;
   formFoto: FormGroup;
   foto: string;
 
@@ -62,25 +63,39 @@ export class RegistroComponent implements OnInit {
   }
   
 
+  registrarUsuario() {
+    console.log("Registrar usuario");
+
+  }
+
+
   mostrarLogin(){
     this.eventoCambiar.emit(false);
   }
   
-  onFileSelected(event) {
+  onFileSelected(archivo: File) {
     
-    let fullname = event.target.files[0]['name'] 
+    let fullname = archivo['name'] 
     let name = fullname.split('.')[0];
     let ext = fullname.split('.')[1];
+
+    let reader = new FileReader();
+    let urlImagenTemp = reader.readAsDataURL( archivo );
+    reader.onloadend = () => this.imagenTemp = String(reader.result);
     
     this.archivo = {
-      archivo: event.target.files[0],
+      archivo: archivo,
       nombreArchivo: name,
       extension: ext,
       url: ''
     }
     console.log(this.archivo);
   }
-
+  
+  limpiarFoto(){
+    this.archivo = null;
+    this.imagenTemp = null;
+  }
 
   setFormConfig(){
     if (this.datosPersonales.value.rol == 'veterinario') {
@@ -98,12 +113,10 @@ export class RegistroComponent implements OnInit {
       this.datosProfesionales.controls['nombre_consultorio'].disable();
       this.datosProfesionales.controls['domicilio_consultorio'].disable();
       this.datosProfesionales.controls['matricula'].disable();
-      
     }
     this.datosProfesionales.controls['matricula'].updateValueAndValidity();
     this.datosProfesionales.controls['nombre_consultorio'].updateValueAndValidity();
     this.datosProfesionales.controls['domicilio_consultorio'].updateValueAndValidity();
-    console.log("Valido:", this.datosProfesionales.valid);    
   }
 
 }
