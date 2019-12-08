@@ -6,69 +6,87 @@
             <mat-step>
                 <form [formGroup]="datosMascota">
                     <ng-template matStepLabel>Datos de tu mascota</ng-template>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Nombre" formControlName="nombre">
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" required>
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <mat-select placeholder="Especie" formControlName="especie">
-                            <mat-option *ngFor="let e of especies" value="{{ e }}">{{ e | titlecase }}</mat-option>
-                        </mat-select>
-                        <!-- <input matInput type="" placeholder="Especie" formControlName="especie" required> -->
-                        <!-- <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error> -->
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Raza" formControlName="raza">
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <mat-select placeholder="Sexo" formControlName="sexo">
-                            <mat-option *ngFor="let s of sexos" value="{{ s }}">{{ s | titlecase }}</mat-option>
-                        </mat-select>
-                        <!-- <input matInput type="text" placeholder="Sexo" formControlName="sexo" required> -->
-                        <!-- <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error> -->
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Color" formControlName="color" required>
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Señas" formControlName="senias">
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <mat-select placeholder="Veterinario" formControlName="veterinario">
-                            <mat-option *ngFor="let v of veterinarios" value="{{ v }}">{{ v | titlecase }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <br>
-                    <div>
-                        <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                    <div class="row">
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
                     </div>
+                    <br>
+                    <div class="row">
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <mat-select placeholder="Especie" formControlName="especie">
+                                <mat-option *ngFor="let e of especies" value="{{ e }}">{{ e | titlecase }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput type="text" placeholder="Raza" formControlName="raza">
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <mat-select placeholder="Sexo" formControlName="sexo">
+                                <mat-option *ngFor="let s of sexos" value="{{ s }}">{{ s | titlecase }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput type="text" placeholder="Color" formControlName="color" required>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput type="text" placeholder="Señas" formControlName="senias">
+                        </mat-form-field>
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <mat-select placeholder="Veterinario" formControlName="veterinario">
+                                <mat-option *ngFor="let v of veterinarios" value="{{ v }}">{{ v | titlecase }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row text center">
+                        <div class="col">
+                            <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                        </div>
+
+                    </div>
+
                 </form>
             </mat-step>
         </div>
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- FOTO -->
-            <mat-step>
+            <mat-step optional>
                 <form [formGroup]="fotoMascota">
                     <ng-template matStepLabel>Foto de tu mascota</ng-template>
-                    
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Foto" formControlName="foto" required>
-                        <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
-                    </mat-form-field>
+
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        <strong>Atención: </strong> Si no se carga una foto de su mascota, la ficha no se podrá ver publicamente en el home de la página.
+                    </div>
+
+                    <div class="row">
+
+                        <mat-form-field class="col-lg-5 col-md-5">
+                            <input matInput type="text" placeholder="Foto" formControlName="foto" required>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
                         <button type="button" (click)="guardarDatosMascota()" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
@@ -81,30 +99,51 @@
             <mat-step [stepControl]="datosPublicos">
                 <form [formGroup]="datosPublicos">
                     <ng-template matStepLabel>Datos para la ficha pública</ng-template>
+                    <div class="text-muted">
+                        <p> Seleccione las características de su mascota que quiere que aparezcan en su ficha pública.</p>
+                    </div>
 
-                    <mat-checkbox formControlName="nombre_publico">{{ datosMascota.controls['nombre'].value }}</mat-checkbox>
+                    <h5>Información de {{ datosMascota.controls['nombre'].value | titlecase }}:</h5>
                     <br>
-                    <mat-checkbox formControlName="fecha_nacimiento_publico">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
+
+                    <div class="row">
+                        <mat-checkbox formControlName="nombre_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['nombre'].value | titlecase }}</mat-checkbox>
+                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
+                    </div>
                     <br>
-                    <mat-checkbox formControlName="especie_publico">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
+                        <mat-checkbox formControlName="especie_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
+                    </div>
                     <br>
-                    <mat-checkbox formControlName="raza_publico">{{ datosMascota.controls['raza'].value }}</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
+                        <mat-checkbox formControlName="especie_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
+                    </div>
                     <br>
-                    <mat-checkbox formControlName="sexo_publico">{{ datosMascota.controls['sexo'].value }}</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="raza_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['raza'].value }}</mat-checkbox>
+                        <mat-checkbox formControlName="sexo_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['sexo'].value }}</mat-checkbox>
+                    </div>
                     <br>
-                    <mat-checkbox formControlName="color_publico">{{ datosMascota.controls['color'].value }}</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="color_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['color'].value }}</mat-checkbox>
+                        <mat-checkbox formControlName="senias_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['senias'].value }}</mat-checkbox>
+                    </div>
                     <br>
-                    <mat-checkbox formControlName="senias_publico">{{ datosMascota.controls['senias'].value }}</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="veterinario_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['veterinario'].value }}</mat-checkbox>
+                        <!-- <mat-checkbox formControlName="foto_publico">{{ fotoMascota.controls['foto'].value }}</mat-checkbox>-->
+                    </div>
+
                     <br>
-                    <mat-checkbox formControlName="veterinario_publico">{{ datosMascota.controls['veterinario'].value }}</mat-checkbox>
+                    <h5>Tu información:</h5>
                     <br>
-                    <!-- <mat-checkbox formControlName="foto_publico">{{ fotoMascota.controls['foto'].value }}</mat-checkbox>
-                    <br> -->
-                    <mat-checkbox formControlName="nombre_duenio_publico">nombre duenio</mat-checkbox>
-                    <br>
-                    <mat-checkbox formControlName="apellido_duenio_publico">apellido duenio</mat-checkbox>
-                    <br>
-                    <mat-checkbox formControlName="telefono_duenio_publico">telefono duenio</mat-checkbox>
+                    <div class="row">
+                        <mat-checkbox formControlName="nombre_duenio_publico" class="col-lg-4 col-md-4">Tu nombre</mat-checkbox>
+                        <mat-checkbox formControlName="apellido_duenio_publico" class="col-lg-4 col-md-4">Tu apellido</mat-checkbox>
+                        <mat-checkbox formControlName="telefono_duenio_publico" class="col-lg-4 col-md-4">Tu teléfono</mat-checkbox>
+                    </div>
                     <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
