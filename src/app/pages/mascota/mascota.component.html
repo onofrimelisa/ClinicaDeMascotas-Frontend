@@ -58,7 +58,7 @@
                     </div>
                     <div class="row text center">
                         <div class="col">
-                            <button type="button" (click)="guardarDatosMascota()" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                            <button type="button" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
                         </div>
 
                     </div>
@@ -69,7 +69,7 @@
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- FOTO -->
             <mat-step optional>
-                <form [formGroup]="fotoMascota">
+                <form [formGroup]="formFoto">
                     <ng-template matStepLabel>Foto de tu mascota</ng-template>
 
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -79,17 +79,20 @@
                         <strong>Atención: </strong> Si no se carga una foto de su mascota, la ficha no se podrá ver publicamente en el home de la página.
                     </div>
 
-                    <div class="row">
+                    <div class="m-4 row">
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
+                        <button *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
+                        <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
+                    </div>
 
-                        <mat-form-field class="col-lg-5 col-md-5">
-                            <input matInput type="text" placeholder="Foto" formControlName="foto" required>
-                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
-                        </mat-form-field>
+                    <div *ngIf="imagenTemp" class="text-center">
+                        <h5>Vista previa:</h5>
+                        <img [src]="imagenTemp" id="vista_previa">
                     </div>
                     <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button" (click)="guardarDatosMascota()" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
                     </div>
                 </form>
             </mat-step>
@@ -147,7 +150,7 @@
                     <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button" (click)="guardarDatosPublicos()" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
                     </div>
                 </form>
             </mat-step>
@@ -173,7 +176,7 @@
                     <p *ngIf="datosPublicos.controls['telefono_duenio_publico'].value">telefono_duenio: telefono duenio</p>
                 </div>
                 <div>
-                    <button type="button" class="mr-2 btn btn-outline-secondary btn-sm">Guardar</button>
+                    <button type="button" (click)="procesarMascota()" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" (click)="stepper.reset()">Resetear</button>
                 </div>
             </mat-step>

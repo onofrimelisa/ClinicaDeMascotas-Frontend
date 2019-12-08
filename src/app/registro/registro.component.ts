@@ -44,6 +44,7 @@ export class RegistroComponent implements OnInit {
   constructor( private _formBuilder: FormBuilder,
                private usuarioService: UsuarioService,
                private datePipe: DatePipe ) { 
+                 
     // DatosPersonales STEP 1
     this.datosPersonales = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

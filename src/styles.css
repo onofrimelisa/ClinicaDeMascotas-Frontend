@@ -34,6 +34,7 @@
     width: 70%;
 }
 
+
 /* FONT NO ANDA EL FONT FAMILYYYYYYYYYYYYYYYYYYYY*/
 
 body {
@@ -70,4 +71,12 @@ button.btn-outline-primary:hover {
 
 footer {
     bottom: 0;
+}
+
+
+/* REGISTRAR MASCOTA */
+
+img#vista_previa {
+    width: 500px;
+    height: 450px;
 }
