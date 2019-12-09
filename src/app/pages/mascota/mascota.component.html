@@ -6,7 +6,7 @@
             <mat-step>
                 <form [formGroup]="datosMascota">
                     <ng-template matStepLabel>Datos de tu mascota</ng-template>
-                    <div class="row">
+                    <div class="row separador">
                         <mat-form-field class="col-lg-5 col-md-5">
                             <input matInput type="text" placeholder="Nombre" formControlName="nombre">
                             <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
@@ -20,7 +20,7 @@
                         </mat-form-field>
                     </div>
                     <br>
-                    <div class="row">
+                    <div class="row ">
                         <mat-form-field class="col-lg-5 col-md-5">
                             <mat-select placeholder="Especie" formControlName="especie">
                                 <mat-option *ngFor="let e of especies" value="{{ e }}">{{ e | titlecase }}</mat-option>
@@ -72,7 +72,7 @@
                 <form [formGroup]="formFoto">
                     <ng-template matStepLabel>Foto de tu mascota</ng-template>
 
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <div class="separador alert alert-warning alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -102,7 +102,7 @@
             <mat-step [stepControl]="datosPublicos">
                 <form [formGroup]="datosPublicos">
                     <ng-template matStepLabel>Datos para la ficha pública</ng-template>
-                    <div class="text-muted">
+                    <div class="text-muted separador">
                         <p> Seleccione las características de su mascota que quiere que aparezcan en su ficha pública.</p>
                     </div>
 

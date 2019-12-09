@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { IFoto } from "../../interfaces/IFoto";
 import { IMascotaNueva } from 'src/app/interfaces/IMascota';
+import { IFicha } from 'src/app/interfaces/IFicha';
 import { DatePipe } from '@angular/common'
 
 // SweetAlert
@@ -137,6 +138,23 @@ export class MascotaComponent implements OnInit {
 
 
     // 2 creo la ficha publica
+
+    const fichaNueva: IFicha = {
+      nombre: this.datosPublicos.value.nombre,
+      especie: this.datosPublicos.value.especie,
+      raza: this.datosPublicos.value.raza,
+      fecha_nacimiento: this.getFecha(),
+      sexo: this.datosPublicos.value.sexo,
+      color: this.datosPublicos.value.color,
+      foto: url,
+      senias: this.datosPublicos.value.senias, 
+      email_duenio: "duenio llogeado",
+      nombre_duenio: "duenio llogeado",
+      apellido_duenio: "duenio llogeado",
+      telefono_duenio: "duenio llogeado",
+    }
+    
+
   }
 
 
