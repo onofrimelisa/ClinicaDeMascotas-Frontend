@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Guards
-import { AuthGuard, AuthService, UsuarioService, MascotaService } from './service.index';
+import { AuthGuard, 
+  AuthService, 
+  UsuarioService, 
+  MascotaService, 
+  TokenInterceptorService 
+} from './service.index';
 
 
 @NgModule({
@@ -13,6 +18,11 @@ import { AuthGuard, AuthService, UsuarioService, MascotaService } from './servic
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
     AuthGuard,
     AuthService,
     UsuarioService, 

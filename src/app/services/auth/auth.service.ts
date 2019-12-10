@@ -34,6 +34,7 @@ export class AuthService {
     return this.http.post( url, usuario, httpOptions )
     .pipe(
       map( (res: any) => {
+        this.userToken = res.token;
         this.guardarStorage( res.token );
         return res.usuario;
       }),
