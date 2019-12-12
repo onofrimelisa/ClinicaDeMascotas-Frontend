@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from '../services/service.index';
-import { IUsuarioLogin } from '../interfaces/IUsuario';
+import { AuthService } from '../../services/service.index';
+import { IUsuarioLogin } from '../../interfaces/IUsuario';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -41,7 +41,7 @@ export class LoginComponent{
                 `Ingresaste como ${ usuario['nombre'] } ${ usuario['apellido'] }`,
                 'success'
               );
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/perfil']);
             },(err) => {
               Swal.fire({
                 icon: 'error',

@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router, ActivationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/service.index';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.css']
 })
-export class MainNavComponent {
+export class MainNavComponent implements OnInit {
   
   titulo: string;
+  
+  // Roles
+  admin: boolean = false;
+  duenio: boolean = false;
+  veterinario: boolean = false;
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -21,6 +28,7 @@ export class MainNavComponent {
       shareReplay()
     );
  
+
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
               private title: Title,
@@ -31,6 +39,19 @@ export class MainNavComponent {
       });
   }
   
+  ngOnInit() {
+    // Inicializo roles
+    let roles = this.authService.userLogged.roles;
+    if ( roles.indexOf('admin') > -1 ) {
+      this.admin = true;
+    }
+    if ( roles.indexOf('duenio') > -1 ) {
+      this.duenio = true;
+    }
+    if ( roles.indexOf('veterinario') > -1 ) {
+      this.veterinario = true;
+    }
+  }
 
 
   navegar(path){
@@ -38,7 +59,25 @@ export class MainNavComponent {
   }
   
   logout(){
-    this.authService.logout();
+    Swal.fire({
+      title: '¿Estás seguro de cerrar la sesión?',
+      text: 'Si estás seguro, seleccioná la opción Confirmar',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Sesión cerrada',
+          'La sesión se cerró con éxito',
+          'success'
+        );
+        this.authService.logout();
+      }
+    })
   }
 
   getDataRoute() {

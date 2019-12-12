@@ -1,13 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common'
-import { IFoto } from '../interfaces/IFoto'
-import { IUsuarioNuevo } from '../interfaces/IUsuario';
+import { IFoto } from '../../interfaces/IFoto'
+import { IUsuarioNuevo } from '../../interfaces/IUsuario';
 
 
 // SweetAlert
 import Swal from 'sweetalert2'
-import { UsuarioService } from '../services/service.index';
+import { UsuarioService, CargaImagenService } from '../../services/service.index';
 
 
 @Component({
@@ -43,6 +43,7 @@ export class RegistroComponent implements OnInit {
   
   constructor( private _formBuilder: FormBuilder,
                private usuarioService: UsuarioService,
+               private cargaImagenService: CargaImagenService,
                private datePipe: DatePipe ) { 
                  
     // DatosPersonales STEP 1
@@ -97,9 +98,6 @@ export class RegistroComponent implements OnInit {
     if (this.datosPersonales.value.rol == 'veterinario') {
       activo = false;
     }
-    
-    // subir foto y obtener url
-    let url = '';
 
     const usuarioNuevo: IUsuarioNuevo = {
       email: this.datosPersonales.value.email,
@@ -109,7 +107,6 @@ export class RegistroComponent implements OnInit {
       fecha_nacimiento: this.getFecha(),
       telefono: this.datosPersonales.value.telefono,
       activo: activo,
-      foto: url,
       rol: this.datosPersonales.value.rol,
       nombre_consultorio: this.datosProfesionales.value.nombre_consultorio,
       domicilio_consultorio: this.datosProfesionales.value.domicilio_consultorio,

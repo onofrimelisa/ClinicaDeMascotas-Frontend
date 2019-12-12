@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Componentes
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { MascotaComponent } from './mascota/mascota.component';
@@ -32,7 +31,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
     PerfilComponent,
     MascotaComponent
   ],
@@ -52,7 +50,6 @@ import { LayoutModule } from '@angular/cdk/layout';
   ],
   exports: [
     // PagesComponent,
-    DashboardComponent, 
     MascotaComponent
   ], 
   providers:[

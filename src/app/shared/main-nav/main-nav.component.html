@@ -6,56 +6,74 @@
             Menú
         </mat-toolbar>
         <mat-nav-list>
-            <h3 mat-subheader><strong>Cuenta</strong></h3>
-            <mat-divider></mat-divider>
-            <a mat-list-item (click)="navegar('/dashboard')" routerLinkActive="active">
-                <mat-icon class="icono" aria-label="Dashboard">dashboard</mat-icon>
-                Dashboard
-            </a>
-            <a mat-list-item (click)="navegar('/perfil')">
-                <mat-icon class="icono" aria-label="Mi Perfil">account_circle</mat-icon>
-                Mi Perfil
-            </a>
-            <a mat-list-item (click)="logout()">
-                <mat-icon class="icono" aria-label="Cerrar sesión">first_page</mat-icon>
-                Cerrar sesión
-            </a>
+            <div>
+                <h3 mat-subheader><strong>Cuenta</strong></h3>
+                <mat-divider></mat-divider>
+                <!-- <a *ngIf="admin" mat-list-item (click)="navegar('/veterinarios')" routerLinkActive="active">
+                    <mat-icon class="icono" aria-label="Veterinarios">view_list</mat-icon>
+                    Veterinarios
+                </a> -->
+                <a mat-list-item (click)="navegar('/perfil')">
+                    <mat-icon class="icono" aria-label="Mi Perfil">account_circle</mat-icon>
+                    Mi Perfil
+                </a>
+                <a mat-list-item (click)="logout()">
+                    <mat-icon class="icono" aria-label="Cerrar sesión">first_page</mat-icon>
+                    Cerrar sesión
+                </a>
+                <mat-divider></mat-divider>
+            </div>
+            
+            <div *ngIf="admin">
+                <h3 mat-subheader><strong>Administración</strong></h3>
+                <mat-divider></mat-divider>
+                <a mat-list-item (click)="navegar('/veterinarios')" routerLinkActive="active">
+                    <mat-icon class="icono" aria-label="Veterinarios">view_list</mat-icon>
+                    Veterinarios
+                </a>
+                <mat-divider></mat-divider>
+            </div>
 
-            <mat-divider></mat-divider>
+            <div *ngIf="!admin">
+                <h3 mat-subheader><strong>Mascotas</strong></h3>
+                <mat-divider></mat-divider>
 
-            <h3 mat-subheader><strong>Mascotas</strong></h3>
-            <mat-divider></mat-divider>
+                <a *ngIf="duenio" mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Mis Mascotas">pets</mat-icon>
+                    Mis Mascotas
+                </a>
+                <a *ngIf="veterinario" mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Mascotas atendidas">pets</mat-icon>
+                    Mascotas atendidas
+                </a>
+                <a *ngIf="duenio" mat-list-item (click)="navegar('/nueva')">
+                    <mat-icon class="icono" aria-label="Nueva Mascota">add_box</mat-icon>
+                    Nueva
+                </a>
+                <mat-divider></mat-divider>
+            </div>
 
-            <a mat-list-item href="#">
-                <mat-icon class="icono" aria-label="Mis Mascotas">pets</mat-icon>
-                Mis Mascotas
-            </a>
-            <a mat-list-item (click)="navegar('/nueva')">
-                <mat-icon class="icono" aria-label="Nueva Mascota">add_box</mat-icon>
-                Nueva
-            </a>
-            <mat-divider></mat-divider>
+            <div *ngIf="!admin">
+                <h3 mat-subheader><strong>Eventos</strong></h3>
+                <mat-divider></mat-divider>
 
-            <h3 mat-subheader><strong>Eventos</strong></h3>
-            <mat-divider></mat-divider>
-
-            <a mat-list-item href="#">
-                <mat-icon class="icono" aria-label="Mis Eventos">date_range</mat-icon>
-                <span matBadge="4" matBadgeOverlap="false">Mis Eventos</span>
-            </a>
-            <a mat-list-item href="#">
-                <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
-                <span matBadge="2" matBadgeOverlap="false">Mis Recordatorios</span>
-            </a>
-            <a mat-list-item href="#">
-                <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
-                Evento
-            </a>
-            <a mat-list-item href="#">
-                <mat-icon class="icono" aria-label="Nuevo Recordatorio">alarm_add</mat-icon>
-                Recordatorio
-            </a>
-
+                <a mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Mis Eventos">event</mat-icon>
+                    <span matBadge="4" matBadgeOverlap="false">Mis Eventos</span>
+                </a>
+                <a mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
+                    <span matBadge="2" matBadgeOverlap="false">Mis Recordatorios</span>
+                </a>
+                <a mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
+                    Evento
+                </a>
+                <a mat-list-item href="#">
+                    <mat-icon class="icono" aria-label="Nuevo Recordatorio">alarm_add</mat-icon>
+                    Recordatorio
+                </a>
+            </div>
         </mat-nav-list>
     </mat-sidenav>
     <!-- Sidebar -->

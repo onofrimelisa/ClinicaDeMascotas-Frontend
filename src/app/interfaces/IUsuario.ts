@@ -8,7 +8,7 @@ export interface IUsuario {
     fecha_nacimiento: String;
     telefono: string;
     activo: boolean;
-    rol: string[];
+    roles: string[];
     foto?: string;
     nombre_consultorio?: string;
     domicilio_consultorio?: string;

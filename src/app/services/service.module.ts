@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// Guards
+// INDEX
 import { AuthGuard, 
   AuthService, 
   UsuarioService, 
   MascotaService, 
-  TokenInterceptorService 
+  TokenInterceptorService,
+  CargaImagenService 
 } from './service.index';
 
 
@@ -26,7 +27,8 @@ import { AuthGuard,
     AuthGuard,
     AuthService,
     UsuarioService, 
-    MascotaService
+    MascotaService,
+    CargaImagenService
   ]
 })
 export class ServiceModule { }
