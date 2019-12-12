@@ -68,32 +68,9 @@
                 </form>
             </mat-step>
         </div>
+        
         <div class="col-xs-3 col-md-c3 col-lg-3">
-            <!-- FOTO -->
-            <mat-step>
-                <form [formGroup]="formFoto">
-                    <ng-template matStepLabel>Foto</ng-template>
-                    <div class="m-4 row">
-                        <button type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
-                        <button *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
-                        <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
-                    </div>
-                    
-                    <div *ngIf="imagenTemp">
-                        <h5>Vista previa</h5>
-                        <img [src]="imagenTemp" class="w150 mb-4">
-                    </div>
-                    <div>
-                        <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button"  
-                                class="btn btn-outline-secondary btn-sm" 
-                                matStepperNext>Siguiente</button>
-                    </div>
-                </form>
-            </mat-step>
-        </div>
-        <div class="col-xs-3 col-md-c3 col-lg-3">
-            <!-- STEP 3 - DATOS PROFESIONALES -->
+            <!-- STEP 2 - DATOS PROFESIONALES -->
             <mat-step>
                 <form [formGroup]="datosProfesionales">
                     <ng-template matStepLabel>Datos profesionales</ng-template>
@@ -121,10 +98,34 @@
                         <button type="button"
                                 (click)="procesarUsuario()"  
                                 class="btn btn-outline-secondary btn-sm" 
-                                matStepperNext>Finalizar</button>
+                                matStepperNext>Enviar</button>
                     </div>
                 </form>
             </mat-step>
         </div>
+        <!-- <div class="col-xs-3 col-md-c3 col-lg-3"> -->
+            <!-- STEP 3 FOTO -->
+            <!-- <mat-step>
+                <form [formGroup]="formFoto">
+                    <ng-template matStepLabel>Foto</ng-template>
+                    <div class="m-4 row">
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
+                        <button *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
+                        <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
+                    </div>
+                    
+                    <div *ngIf="imagenTemp">
+                        <h5>Vista previa</h5>
+                        <img [src]="imagenTemp" class="w150 mb-4">
+                    </div>
+                    <div>
+                        <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
+                        <button type="button"  
+                                class="btn btn-outline-secondary btn-sm" 
+                                matStepperNext>Finalizar</button>
+                    </div>
+                </form>
+            </mat-step>
+        </div> -->
     </mat-horizontal-stepper>
 </div>
