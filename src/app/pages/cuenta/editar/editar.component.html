@@ -1,0 +1,111 @@
+<div class="container-fluid animated fadeIn">
+    <mat-tab-group class="m-4">
+        <mat-tab label="Datos Personales">    
+            <form [formGroup]="datosPersonales" class="mt-5">
+                <div class="row">
+                
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Email" formControlName="email">
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Contraseña" formControlName="password">
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Apellido" formControlName="apellido">
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Teléfono" formControlName="telefono">
+                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
+                        </mat-form-field>
+                        <br>
+                    </div>
+                <!-- Fin row -->
+                </div> 
+                
+                <div>
+                    <button type="button" 
+                            class="mt-2 btn btn-outline-secondary btn-sm">
+                            Guardar
+                    </button>
+                </div>
+            </form>
+        </mat-tab>
+        <!-- SEGUNDO TAB -->
+        <mat-tab label="Foto"> 
+            <div class="container">
+                    <div class="m-4 row">
+                            <button type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
+                            <button *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
+                            <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
+                    </div>
+
+                    <div class="profile-img" *ngIf="!imagenTemp && !usuario.foto">
+                        <img src="/assets/img/no-profile.jpg" id="vista_previa" class="w150 mb-4" />
+                    </div>
+                    <div class="profile-img" *ngIf="!imagenTemp && usuario.foto">
+                        <img [src]="usuario.foto" id="vista_previa" class="w150 mb-4"/>
+                    </div>     
+                    <div class="profile-img" *ngIf="imagenTemp">
+                        <h5>Vista previa</h5>
+                        <img [src]="imagenTemp" id="vista_previa" class="w150 mb-4">
+                    </div>
+                    <div>
+                        <button type="button"  
+                                class="btn btn-outline-secondary btn-sm"
+                                *ngIf="archivo">
+                                Guardar
+                        </button>
+                    </div>
+            </div>
+        </mat-tab>
+        <!-- TERCER TAB -->
+        <mat-tab *ngIf="usuario.roles[0] == 'veterinario'" label="Datos Profesionales">
+            <form [formGroup]="datosProfesionales">
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Matrícula" formControlName="matricula">
+                    <mat-error *ngIf="datosProfesionales.invalid">Debe completar este campo.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Nombre Consultorio" formControlName="nombre_consultorio">
+                    <mat-error *ngIf="datosProfesionales.invalid">Debe completar este campo.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Domicilio Consultorio" formControlName="domicilio_consultorio">
+                    <mat-error *ngIf="datosProfesionales.invalid">Debe completar este campo.</mat-error>
+                </mat-form-field>
+                <br>
+                <div>
+                    <button type="button"
+                            class="btn btn-outline-secondary btn-sm">
+                            Guardar
+                    </button>
+                </div>
+            </form>
+
+        </mat-tab>
+    </mat-tab-group>
+</div>
+

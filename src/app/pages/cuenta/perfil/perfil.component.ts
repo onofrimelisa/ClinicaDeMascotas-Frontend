@@ -5,7 +5,7 @@ import { IUsuario } from '../../../interfaces/IUsuario';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['../../pages.component.css']
 })
 export class PerfilComponent implements OnInit {
 

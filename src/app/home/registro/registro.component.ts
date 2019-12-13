@@ -43,7 +43,6 @@ export class RegistroComponent implements OnInit {
   
   constructor( private _formBuilder: FormBuilder,
                private usuarioService: UsuarioService,
-               private cargaImagenService: CargaImagenService,
                private datePipe: DatePipe ) { 
                  
     // DatosPersonales STEP 1

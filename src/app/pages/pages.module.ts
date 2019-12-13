@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
+import { ListadoComponent } from './mascotas/listado/listado.component';
+import { EditarComponent } from './cuenta/editar/editar.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
@@ -25,8 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
-import { ListadoComponent } from './mascotas/listado/listado.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -34,7 +35,8 @@ import { ListadoComponent } from './mascotas/listado/listado.component';
   declarations: [
     PerfilComponent,
     RegistroMascotaComponent,
-    ListadoComponent
+    ListadoComponent,
+    EditarComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { ListadoComponent } from './mascotas/listado/listado.component';
     ReactiveFormsModule, 
     MatSelectModule, 
     MatDatepickerModule, 
-    MatNativeDateModule, 
+    MatNativeDateModule,
+    MatTabsModule, 
     MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, LayoutModule
   ],
   exports: [
