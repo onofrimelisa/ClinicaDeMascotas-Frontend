@@ -100,80 +100,74 @@
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- DATOS PUBLICOS -->
             <mat-step [stepControl]="datosPublicos">
-                <form [formGroup]="datosPublicos">
-                    <ng-template matStepLabel>Datos para la ficha pública</ng-template>
-                    <div class="text-muted separador">
-                        <p> Seleccione las características de su mascota que quiere que aparezcan en su ficha pública.</p>
-                    </div>
+                <ng-template matStepLabel>Datos para la ficha pública</ng-template>
+                <div class="text-muted separador">
+                    <p> Seleccione las características de su mascota que quiere que aparezcan en su ficha pública.</p>
+                </div>
 
-                    <h5>Información de {{ datosMascota.controls['nombre'].value | titlecase }}:</h5>
-                    <br>
+                <h5>Información de {{ datosMascota.controls['nombre'].value | titlecase }}:</h5>
+                <br>
+                <div class="container">
 
-                    <div class="row">
-                        <mat-checkbox formControlName="nombre_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['nombre'].value | titlecase }}</mat-checkbox>
-                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
-                        <mat-checkbox formControlName="especie_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="fecha_nacimiento_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['fecha_nacimiento'].value | date }}</mat-checkbox>
-                        <mat-checkbox formControlName="especie_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['especie'].value }}</mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="raza_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['raza'].value }}</mat-checkbox>
-                        <mat-checkbox formControlName="sexo_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['sexo'].value }}</mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="color_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['color'].value }}</mat-checkbox>
-                        <mat-checkbox formControlName="senias_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['senias'].value }}</mat-checkbox>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="veterinario_publico" class="col-lg-5 col-md-5">{{ datosMascota.controls['veterinario'].value }}</mat-checkbox>
-                        <!-- <mat-checkbox formControlName="foto_publico">{{ fotoMascota.controls['foto'].value }}</mat-checkbox>-->
-                    </div>
+                    <mat-selection-list #ficha>
+                        <mat-list-option value="nombre_publico">
+                            Nombre: {{ datosMascota.controls['nombre'].value | titlecase }}
+                        </mat-list-option>
+                        <mat-list-option value="fecha_nacimiento_publico">
+                            Fecha de nacimiento: {{ datosMascota.controls['fecha_nacimiento'].value | date }}
+                        </mat-list-option>
+                        <mat-list-option value="especie_publico">
+                            Especie: {{ datosMascota.controls['especie'].value }}
+                        </mat-list-option>
+                        <mat-list-option value="raza_publico">
+                            Raza: {{ datosMascota.controls['raza'].value }}
+                        </mat-list-option>
+                        <mat-list-option value="sexo_publico">
+                            Sexo: {{ datosMascota.controls['sexo'].value }}
+                        </mat-list-option>
+                        <mat-list-option value="color_publico">
+                            Color: {{ datosMascota.controls['color'].value }}
+                        </mat-list-option>
+                        <mat-list-option value="senias_publico">
+                            Senias: {{ datosMascota.controls['senias'].value }}
+                        </mat-list-option>
 
-                    <br>
-                    <h5>Tu información:</h5>
-                    <br>
-                    <div class="row">
-                        <mat-checkbox formControlName="nombre_duenio_publico" class="col-lg-4 col-md-4">Tu nombre</mat-checkbox>
-                        <mat-checkbox formControlName="apellido_duenio_publico" class="col-lg-4 col-md-4">Tu apellido</mat-checkbox>
-                        <mat-checkbox formControlName="telefono_duenio_publico" class="col-lg-4 col-md-4">Tu teléfono</mat-checkbox>
-                    </div>
-                    <br>
-                    <div>
-                        <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm" matStepperNext>Siguiente</button>
-                    </div>
-                </form>
+
+                        <br>
+                        <h5>Tu información:</h5>
+                        <br>
+                        <div class="row">
+                            <mat-list-option class="col" value="nombre_duenio_publico">
+                                Tu nombre
+                            </mat-list-option>
+                            <mat-list-option class="col" value="apellido_duenio_publico">
+                                Tu apellido
+                            </mat-list-option>
+                            <mat-list-option class="col" value="telefono_duenio_publico">
+                                Tu telefono
+                            </mat-list-option>
+                        </div>
+                    </mat-selection-list>
+                </div>
+                <br>
+                <div>
+                    <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="mostrar(ficha.selectedOptions.selected)" matStepperNext>Siguiente</button>
+                </div>
             </mat-step>
         </div>
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <mat-step>
                 <ng-template matStepLabel>Fin</ng-template>
-                ¡Listo! //esta es una confirmacion para cargar la mascota, si selecciona guardar se guarda, si no se resetea el formulario. Los datos publicos de tu mascota son: //se muestran solo los que selecciono como publicos para que confirme
-                <div>
-                    Datos públicos:
+                <div class="alert alert-info" role="alert">
+                    <strong>¡Listo! </strong> Para terminar con el registro de su mascota seleccione la opcion "Finalizar".
+                </div>
+                <div class="text-muted separador">
+                    <p> Los datos publicos de tu mascota son:</p>
+                </div>
+                <div class="container">
 
-                    <p *ngIf="datosPublicos.controls['nombre_publico'].value">Nombre: {{ datosMascota.controls['nombre'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['fecha_nacimiento_publico'].value">fecha_nacimiento: {{ datosMascota.controls['fecha_nacimiento'].value | date }}</p>
-                    <p *ngIf="datosPublicos.controls['especie_publico'].value">especie: {{ datosMascota.controls['especie'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['raza_publico'].value">raza: {{ datosMascota.controls['raza'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['sexo_publico'].value">sexo: {{ datosMascota.controls['sexo'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['color_publico'].value">color: {{ datosMascota.controls['color'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['senias_publico'].value">senias: {{ datosMascota.controls['senias'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['veterinario_publico'].value">veterinario: {{ datosMascota.controls['veterinario'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['foto_publico'].value">foto: {{ datosMascota.controls['foto'].value }}</p>
-                    <p *ngIf="datosPublicos.controls['nombre_duenio_publico'].value">nombre_duenio: nombre duenio</p>
-                    <p *ngIf="datosPublicos.controls['apellido_duenio_publico'].value">apellido_duenio: apellido duenio</p>
-                    <p *ngIf="datosPublicos.controls['telefono_duenio_publico'].value">telefono_duenio: telefono duenio</p>
+                    //aca se van a mostrar los datos publicos seleccionados
                 </div>
                 <div>
                     <button type="button" (click)="procesarMascota()" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>

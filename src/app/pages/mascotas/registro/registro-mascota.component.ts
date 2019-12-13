@@ -37,19 +37,20 @@ export class RegistroMascotaComponent implements OnInit {
   foto: string;
   
   // Ficha publica
-  datosPublicos: FormGroup;
-  nombre_publico:boolean; 
-  fecha_nacimiento_publico:boolean; 
-  especie_publico:boolean; 
-  raza_publico:boolean; 
-  sexo_publico:boolean; 
-  color_publico:boolean; 
-  senias_publico:boolean; 
-  veterinario_publico:boolean; 
-  foto_publico:boolean; 
-  nombre_duenio_publico:boolean;
-  apellido_duenio_publico:boolean;
-  telefono_duenio_publico:boolean;
+  datosPublicos: [{
+    'nombre_publico': '',
+    'fecha_nacimiento_publico': ''; 
+    'especie_publico': ''; 
+    'raza_publico': ''; 
+    'sexo_publico': ''; 
+    'color_publico': ''; 
+    'senias_publico': '';
+    'foto_publico': ''; 
+    'nombre_duenio_publico': '';
+    'apellido_duenio_publico': '';
+    'telefono_duenio_publico': '';
+
+  }];
   
   // Campos select
   sexos: string[] = [
@@ -91,22 +92,6 @@ export class RegistroMascotaComponent implements OnInit {
     this.formFoto = this._formBuilder.group({
       foto: ['']
     });
-
-    // DATOS PUBLICOS STEP 3
-    this.datosPublicos = this._formBuilder.group({
-      nombre_publico: [false], 
-      fecha_nacimiento_publico: [false], 
-      especie_publico: [false], 
-      raza_publico: [false], 
-      sexo_publico: [false], 
-      color_publico: [false], 
-      senias_publico: [false], 
-      veterinario_publico: [false], 
-      foto_publico: [false], 
-      nombre_duenio_publico: [false],
-      apellido_duenio_publico: [false],
-      telefono_duenio_publico: [false]
-    });
   }
 
   ngOnInit() {
@@ -138,21 +123,6 @@ export class RegistroMascotaComponent implements OnInit {
 
 
     // 2 creo la ficha publica
-
-    const fichaNueva: IFicha = {
-      nombre: this.datosPublicos.value.nombre,
-      especie: this.datosPublicos.value.especie,
-      raza: this.datosPublicos.value.raza,
-      fecha_nacimiento: this.getFecha(),
-      sexo: this.datosPublicos.value.sexo,
-      color: this.datosPublicos.value.color,
-      foto: url,
-      senias: this.datosPublicos.value.senias, 
-      email_duenio: "duenio llogeado",
-      nombre_duenio: "duenio llogeado",
-      apellido_duenio: "duenio llogeado",
-      telefono_duenio: "duenio llogeado",
-    }
     
 
   }
@@ -218,5 +188,15 @@ export class RegistroMascotaComponent implements OnInit {
   // GET FECHA
   getFecha() {
     return this.datePipe.transform(this.datosMascota.value.fecha_nacimiento, 'yyyy-MM-dd');
+  }
+
+  mostrar(options:any){
+
+    for (let index = 0; index < options.length; index++) {
+      let element = options[index].value;
+      console.log(element);
+      
+    }
+    
   }
 }
