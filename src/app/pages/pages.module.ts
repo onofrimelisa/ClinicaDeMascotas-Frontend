@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Componentes
 import { PagesComponent } from './pages.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { MascotaComponent } from './mascota/mascota.component';
 
 //Rutas

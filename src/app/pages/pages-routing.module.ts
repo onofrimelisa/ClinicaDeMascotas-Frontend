@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 //Componentes
 import { PagesComponent } from './pages.component';
 import { MascotaComponent } from './mascota/mascota.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { AuthGuard } from '../services/guards/auth.guard';
 
 const PAGES_ROUTES: Routes = [
