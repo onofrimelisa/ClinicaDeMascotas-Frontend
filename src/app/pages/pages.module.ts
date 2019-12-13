@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
-import { ListadoComponent } from './mascotas/listado/listado.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
 
 //Rutas
@@ -35,7 +34,6 @@ import { MatTabsModule } from '@angular/material/tabs';
   declarations: [
     PerfilComponent,
     RegistroMascotaComponent,
-    ListadoComponent,
     EditarComponent
   ],
   imports: [
