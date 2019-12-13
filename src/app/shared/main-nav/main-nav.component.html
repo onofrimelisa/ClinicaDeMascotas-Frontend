@@ -27,7 +27,7 @@
                 </a>
                 <mat-divider></mat-divider>
             </div>
-            
+
             <div *ngIf="admin">
                 <h3 mat-subheader><strong>Administración</strong></h3>
                 <mat-divider></mat-divider>
@@ -42,7 +42,7 @@
                 <h3 mat-subheader><strong>Mascotas</strong></h3>
                 <mat-divider></mat-divider>
 
-                <a *ngIf="duenio" mat-list-item href="#">
+                <a *ngIf="duenio" mat-list-item (click)="navegar('/mascotas')">
                     <mat-icon class="icono" aria-label="Mis Mascotas">pets</mat-icon>
                     Mis Mascotas
                 </a>

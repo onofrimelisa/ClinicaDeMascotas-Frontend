@@ -29,4 +29,13 @@ export class MascotaService {
                   catchError( err => throwError(err.error))  
                 );
   }
+
+  getMascotasDuenio( id: string){
+    let url = URL_PRIVADA + '/mascota/duenio/' + id;
+
+    return this.http.get(url, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
 }

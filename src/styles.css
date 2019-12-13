@@ -35,6 +35,7 @@
     max-height: fit-content;
 }
 
+
 /* FONT NO ANDA EL FONT FAMILYYYYYYYYYYYYYYYYYYYY*/
 
 body {
@@ -81,6 +82,7 @@ img#vista_previa {
     height: 450px;
 }
 
+
 /* =================================================================
                             ANIMACIONES
    ================================================================= */
@@ -99,8 +101,6 @@ img#vista_previa {
     animation-fill-mode: both;
 }
 
-
 .fadeIn {
     animation-name: fadeIn;
 }
-
