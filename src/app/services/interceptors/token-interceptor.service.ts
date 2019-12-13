@@ -20,6 +20,7 @@ export class TokenInterceptorService implements HttpInterceptor{
         }
       });
     }
+    console.log(req);
     return next.handle(req);
   }
  

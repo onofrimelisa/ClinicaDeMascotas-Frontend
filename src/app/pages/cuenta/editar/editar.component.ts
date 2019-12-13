@@ -66,7 +66,7 @@ export class EditarComponent implements OnInit {
   actualizarFoto() {
     this.cargaImagenService.cargarFoto( this.archivo, 'usuarios' )
             .then(
-              res => console.log(res)
+              (res) => console.log(res)
               // actualizar usuario con url
             ).catch(
               error => console.log(error)
@@ -107,13 +107,14 @@ export class EditarComponent implements OnInit {
   // USUARIO
   actualizarUsuario(usuarioActualizado: IUsuario) {
     this.usuarioService.actualizarUsuario(usuarioActualizado)
-            .subscribe( (usuarioActualizado: IUsuario) => {
+            .subscribe( (res:any) => {
               Swal.fire(
-                'Usuario registrado',
-                'Iniciá sesión y comenzá a utilizar el sitio',
+                'Operación exitosa',
+                'Datos actualizados correctamente',
                 'success'
               );
-              this.usuario = usuarioActualizado;
+              console.log(res.usuario);
+              this.usuario = res.usuario;
             },(err) => {
               Swal.fire({
                 icon: 'error',
