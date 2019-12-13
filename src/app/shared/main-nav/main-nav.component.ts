@@ -61,7 +61,6 @@ export class MainNavComponent implements OnInit {
   logout(){
     Swal.fire({
       title: '¿Estás seguro de cerrar la sesión?',
-      text: 'Si estás seguro, seleccioná la opción Confirmar',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

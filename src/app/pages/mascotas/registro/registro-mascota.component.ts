@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { IFoto } from "../../interfaces/IFoto";
-import { IMascotaNueva } from 'src/app/interfaces/IMascota';
-import { IFicha } from 'src/app/interfaces/IFicha';
+import { IFoto } from "../../../interfaces/IFoto";
+import { IMascotaNueva } from '../../../interfaces/IMascota';
+import { IFicha } from '../../../interfaces/IFicha';
 import { DatePipe } from '@angular/common'
 
 // SweetAlert
@@ -10,14 +10,14 @@ import Swal from 'sweetalert2'
 
 
 // Servicios
-import { MascotaService } from '../../services/service.index';
+import { MascotaService } from '../../../services/service.index';
 
 @Component({
-  selector: 'app-mascota',
-  templateUrl: './mascota.component.html',
-  styleUrls: ['./mascota.component.css']
+  selector: 'app-listado-mascota',
+  templateUrl: './registro-mascota.component.html',
+  styleUrls: ['./registro-mascota.component.css']
 })
-export class MascotaComponent implements OnInit {
+export class RegistroMascotaComponent implements OnInit {
 
   datosMascota: FormGroup;
   nombre:string; 

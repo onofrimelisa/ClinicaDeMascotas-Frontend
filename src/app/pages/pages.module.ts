@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 //Componentes
 import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
-import { MascotaComponent } from './mascota/mascota.component';
+import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ListadoComponent } from './mascotas/listado/listado.component';
 
 
 
@@ -32,7 +33,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     PerfilComponent,
-    MascotaComponent
+    RegistroMascotaComponent,
+    ListadoComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,7 @@ import { LayoutModule } from '@angular/cdk/layout';
   ],
   exports: [
     // PagesComponent,
-    MascotaComponent
+    RegistroMascotaComponent
   ], 
   providers:[
     MatNativeDateModule
