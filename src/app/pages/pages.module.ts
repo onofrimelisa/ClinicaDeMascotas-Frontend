@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -49,7 +50,14 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDatepickerModule, 
     MatNativeDateModule,
     MatTabsModule, 
-    MatCheckboxModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, LayoutModule
+    MatCheckboxModule, 
+    MatGridListModule, 
+    MatCardModule, 
+    MatMenuModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    LayoutModule,
+    MatListModule
   ],
   exports: [
     // PagesComponent,
