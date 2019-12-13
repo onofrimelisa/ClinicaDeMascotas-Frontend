@@ -2,7 +2,7 @@
 export interface IUsuario {
     id: number;
     email: string;
-    password: string;
+    password?: string;
     apellido: string;
     nombre: string;
     fecha_nacimiento: String;

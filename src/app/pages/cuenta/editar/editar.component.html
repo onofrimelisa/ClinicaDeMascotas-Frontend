@@ -11,11 +11,6 @@
                         </mat-form-field>
                         <br>
                         <mat-form-field>
-                            <input matInput type="password" placeholder="Contraseña" formControlName="password">
-                            <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
-                        </mat-form-field>
-                        <br>
-                        <mat-form-field>
                             <input matInput type="text" placeholder="Nombre" formControlName="nombre">
                             <mat-error *ngIf="datosPersonales.invalid">Debe completar este campo.</mat-error>
                         </mat-form-field>
@@ -44,7 +39,8 @@
                 </div> 
                 
                 <div>
-                    <button type="button" 
+                    <button type="button"
+                            (click)="procesarUsuario()" 
                             class="mt-2 btn btn-outline-secondary btn-sm">
                             Guardar
                     </button>
@@ -71,7 +67,8 @@
                         <img [src]="imagenTemp" id="vista_previa" class="w150 mb-4">
                     </div>
                     <div>
-                        <button type="button"  
+                        <button type="button" 
+                                (click)="actualizarFoto()" 
                                 class="btn btn-outline-secondary btn-sm"
                                 *ngIf="archivo">
                                 Guardar

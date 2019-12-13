@@ -19,7 +19,6 @@ export class EditarComponent implements OnInit {
 
   datosPersonales: FormGroup;
   email: string;
-  password: string;
   nombre: string;
   apellido: string;
   fecha_nacimiento: Date;
@@ -48,7 +47,6 @@ export class EditarComponent implements OnInit {
   ngOnInit() {
     this.datosPersonales = this._formBuilder.group({
       email: [this.usuario.email, [Validators.required, Validators.email]],
-      password: [this.usuario.password],
       nombre: [this.usuario.nombre, Validators.required],
       apellido: [this.usuario.apellido, Validators.required],
       fecha_nacimiento: [this.usuario.fecha_nacimiento, Validators.required],
@@ -64,6 +62,17 @@ export class EditarComponent implements OnInit {
   }
 
   // FOTO
+  
+  actualizarFoto() {
+    this.cargaImagenService.cargarFoto( this.archivo, 'usuarios' )
+            .then(
+              res => console.log(res)
+              // actualizar usuario con url
+            ).catch(
+              error => console.log(error)
+            );
+  }
+
   onFileSelected(archivo: File) {
     
     if ( archivo.type.indexOf('image') < 0 ) {
@@ -94,4 +103,45 @@ export class EditarComponent implements OnInit {
     this.imagenTemp = null;
   }
 
+
+  // USUARIO
+  actualizarUsuario(usuarioActualizado: IUsuario) {
+    this.usuarioService.actualizarUsuario(usuarioActualizado)
+            .subscribe( (usuarioActualizado: IUsuario) => {
+              Swal.fire(
+                'Usuario registrado',
+                'Iniciá sesión y comenzá a utilizar el sitio',
+                'success'
+              );
+              this.usuario = usuarioActualizado;
+            },(err) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: err.error,
+              })
+            });
+  }
+
+  procesarUsuario() {
+    const usuarioNuevo: IUsuario = {
+      id: this.usuario.id,
+      email: this.datosPersonales.value.email,
+      apellido: this.datosPersonales.value.apellido,
+      nombre: this.datosPersonales.value.nombre,
+      fecha_nacimiento: this.getFecha(),
+      telefono: this.datosPersonales.value.telefono,
+      activo: this.usuario.activo,
+      roles: this.usuario.roles,
+      foto: this.usuario.foto,
+      nombre_consultorio: this.datosProfesionales.value.nombre_consultorio,
+      domicilio_consultorio: this.datosProfesionales.value.domicilio_consultorio,
+      matricula: this.datosProfesionales.value.matricula
+    }
+    this.actualizarUsuario(usuarioNuevo);
+  }
+  
+  getFecha() {
+    return this.datePipe.transform(this.datosPersonales.value.fecha_nacimiento, 'yyyy-MM-dd');
+  }
 }
