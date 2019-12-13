@@ -33,9 +33,9 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario: IUsuario) {
-    let url = `${ URL_SERVICIOS }/usuario/${ usuario.id }`;
+    let url = `${ URL_SERVICIOS }/api/usuario/${ usuario.id }`;
 
-    return this.http.put( url, usuario, httpOptions)
+    return this.http.put( url, usuario, httpOptions )
                 .pipe(
                   catchError( err => throwError(err.error))  
                 );

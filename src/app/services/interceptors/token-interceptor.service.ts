@@ -20,16 +20,9 @@ export class TokenInterceptorService implements HttpInterceptor{
         }
       });
     }
-    return next.handle(req).pipe(
-      catchError( this.manejarError )
-    );
-
+    return next.handle(req);
   }
  
-  manejarError( error: HttpErrorResponse ) {
-    console.warn(error);
-    return throwError(error);
-  }
 
 
 }

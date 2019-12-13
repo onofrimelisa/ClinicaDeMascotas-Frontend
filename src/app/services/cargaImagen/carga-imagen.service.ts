@@ -25,8 +25,8 @@ export class CargaImagenService {
                       
       //ejecuto tarea
       uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
-            (snapshot) => console.log('Snapshot', snapshot),
-            (error) => console.log('Error al subir: ', error),
+            (snapshot) => 
+            (error) => 
             () => {
               console.log('Imagen cargada correctamente');
               uploadTask.snapshot.ref.getDownloadURL().then(
