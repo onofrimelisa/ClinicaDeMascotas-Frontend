@@ -21,14 +21,14 @@
 <main>
 
     <div class="container-fluid">
-        <div *ngIf="registrar" class="row">
+        <div *ngIf="registrar" class="row animated fadeInRight">
             <div class="col">
                 <app-registro (eventoCambiar)="cambiarFormulario($event)"></app-registro>
 
             </div>
         </div>
 
-        <div *ngIf="!registrar" class="row">    
+        <div *ngIf="!registrar" class="row animated fadeInLeft">
             <div class="col-lg-7">
                 <div class="row text-center">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio eos ducimus necessitatibus nemo aspernatur quas nobis dolor ipsam quasi eum doloribus reiciendis, sed, nulla qui. In error eligendi earum repellat? Lorem ipsum, dolor sit amet consectetur
