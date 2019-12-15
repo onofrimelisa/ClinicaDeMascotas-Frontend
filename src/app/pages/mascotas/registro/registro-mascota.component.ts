@@ -101,6 +101,7 @@ export class RegistroMascotaComponent implements OnInit {
       senias: [''],
       veterinario: ['', Validators.required ]
     });
+    
 
     // FOTO STEP 2
     this.formFoto = this._formBuilder.group({
@@ -115,33 +116,29 @@ export class RegistroMascotaComponent implements OnInit {
   // CREAR MASCOTA Y FICHA PUBLICA
   procesarMascota( options:any ){
 
-    // 1 creo la mascota
-    
-    // subir foto y obtener url
-    let url = '';
-
-    this.mascota = {
-      id: '',
-      nombre: this.datosMascota.value.nombre,
-      especie: this.datosMascota.value.especie,
-      raza: this.datosMascota.value.raza,
-      fecha_nacimiento: this.getFecha(),
-      sexo: this.datosMascota.value.sexo,
-      color: this.datosMascota.value.color,
-      foto: url,
-      senias: this.datosMascota.value.senias,
-      veterinario: '1', 
-      duenio: '1'
+    // 1 creo la mascota, 2 creo su ficha publica
+    if (this.datosMascota.valid) {
+      // subir foto y obtener url
+      let url = '';
+  
+      this.mascota = {
+        id: null,
+        nombre: this.datosMascota.value.nombre,
+        especie: this.datosMascota.value.especie,
+        raza: this.datosMascota.value.raza,
+        fecha_nacimiento: this.getFecha(),
+        sexo: this.datosMascota.value.sexo,
+        color: this.datosMascota.value.color,
+        foto: url,
+        senias: this.datosMascota.value.senias,
+        veterinario: '1', 
+        duenio: this.usuario.id
+      }
+      
+      this.registrarMascota( options );
+      
     }
     
-    this.registrarMascota( options );
-
-
-    // 2 creo la ficha publica
-    // this.crear_ficha_publica(options);
-    // console.log(this.ficha);
-    
-    // this.registrarFicha();
   }
 
 
@@ -149,8 +146,8 @@ export class RegistroMascotaComponent implements OnInit {
     this._ms.agregarMascota( this.mascota )
             .subscribe( ( mascota: IMascotaNueva ) => {
               this.mascota = mascota['mascota'];
-              console.log("mascota");
 
+              // una vez que se crea la mascota, recien ahi puedo crear su ficha publica
               this.crear_ficha_publica(options);
               this.registrarFicha();
               
@@ -168,11 +165,13 @@ export class RegistroMascotaComponent implements OnInit {
   registrarFicha(){
     this._fs.agregarFicha(this.ficha).subscribe(
       (ficha: IFicha) => {
-        console.log(ficha);
+        this.ficha = ficha['ficha_publica'];
+        console.log(this.ficha);
+        
         
         Swal.fire(
-          'Mascota registrada',
-          'Ya puedes ver los datos de tu nueva mascota en tu perfil. La ficha pública se podrá ver en el home de la página.',
+          'Mascota y ficha pública registradas',
+          'Ya puedes ver los datos de tu nueva mascota en tu perfil. Su ficha se podrá ver en el home de la página.',
           'success'
         );
       },(err) => {
@@ -213,7 +212,7 @@ export class RegistroMascotaComponent implements OnInit {
       extension: ext,
       url: ''
     }
-    console.log(this.archivo);
+    
   }
   
   // LIMPIAR FOTO 
@@ -232,7 +231,6 @@ export class RegistroMascotaComponent implements OnInit {
 
     for (let index = 0; index < options.length; index++) {
       let element = options[index].value;
-      console.log(element);
       
     }
     
@@ -242,49 +240,47 @@ export class RegistroMascotaComponent implements OnInit {
   crear_ficha_publica (options: any){
 
     // inicializo la ficha para poder ir seteando sus valores
-    this.ficha = {  id: '',
+    this.ficha = {  id: null,
                     mascota: this.mascota['id'],
-                    nombre: '',
-                    especie: '',
-                    raza: '',
-                    fecha_nacimiento: '',
-                    sexo: '',
-                    color: '',
-                    foto: '',
-                    senias: '',
-                    email_duenio: '',
-                    nombre_duenio: '',
-                    apellido_duenio: '',
-                    telefono_duenio: ''
+                    nombre: null,
+                    especie: null,
+                    raza: null,
+                    fecha_nacimiento: null,
+                    sexo: null,
+                    color: null,
+                    foto: null,
+                    senias: null,
+                    email_duenio: null,
+                    nombre_duenio: null,
+                    apellido_duenio: null,
+                    telefono_duenio: null
                   }
-
-    console.log(this.ficha['id']);
     
-
+    // recorro el arreglo de opciones seleccionadas x el usuario para que sean publicas
     for (let index = 0; index < options.length; index++) {
 
       let element = options[index].value;
-      if (element != 'apellido_duenio' || element != 'nombre_duenio' || element != 'telefono_duenio') {
+      if (element != 'apellido_duenio' && element != 'nombre_duenio' && element != 'telefono_duenio' && element != 'email_duenio') {
         this.ficha[element] = this.mascota[element];
                  
+      }else{
+        switch (element) {
+          case 'apellido_duenio':
+            this.ficha[element] = this.usuario['apellido'];
+            break;
+          case 'nombre_duenio':
+            this.ficha[element] = this.usuario['nombre'];
+            break;
+          case 'email_duenio':
+            this.ficha[element] = this.usuario['telefono'];
+            break;
+          case 'telefono_duenio':
+            this.ficha[element] = this.usuario['email'];
+            break;
+        }
+
       }
 
-      switch (element) {
-        case 'apellido_duenio':
-          this.ficha[element] = this.usuario['apellido'];
-          break;
-        case 'nombre_duenio':
-          this.ficha[element] = this.usuario['nombre'];
-          break;
-        case 'email_duenio':
-          this.ficha[element] = this.usuario['telefono'];
-          break;
-        case 'telefono_duenio':
-          this.ficha[element] = this.usuario['email'];
-          break;
-      }
-
-       
     }
     
   }

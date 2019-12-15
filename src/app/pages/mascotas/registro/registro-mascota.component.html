@@ -2,8 +2,7 @@
     <mat-horizontal-stepper class="pr-4 row" linear labelPosition="bottom" #stepper>
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- DATOS PRIVADOS -->
-            <!-- [stepControl]="datosMascota" (lo saco porque es incomodo para hacer pruebas) -->
-            <mat-step>
+            <mat-step [stepControl]="datosMascota">
                 <form [formGroup]="datosMascota">
                     <ng-template matStepLabel>Datos de tu mascota</ng-template>
                     <div class="row separador">
@@ -16,7 +15,7 @@
                             <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="fecha_nacimiento" required>
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
-                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>
+                            <mat-error *ngIf="datosMascota.invalid">Debe completar este campo con una fecha válida.</mat-error>
                         </mat-form-field>
                     </div>
                     <br>
@@ -172,10 +171,18 @@
                 <div class="text-muted separador">
                     <p> Los datos publicos de tu mascota son:</p>
                 </div>
-                <div class="container">
+                <div class="container" *ngFor="let option of ficha.selectedOptions.selected">
 
-                    //aca se van a mostrar los datos publicos seleccionados
+                    <mat-checkbox *ngIf="option.value != 'nombre_duenio' && option.value != 'apellido_duenio' && option.value != 'email_duenio' && option.value != 'telefono_duenio'; else elseTemplate" disabled="true" checked="true">{{ datosMascota.controls[option.value].value }}</mat-checkbox>
+
+                    <ng-template #elseTemplate>
+                        <mat-checkbox *ngIf="option.value == 'nombre_duenio'" disabled="true" checked="true">{{ usuario.nombre }}</mat-checkbox>
+                        <mat-checkbox *ngIf="option.value == 'apellido_duenio'" disabled="true" checked="true">{{ usuario.apellido }}</mat-checkbox>
+                        <mat-checkbox *ngIf="option.value == 'telefono_duenio'" disabled="true" checked="true">{{ usuario.telefono }}</mat-checkbox>
+                        <mat-checkbox *ngIf="option.value == 'email_duenio'" disabled="true" checked="true">{{ usuario.email }}</mat-checkbox>
+                    </ng-template>
                 </div>
+                <br>
                 <div>
                     <button type="button" (click)="procesarMascota( ficha.selectedOptions.selected )" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" (click)="stepper.reset()">Resetear</button>
