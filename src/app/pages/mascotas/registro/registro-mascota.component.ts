@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { IFoto } from "../../../interfaces/IFoto";
 import { IMascotaNueva } from '../../../interfaces/IMascota';
 import { IFicha } from '../../../interfaces/IFicha';
+import { IUsuario } from '../../../interfaces/IUsuario';
 import { DatePipe } from '@angular/common'
 
 // SweetAlert
@@ -10,7 +11,9 @@ import Swal from 'sweetalert2'
 
 
 // Servicios
-import { MascotaService } from '../../../services/service.index';
+import { MascotaService } from '../../../services/mascota/mascota.service';
+import { AuthService } from '../../../services/auth/auth.service';
+import { FichaService } from '../../../services/fichas/ficha.service';
 
 @Component({
   selector: 'app-listado-mascota',
@@ -19,6 +22,7 @@ import { MascotaService } from '../../../services/service.index';
 })
 export class RegistroMascotaComponent implements OnInit {
 
+  // FORMULARIO PARA AGREGAR MASCOTA
   datosMascota: FormGroup;
   nombre:string; 
   fecha_nacimiento:Date; 
@@ -38,19 +42,24 @@ export class RegistroMascotaComponent implements OnInit {
   
   // Ficha publica
   datosPublicos: [{
-    'nombre_publico': '',
-    'fecha_nacimiento_publico': ''; 
-    'especie_publico': ''; 
-    'raza_publico': ''; 
-    'sexo_publico': ''; 
-    'color_publico': ''; 
-    'senias_publico': '';
-    'foto_publico': ''; 
-    'nombre_duenio_publico': '';
-    'apellido_duenio_publico': '';
-    'telefono_duenio_publico': '';
+    'nombre': '',
+    'fecha_nacimiento': ''; 
+    'especie': ''; 
+    'raza': ''; 
+    'sexo': ''; 
+    'color': ''; 
+    'senias': '';
+    'foto': ''; 
+    'nombre_duenio': '';
+    'apellido_duenio': '';
+    'telefono_duenio': '';
 
   }];
+
+  // VARIABLES
+  ficha: IFicha = null;
+  mascota: IMascotaNueva;
+  usuario: IUsuario = null;
   
   // Campos select
   sexos: string[] = [
@@ -72,10 +81,15 @@ export class RegistroMascotaComponent implements OnInit {
   ];
 
 
-  constructor(private _formBuilder: FormBuilder, 
-              private _ms: MascotaService, 
-              private datePipe: DatePipe ) {
+  constructor( private _formBuilder: FormBuilder, 
+               private _ms: MascotaService,
+               private _as: AuthService, 
+               private _fs: FichaService,
+               private datePipe: DatePipe ) {
 
+    // INICIALIZO USUARIO LOGGEADO
+    this.usuario = this._as.userLogged;
+    
     // DATOS PRIVADOS STEP 1
     this.datosMascota = this._formBuilder.group({
       nombre: ['', Validators.required],
@@ -99,14 +113,15 @@ export class RegistroMascotaComponent implements OnInit {
   }
 
   // CREAR MASCOTA Y FICHA PUBLICA
-  procesarMascota(){
+  procesarMascota( options:any ){
 
     // 1 creo la mascota
     
     // subir foto y obtener url
     let url = '';
 
-    const mascotaNueva: IMascotaNueva = {
+    this.mascota = {
+      id: '',
       nombre: this.datosMascota.value.nombre,
       especie: this.datosMascota.value.especie,
       raza: this.datosMascota.value.raza,
@@ -115,29 +130,30 @@ export class RegistroMascotaComponent implements OnInit {
       color: this.datosMascota.value.color,
       foto: url,
       senias: this.datosMascota.value.senias,
-      veterinario: this.datosMascota.value.veterinario, 
+      veterinario: '1', 
       duenio: '1'
     }
     
-    this.registrarMascota( mascotaNueva );
+    this.registrarMascota( options );
 
 
     // 2 creo la ficha publica
+    // this.crear_ficha_publica(options);
+    // console.log(this.ficha);
     
-
+    // this.registrarFicha();
   }
 
 
-  registrarMascota( mascotaNueva: IMascotaNueva ) {
-    this._ms.agregarMascota( mascotaNueva )
-            .subscribe( ( mascota ) => {
-              console.log(mascota);
+  registrarMascota( options:any ) {
+    this._ms.agregarMascota( this.mascota )
+            .subscribe( ( mascota: IMascotaNueva ) => {
+              this.mascota = mascota['mascota'];
+              console.log("mascota");
+
+              this.crear_ficha_publica(options);
+              this.registrarFicha();
               
-              Swal.fire(
-                'Mascota registrada',
-                'Ya puedes ver los datos de tu nueva mascota en tu perfil.',
-                'success'
-              );
             },(err) => {
               console.log(err);
               
@@ -147,6 +163,28 @@ export class RegistroMascotaComponent implements OnInit {
                 text: err.error,
               })
             });
+  }
+
+  registrarFicha(){
+    this._fs.agregarFicha(this.ficha).subscribe(
+      (ficha: IFicha) => {
+        console.log(ficha);
+        
+        Swal.fire(
+          'Mascota registrada',
+          'Ya puedes ver los datos de tu nueva mascota en tu perfil. La ficha pública se podrá ver en el home de la página.',
+          'success'
+        );
+      },(err) => {
+        console.log(err);
+        
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: err.error,
+        })
+      });
+
   }
 
 
@@ -196,6 +234,57 @@ export class RegistroMascotaComponent implements OnInit {
       let element = options[index].value;
       console.log(element);
       
+    }
+    
+  }
+
+  // crear ficha publica
+  crear_ficha_publica (options: any){
+
+    // inicializo la ficha para poder ir seteando sus valores
+    this.ficha = {  id: '',
+                    mascota: this.mascota['id'],
+                    nombre: '',
+                    especie: '',
+                    raza: '',
+                    fecha_nacimiento: '',
+                    sexo: '',
+                    color: '',
+                    foto: '',
+                    senias: '',
+                    email_duenio: '',
+                    nombre_duenio: '',
+                    apellido_duenio: '',
+                    telefono_duenio: ''
+                  }
+
+    console.log(this.ficha['id']);
+    
+
+    for (let index = 0; index < options.length; index++) {
+
+      let element = options[index].value;
+      if (element != 'apellido_duenio' || element != 'nombre_duenio' || element != 'telefono_duenio') {
+        this.ficha[element] = this.mascota[element];
+                 
+      }
+
+      switch (element) {
+        case 'apellido_duenio':
+          this.ficha[element] = this.usuario['apellido'];
+          break;
+        case 'nombre_duenio':
+          this.ficha[element] = this.usuario['nombre'];
+          break;
+        case 'email_duenio':
+          this.ficha[element] = this.usuario['telefono'];
+          break;
+        case 'telefono_duenio':
+          this.ficha[element] = this.usuario['email'];
+          break;
+      }
+
+       
     }
     
   }

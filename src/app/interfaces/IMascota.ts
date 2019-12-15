@@ -1,6 +1,7 @@
 
 export interface IMascotaNueva {
     // si no llega una foto de la mascota, ponemos una por defecto (pero llega 1 si o si)
+    id: string;
     nombre: string;
     especie: string;
     raza: string;

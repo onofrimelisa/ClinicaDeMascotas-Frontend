@@ -1,5 +1,7 @@
 
 export interface IFicha {
+    id: string;
+    mascota: string;
     nombre: string;
     especie: string;
     raza: string;

@@ -105,50 +105,57 @@
                     <p> Seleccione las características de su mascota que quiere que aparezcan en su ficha pública.</p>
                 </div>
 
-                <h5>Información de {{ datosMascota.controls['nombre'].value | titlecase }}:</h5>
                 <br>
-                <div class="container">
+                <mat-selection-list #ficha>
+                    <div class="container">
 
-                    <mat-selection-list #ficha>
-                        <mat-list-option value="nombre_publico">
+                        <h5>Información de {{ datosMascota.controls['nombre'].value | titlecase }}:</h5>
+                        <mat-list-option value="nombre">
                             Nombre: {{ datosMascota.controls['nombre'].value | titlecase }}
                         </mat-list-option>
-                        <mat-list-option value="fecha_nacimiento_publico">
+                        <mat-list-option value="fecha_nacimiento">
                             Fecha de nacimiento: {{ datosMascota.controls['fecha_nacimiento'].value | date }}
                         </mat-list-option>
-                        <mat-list-option value="especie_publico">
+                        <mat-list-option value="especie">
                             Especie: {{ datosMascota.controls['especie'].value }}
                         </mat-list-option>
-                        <mat-list-option value="raza_publico">
+                        <mat-list-option value="raza">
                             Raza: {{ datosMascota.controls['raza'].value }}
                         </mat-list-option>
-                        <mat-list-option value="sexo_publico">
+                        <mat-list-option value="sexo">
                             Sexo: {{ datosMascota.controls['sexo'].value }}
                         </mat-list-option>
-                        <mat-list-option value="color_publico">
+                        <mat-list-option value="color">
                             Color: {{ datosMascota.controls['color'].value }}
                         </mat-list-option>
-                        <mat-list-option value="senias_publico">
+                        <mat-list-option value="senias">
                             Senias: {{ datosMascota.controls['senias'].value }}
                         </mat-list-option>
 
 
                         <br>
                         <h5>Tu información:</h5>
+
+
                         <br>
-                        <div class="row">
-                            <mat-list-option class="col" value="nombre_duenio_publico">
+                        <div class="row container">
+                            <mat-list-option class="col" value="nombre_duenio">
                                 Tu nombre
                             </mat-list-option>
-                            <mat-list-option class="col" value="apellido_duenio_publico">
+                            <mat-list-option class="col" value="apellido_duenio">
                                 Tu apellido
                             </mat-list-option>
-                            <mat-list-option class="col" value="telefono_duenio_publico">
+                            <mat-list-option class="col" value="telefono_duenio">
                                 Tu telefono
                             </mat-list-option>
+                            <mat-list-option class="col" value="email_duenio">
+                                Tu email
+                            </mat-list-option>
                         </div>
-                    </mat-selection-list>
-                </div>
+                    </div>
+                </mat-selection-list>
+
+
                 <br>
                 <div>
                     <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
@@ -170,7 +177,7 @@
                     //aca se van a mostrar los datos publicos seleccionados
                 </div>
                 <div>
-                    <button type="button" (click)="procesarMascota()" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>
+                    <button type="button" (click)="procesarMascota( ficha.selectedOptions.selected )" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" (click)="stepper.reset()">Resetear</button>
                 </div>
             </mat-step>

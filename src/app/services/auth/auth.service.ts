@@ -20,7 +20,7 @@ const httpOptions = {
 export class AuthService {
 
   userToken: string = '';
-  userLogged: IUsuario;
+  userLogged: IUsuario = null;
 
   constructor( private http: HttpClient,
                private router: Router ) { }
