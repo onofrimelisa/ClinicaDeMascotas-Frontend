@@ -59,8 +59,15 @@
                     </div>
 
                     <div>
-                        <button type="button" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>
+                        <button (click)="mostrarLogin()" type="button" class="mr-2 btn btn-outline-secondary btn-sm">Volver</button>
+                        <button *ngIf="datosPersonales.value.rol === 'veterinario'" type="button" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>
                                 Siguiente
+                        </button>
+                        <button *ngIf="datosPersonales.value.rol === 'duenio'" 
+                                type="button" (click)="procesarUsuario()" 
+                                class="btn btn-outline-secondary btn-sm"
+                                [disabled]="datosPersonales.invalid">
+                            Enviar
                         </button>
                     </div>
                 </form>
@@ -69,13 +76,10 @@
 
         <div class="col-xs-3 col-md-c3 col-lg-3">
             <!-- STEP 2 - DATOS PROFESIONALES -->
-            <mat-step>
+            <mat-step *ngIf="datosPersonales.value.rol === 'veterinario'">
                 <form [formGroup]="datosProfesionales">
                     <ng-template matStepLabel>Datos profesionales</ng-template>
 
-                    <div *ngIf="datosPersonales.value.rol != 'veterinario'" class="alert alert-info" role="alert">
-                        No debes completar estos campos.
-                    </div>
                     <mat-form-field>
                         <input matInput type="text" placeholder="Matrícula" formControlName="matricula">
                         <mat-error *ngIf="datosProfesionales.invalid">Debe completar este campo.</mat-error>
@@ -93,7 +97,12 @@
                     <br>
                     <div>
                         <button type="button" class="mr-2 btn btn-outline-secondary btn-sm" matStepperPrevious>Atrás</button>
-                        <button type="button" (click)="procesarUsuario()" class="btn btn-outline-secondary btn-sm" matStepperNext>Enviar</button>
+                        <button type="button" 
+                                (click)="procesarUsuario()" 
+                                class="btn btn-outline-secondary btn-sm" 
+                                [disabled]="datosPersonales.invalid || datosProfesionales.invalid">
+                                Enviar
+                        </button>
                     </div>
                 </form>
             </mat-step>
