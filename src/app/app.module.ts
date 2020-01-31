@@ -11,14 +11,11 @@ import { HomeModule } from './home/home.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { ServiceModule } from './services/service.module';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+
 
 //Componentes
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
-import { MascotaTableComponent } from './tables/mascota-table/mascota-table.component';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -35,8 +32,7 @@ firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent,
-    MascotaTableComponent
+    PagesComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +44,7 @@ firebase.initializeApp(environment.firebase);
     HomeModule,
     PagesModule,
     SharedModule,
-    ServiceModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    ServiceModule
   ],
   providers: [
     DatePipe

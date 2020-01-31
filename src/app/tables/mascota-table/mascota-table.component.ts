@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { MascotaTableDataSource} from './mascota-table-datasource';
 import { MascotaTableItem } from "../../interfaces/ITablaMascota";
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { MascotaService } from 'src/app/services/service.index';
+import { IMascota } from '../../interfaces/IMascota';
 
 @Component({
   selector: 'app-mascota-table',
@@ -27,15 +27,20 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
   dataSource: MascotaTableDataSource;
   expandedElement: MascotaTableItem | null;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'nacimiento', 'sexo', 'veterinario'];
+  // creada x mi, tiene las mascotas y se supone que es la data que va a ir variando
+  @Input() realData: IMascota[];
 
-  constructor(private _ms: MascotaService){
-    this.getMascotasDuenio("1");
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['id', 'nombre', 'fecha_nacimiento', 'sexo'];
+
+  constructor(){
   }
 
   ngOnInit() {
-    this.dataSource = new MascotaTableDataSource();
+    this.dataSource = new MascotaTableDataSource( this.realData );
+    
+    
+    
 
   }
 
@@ -45,17 +50,6 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
     this.expandedElement = this.dataSource.expandedElement;
 
-    
-  }
-
-  public getMascotasDuenio( id:string ){
-    this._ms.getMascotasDuenio( id )
-            .subscribe( ( resp ) => {
-              console.log(resp);
-              return resp;
-            },(err) => {
-              console.log(err);
-            });
     
   }
 }

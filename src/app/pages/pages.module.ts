@@ -28,6 +28,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
+import { ListadoMascotaComponent } from './mascotas/listado/listado-mascota.component';
+import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -35,7 +40,9 @@ import {MatListModule} from '@angular/material/list';
   declarations: [
     PerfilComponent,
     RegistroMascotaComponent,
-    EditarComponent
+    EditarComponent, 
+    ListadoMascotaComponent, 
+    MascotaTableComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +64,10 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule, 
     MatButtonModule, 
     LayoutModule,
-    MatListModule
+    MatListModule, 
+    MatTableModule, 
+    MatPaginatorModule, 
+    MatSortModule
   ],
   exports: [
     // PagesComponent,

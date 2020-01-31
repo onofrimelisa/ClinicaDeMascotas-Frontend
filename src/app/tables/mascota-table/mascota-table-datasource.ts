@@ -4,16 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { MascotaTableItem } from "../../interfaces/ITablaMascota";
-import { MascotaService } from '../../services/mascota/mascota.service';
-
-const EXAMPLE_DATA: MascotaTableItem[] = [
-  {id: 1, nombre: 'Hydrogen', nacimiento: 'fecha', sexo:'sexo', veterinario: 'vet', foto: null},
-  {id: 2, nombre: 'Helium', nacimiento: 'fecha', sexo:'sexo', veterinario: 'vet', foto: null},
-  {id: 3, nombre: 'Lithium', nacimiento: 'fecha', sexo:'sexo', veterinario: 'vet', foto: null},
-  {id: 4, nombre: 'Beryllium', nacimiento: 'fecha', sexo:'sexo', veterinario: 'vet', foto: null},
-  {id: 5, nombre: 'Boron', nacimiento: 'fecha', sexo:'sexo', veterinario: 'vet', foto: null},
-];
-
 
 /**
  * Data source for the MascotaTable view. This class should
@@ -21,13 +11,15 @@ const EXAMPLE_DATA: MascotaTableItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class MascotaTableDataSource extends DataSource<MascotaTableItem> {
-  data: MascotaTableItem[] = EXAMPLE_DATA;
+  data: MascotaTableItem[];
   paginator: MatPaginator;
   sort: MatSort;
   expandedElement: MascotaTableItem | null;
 
-  constructor( ) {
+  constructor( realData:MascotaTableItem[] ) {
     super();
+    this.data = realData;
+    
   }
 
   /**
@@ -77,6 +69,7 @@ export class MascotaTableDataSource extends DataSource<MascotaTableItem> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'nombre': return compare(a.nombre, b.nombre, isAsc);
+        case 'sexo': return compare(a.sexo, b.sexo, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

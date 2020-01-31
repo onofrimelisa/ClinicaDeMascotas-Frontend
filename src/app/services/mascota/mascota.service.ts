@@ -30,7 +30,7 @@ export class MascotaService {
                 );
   }
 
-  getMascotasDuenio( id: string){
+  getMascotasDuenio( id: number){
     let url = URL_PRIVADA + '/mascota/duenio/' + id;
 
     return this.http.get(url, httpOptions)
