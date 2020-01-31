@@ -5,7 +5,7 @@ export interface IMascotaNueva {
     nombre: string;
     especie: string;
     raza: string;
-    fecha_nacimiento: String;
+    fecha_nacimiento: string;
     sexo: string;
     color: string;
     foto: string;
@@ -20,7 +20,7 @@ export interface IMascota {
     nombre: string;
     especie: string;
     raza: string;
-    fecha_nacimiento: String;
+    fecha_nacimiento: string;
     sexo: string;
     color: string;
     foto: string;

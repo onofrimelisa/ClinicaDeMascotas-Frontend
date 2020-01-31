@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/service.index';
 import Swal from 'sweetalert2';
+import { IUsuario } from '../../interfaces/IUsuario';
 
 @Component({
   selector: 'app-main-nav',
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 export class MainNavComponent implements OnInit {
   
   titulo: string;
+  user: IUsuario;
   
   // Roles
   admin: boolean = false;
@@ -33,6 +35,7 @@ export class MainNavComponent implements OnInit {
               private router: Router,
               private title: Title,
               private authService: AuthService) {
+      this.user = this.authService.userLogged;
     
       this.getDataRoute().subscribe( data => {
         this.titulo = data.titulo;

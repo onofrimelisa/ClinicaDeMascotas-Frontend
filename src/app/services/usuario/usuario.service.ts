@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { IUsuarioNuevo } from 'src/app/interfaces/IUsuario';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { IUsuario } from '../../interfaces/IUsuario';
+import { AuthService } from '../auth/auth.service';
 
 
 const httpOptions = {
@@ -17,7 +18,8 @@ const httpOptions = {
 })
 export class UsuarioService {
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, 
+              public _as: AuthService ) { }
   
   // =================================================================
   //                          Operaciones
@@ -37,7 +39,13 @@ export class UsuarioService {
 
     return this.http.put( url, usuario, httpOptions )
                 .pipe(
+                  map( (resp: any)=>{
+                    this._as.guardarStorage( this._as.userToken, usuario);
+                    return resp;
+
+                  },
                   catchError( err => throwError(err.error))  
+                  )
                 );
   }
 

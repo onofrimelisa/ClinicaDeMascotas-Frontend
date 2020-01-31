@@ -23,7 +23,9 @@ export class AuthService {
   userLogged: IUsuario = null;
 
   constructor( private http: HttpClient,
-               private router: Router ) { }
+               private router: Router ) { 
+    this.cargarStorage();
+  }
   
   // =================================================================
   //                          Login
@@ -37,7 +39,7 @@ export class AuthService {
       map( (res: any) => {
         this.userToken = res.token;
         this.userLogged = res.usuario;
-        this.guardarStorage( res.token );
+        this.guardarStorage(res.token, res.usuario);
         return this.userLogged;
       }),
       catchError( err => throwError(err.error))  
@@ -51,7 +53,9 @@ export class AuthService {
 
   logout() {  
     this.userToken = '';
+    this.userLogged = null;
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/home']);
   }
 
@@ -68,9 +72,21 @@ export class AuthService {
   //                          Storage
   // =================================================================
   
-  guardarStorage( token: string ) {
-    // tambien hay que guardar usuario loggeado
+  private cargarStorage() {
+    if (localStorage.getItem('token')) {
+      this.userToken = localStorage.getItem('token');
+      this.userLogged = JSON.parse(localStorage.getItem('user'));
+    }else{
+      this.userLogged = null;
+      this.userToken = '';
+    }
+  }
+
+  public guardarStorage( token: string, user: IUsuario){
+    localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', token);
+    this.userLogged = user;
+    this.userToken = token;
   }
 
 }
