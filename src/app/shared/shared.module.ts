@@ -15,11 +15,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './pageNotFound/page-not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     MainNavComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { FooterComponent } from './footer/footer.component';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
+    RouterModule
   ],
   exports:[
     MainNavComponent, 

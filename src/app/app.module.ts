@@ -8,7 +8,6 @@ import { APP_ROUTING } from './app-routing.module';
 
 //Modulos
 import { HomeModule } from './home/home.module';
-import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { ServiceModule } from './services/service.module';
 
@@ -42,7 +41,6 @@ firebase.initializeApp(environment.firebase);
     AngularFireStorageModule,
     APP_ROUTING,
     HomeModule,
-    PagesModule,
     SharedModule,
     ServiceModule
   ],

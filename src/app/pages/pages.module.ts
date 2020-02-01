@@ -3,16 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 //Componentes
-import { PagesComponent } from './pages.component';
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
-
-//Modulos
-import { SharedModule } from '../shared/shared.module';
 
 // material
 import {MatStepperModule} from '@angular/material/stepper';
@@ -46,7 +42,6 @@ import { MatSortModule } from '@angular/material/sort';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     PAGES_ROUTING, 
     MatStepperModule, 
     MatFormFieldModule, 
@@ -70,7 +65,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule
   ],
   exports: [
-    // PagesComponent,
     RegistroMascotaComponent
   ], 
   providers:[
