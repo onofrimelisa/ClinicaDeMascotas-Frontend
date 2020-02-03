@@ -4,6 +4,7 @@ import { URL_PRIVADA } from 'src/app/config/config';
 import { IMascotaNueva } from 'src/app/interfaces/IMascota';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,8 @@ const httpOptions = {
 })
 export class MascotaService {
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, 
+              public _as: AuthService  ) { }
 
   // =================================================================
   //                          Operaciones
@@ -34,6 +36,15 @@ export class MascotaService {
     let url = URL_PRIVADA + '/mascota/duenio/' + id;
 
     return this.http.get(url, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
+  // eliminar
+  eliminarMascota( id: number ){
+    let url = URL_PRIVADA + '/mascota/' + id + '/' + this._as.userLogged.id;
+    return this.http.delete( url, httpOptions )
                 .pipe(
                   catchError( err => throwError(err.error))  
                 );

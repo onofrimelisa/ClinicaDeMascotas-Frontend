@@ -1,3 +1,18 @@
-<div class="container-fluid" *ngIf="!cargando">
+<div class="container-fluid" *ngIf="!cargando && mascotas">
     <app-mascota-table [realData]="mascotas"></app-mascota-table>
+</div>
+
+<div class="container">
+
+    <div *ngIf="!mascotas && !cargando" class="alert alert-info alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <div>
+
+            <i><mat-icon class="animated flash">info</mat-icon></i> <span> Aún no tienes ninguna mascota cargada. <strong><a [routerLink]="['/nueva']"> Agregar.</a> </strong></span>
+        </div>
+
+    </div>
 </div>

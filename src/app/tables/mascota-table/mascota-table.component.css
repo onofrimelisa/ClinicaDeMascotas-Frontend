@@ -58,3 +58,7 @@ img.desplegable {
 tr {
     font-weight: 550 !important;
 }
+
+td.operaciones {
+    padding-top: 0 !important;
+}
