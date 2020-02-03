@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { URL_PRIVADA } from 'src/app/config/config';
 import { IMascotaNueva } from 'src/app/interfaces/IMascota';
@@ -15,6 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MascotaService {
+
+  public notificacion = new EventEmitter<any>();
 
   constructor( private http: HttpClient, 
               public _as: AuthService  ) { }

@@ -84,7 +84,8 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
                  confirmButtonText: 'Ok'
               });
               // para que actualice el listado de mascotas
-              this.listadoMascotas.ngOnInit();
+              // this.listadoMascotas.ngOnInit();
+              this._ms.notificacion.emit();
               return this.router.navigate(['/mascotas']);
               
             })
