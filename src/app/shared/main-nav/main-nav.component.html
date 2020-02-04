@@ -46,7 +46,7 @@
                     <mat-icon class="icono" aria-label="Mis Mascotas">pets</mat-icon>
                     Mis Mascotas
                 </a>
-                <a *ngIf="veterinario" mat-list-item href="#">
+                <a *ngIf="veterinario" mat-list-item (click)="navegar('/mascotas_atendidas')">
                     <mat-icon class="icono" aria-label="Mascotas atendidas">pets</mat-icon>
                     Mascotas atendidas
                 </a>

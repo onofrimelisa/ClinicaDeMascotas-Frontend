@@ -1,1 +1,71 @@
-<p>veterinarios works!</p>
+<div class="container-fluid">
+
+    <div class="container">
+
+        <div *ngIf="!veterinarios && !cargando" class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <div>
+
+                <i><mat-icon class="animated flash">info</mat-icon></i> <span> Aún no se ha registrado ningún veterinario. <strong><a [routerLink]="['/nueva']"> Agregar.</a> </strong></span>
+            </div>
+
+        </div>
+    </div>
+
+    <mat-form-field *ngIf="!cargando && veterinarios">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table *ngIf="!cargando && veterinarios" mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="foto">
+            <th mat-header-cell *matHeaderCellDef> Foto </th>
+            <td mat-cell *matCellDef="let element"> {{element.foto}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="consultorio">
+            <th mat-header-cell *matHeaderCellDef> Consultorio </th>
+            <td mat-cell *matCellDef="let element"> {{element.domicilio_consultorio}} </td>
+        </ng-container>
+        <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef> Activo </th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="element.activo; else inactivo">
+                    <mat-icon id="activo" title="Veterinario activo">done_all</mat-icon>
+                </ng-container>
+                <ng-template #inactivo>
+                    <mat-icon id="inactivo" title="Veterinario inactivo">not_interested</mat-icon>
+                </ng-template>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="operaciones">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Operaciones </th>
+            <td mat-cell *matCellDef="let element">
+                <div class="d-flex justify-content-center">
+                    <button mat-icon-button color="primary" title="Editar veterinario" aria-label="Editar veterinario">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    <button mat-icon-button color="warn" title="Eliminar veterinario" aria-label="Eliminar veterinario">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+</div>

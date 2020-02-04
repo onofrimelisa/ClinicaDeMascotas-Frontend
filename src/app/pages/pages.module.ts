@@ -7,7 +7,7 @@ import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
 import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
-import { ListadoMascotaComponent } from './mascotas/listado/listado-mascota.component';
+import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';

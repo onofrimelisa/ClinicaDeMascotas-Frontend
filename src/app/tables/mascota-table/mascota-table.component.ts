@@ -10,7 +10,7 @@ import { MascotaService } from '../../services/service.index';
 
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { ListadoMascotaComponent } from '../../pages/mascotas/listado/listado-mascota.component';
+import { ListadoMascotaComponent } from '../../pages/mascotas/listado-duenio/listado-mascota.component';
 
 @Component({
   selector: 'app-mascota-table',

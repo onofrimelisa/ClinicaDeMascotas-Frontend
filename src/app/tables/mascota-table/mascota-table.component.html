@@ -1,56 +1,58 @@
-<div class="mat-elevation-z8 table">
-    <table mat-table class="full-width-table" matSort aria-label="Elements" multiTemplateDataRows>
-        <!-- Id Column -->
-        <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
+<div class="container-fluid">
+    <div class="mat-elevation-z8 table">
+        <table mat-table matSort aria-label="Elements" multiTemplateDataRows>
+            <!-- Id Column -->
+            <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
 
-            <ng-container *ngIf="column == 'id' || column == 'nombre' || column == 'sexo'; else noSortHeaderes">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</th>
-                <td mat-cell *matCellDef="let row">{{row[column] }}</td>
-            </ng-container>
-            <ng-template #noSortHeaderes>
-                <ng-container *ngIf="column == 'fecha_nacimiento'; else operaciones">
-                    <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
-                    <td mat-cell *matCellDef="let row">{{row['fecha_nacimiento'] }}</td>
-
+                <ng-container *ngIf="column == 'id' || column == 'nombre' || column == 'sexo'; else noSortHeaderes">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</th>
+                    <td mat-cell *matCellDef="let row">{{row[column] }}</td>
                 </ng-container>
-                <ng-template #operaciones>
-                    <th class="text-center" mat-header-cell *matHeaderCellDef>Operaciones</th>
-                    <td class="operaciones" mat-cell *matCellDef="let row">
-                        <div class="d-flex justify-content-center">
-                            <button mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota">
+                <ng-template #noSortHeaderes>
+                    <ng-container *ngIf="column == 'fecha_nacimiento'; else operaciones">
+                        <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
+                        <td mat-cell *matCellDef="let row">{{row['fecha_nacimiento'] }}</td>
+
+                    </ng-container>
+                    <ng-template #operaciones>
+                        <th class="text-center" mat-header-cell *matHeaderCellDef>Operaciones</th>
+                        <td class="operaciones" mat-cell *matCellDef="let row">
+                            <div class="d-flex justify-content-center">
+                                <button mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota">
                                 <mat-icon>edit</mat-icon>
                               </button>
-                            <button mat-icon-button color="warn" (click)="eliminarMascota(row['id'])" title="Eliminar mascota" aria-label="Eliminar mascota">
+                                <button mat-icon-button color="warn" (click)="eliminarMascota(row['id'])" title="Eliminar mascota" aria-label="Eliminar mascota">
                                 <mat-icon>delete</mat-icon>
                             </button>
 
-                        </div>
-                    </td>
+                            </div>
+                        </td>
+                    </ng-template>
                 </ng-template>
-            </ng-template>
-        </ng-container>
+            </ng-container>
 
-        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-        <ng-container matColumnDef="expandedDetail">
-            <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
-                <div class="example-element-detail" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
-                    <div class="example-element-diagram">
-                        <img src="/assets/img/raca1.jpeg" class="desplegable rounded img-fluid" alt="...">
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+                    <div class="example-element-detail" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
+                        <div class="example-element-diagram">
+                            <img src="/assets/img/raca1.jpeg" class="desplegable rounded img-fluid" alt="...">
+                        </div>
+                        <div class="example-element-description">
+                            <p>Color: {{ row['color'] }}</p>
+                            <p>Especie: {{ row['especie'] }}</p>
+                            <p>Señas: {{ row['color'] }}</p>
+                        </div>
                     </div>
-                    <div class="example-element-description">
-                        <p>Color: {{ row['color'] }}</p>
-                        <p>Especie: {{ row['especie'] }}</p>
-                        <p>Señas: {{ row['color'] }}</p>
-                    </div>
-                </div>
-            </td>
-        </ng-container>
+                </td>
+            </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === row" (click)="expandedElement = (expandedElement === row ? null : row)"></tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-    </table>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === row" (click)="expandedElement = (expandedElement === row ? null : row)"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
 
-    <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 50, 100, 250]">
-    </mat-paginator>
+        <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 50, 100, 250]">
+        </mat-paginator>
+    </div>
 </div>

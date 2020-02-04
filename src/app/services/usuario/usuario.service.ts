@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { URL_SERVICIOS } from 'src/app/config/config';
+import { URL_SERVICIOS, URL_PRIVADA } from 'src/app/config/config';
 import { IUsuarioNuevo } from 'src/app/interfaces/IUsuario';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -47,6 +47,17 @@ export class UsuarioService {
                   catchError( err => throwError(err.error))  
                   )
                 );
+  }
+
+  // ###############################################################################
+  //										OPERACIONES POR ROL
+  // ###############################################################################
+  getPorRol( rol: string ){
+    let url = `${ URL_PRIVADA }/usuario/rol/${ rol }`;
+
+    return this.http.get( url, httpOptions ).pipe(
+      catchError( err => throwError(err.error)) 
+    )
   }
 
 }

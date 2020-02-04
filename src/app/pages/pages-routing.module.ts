@@ -10,7 +10,7 @@ import { DuenioGuard } from "../services/guards/duenio.guard";
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
-import { ListadoMascotaComponent } from './mascotas/listado/listado-mascota.component';
+import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
 import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
 import { VeterinariosComponent } from "./veterinarios/veterinarios.component";
 
