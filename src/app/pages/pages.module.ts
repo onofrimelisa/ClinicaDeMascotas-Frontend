@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
+import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
+import { ListadoMascotaComponent } from './mascotas/listado/listado-mascota.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
@@ -24,11 +26,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
-import { ListadoMascotaComponent } from './mascotas/listado/listado-mascota.component';
 import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { VeterinariosComponent } from './veterinarios/veterinarios.component';
 
 
 
@@ -38,7 +40,8 @@ import { MatSortModule } from '@angular/material/sort';
     RegistroMascotaComponent,
     EditarComponent, 
     ListadoMascotaComponent, 
-    MascotaTableComponent
+    MascotaTableComponent, 
+    ListadoVeterinarioComponent, VeterinariosComponent
   ],
   imports: [
     CommonModule,
