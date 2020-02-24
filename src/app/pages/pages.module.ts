@@ -31,6 +31,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { VeterinariosComponent } from './veterinarios/veterinarios.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -41,7 +42,8 @@ import { VeterinariosComponent } from './veterinarios/veterinarios.component';
     EditarComponent, 
     ListadoMascotaComponent, 
     MascotaTableComponent, 
-    ListadoVeterinarioComponent, VeterinariosComponent
+    ListadoVeterinarioComponent, 
+    VeterinariosComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import { VeterinariosComponent } from './veterinarios/veterinarios.component';
     MatListModule, 
     MatTableModule, 
     MatPaginatorModule, 
-    MatSortModule
+    MatSortModule, 
+    SharedModule
   ],
   exports: [
     RegistroMascotaComponent

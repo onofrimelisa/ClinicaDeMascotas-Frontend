@@ -17,12 +17,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './pageNotFound/page-not-found.component';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingImgComponent } from './loading-img/loading-img.component';
 
 @NgModule({
   declarations: [
     MainNavComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingComponent,
+    LoadingImgComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,9 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[
     MainNavComponent, 
-    FooterComponent
+    FooterComponent, 
+    LoadingComponent, 
+    LoadingImgComponent
   ]
 })
 export class SharedModule { }

@@ -60,4 +60,12 @@ export class UsuarioService {
     )
   }
 
+  eliminarPorRol( rol: string, id: number ){
+    let url = `${ URL_PRIVADA }/usuario/${ rol }/${ id }`;
+
+    return this.http.delete( url, httpOptions ).pipe(
+      catchError( err => throwError(err.error)) 
+    )
+  }
+
 }

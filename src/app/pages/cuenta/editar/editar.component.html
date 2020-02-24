@@ -48,38 +48,38 @@
         <!-- SEGUNDO TAB -->
         <mat-tab label="Foto">
             <div class="container">
-                <div class="m-4 row">
-                    <button [disabled]="subiendo" type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
-                    <button [disabled]="subiendo" *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
-                    <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
-                </div>
 
-                <div class="profile-img" *ngIf="!imagenTemp && !usuario.foto">
-                    <img src="/assets/img/no-profile.jpg" id="vista_previa" class="w150 mb-4" />
-                </div>
-                <div class="profile-img" *ngIf="!imagenTemp && usuario.foto">
-                    <img [src]="usuario.foto" id="vista_previa" class="w150 mb-4" />
-                </div>
-                <div class="profile-img" *ngIf="imagenTemp">
-                    <h5>Vista previa</h5>
-                    <img [src]="imagenTemp" id="vista_previa" class="w150 mb-4">
-                </div>
-                <div>
-                    <button *ngIf="archivo && !subiendo" type="button" (click)="actualizarFoto()" class="btn btn-outline-secondary btn-sm">
-                                Guardar
-                    </button>
-                    <div *ngIf="archivo && subiendo" class="alert alert-info alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <div>
-                            <i><mat-icon class="animated flash">cloud_upload</mat-icon></i> 
-                            <span> Cargando foto...
-                            </span>
-                        </div>
+                <ng-container *ngIf="archivo && subiendo; else elseTemplate">
+                    <div class="mt-4 pt-4">
+                        <app-loading-img></app-loading-img>
+
                     </div>
-                </div>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <div class="m-4 row">
+                        <button [disabled]="subiendo" type="button" mat-raised-button (click)="fileInput.click()">Elegir foto</button>
+                        <button [disabled]="subiendo" *ngIf="imagenTemp" class="ml-3" type="button" mat-raised-button (click)="limpiarFoto()">Limpiar</button>
+                        <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
+                    </div>
+
+                    <div class="profile-img" *ngIf="!imagenTemp && !usuario.foto">
+                        <img src="/assets/img/no-profile.jpg" id="vista_previa" class="w150 mb-4" />
+                    </div>
+                    <div class="profile-img" *ngIf="!imagenTemp && usuario.foto">
+                        <img [src]="usuario.foto" id="vista_previa" class="w150 mb-4" />
+                    </div>
+                    <div class="profile-img" *ngIf="imagenTemp">
+                        <h5>Vista previa</h5>
+                        <img [src]="imagenTemp" id="vista_previa" class="w150 mb-4">
+                    </div>
+                    <div>
+                        <button *ngIf="archivo && !subiendo" type="button" (click)="actualizarFoto()" class="btn btn-outline-secondary btn-sm">
+                                    Guardar
+                        </button>
+                    </div>
+                </ng-template>
+
+
             </div>
         </mat-tab>
         <!-- TERCER TAB -->
