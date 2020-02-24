@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IFoto } from 'src/app/interfaces/IFoto';
 import { UsuarioService, CargaImagenService, AuthService } from 'src/app/services/service.index';
 import { DatePipe } from '@angular/common';
 import { IUsuario } from '../../../interfaces/IUsuario';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-editar',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['../../pages.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditarComponent implements OnInit {
+export class EditarComponent implements OnInit, OnDestroy {
   
 
   usuario: IUsuario = null;
@@ -27,7 +28,9 @@ export class EditarComponent implements OnInit {
   // Foto
   archivo: IFoto = null;
   imagenTemp: string;
-  
+  subiendo: boolean;
+  subscripcion: Subscription = new Subscription();
+
   // Veterinario
   datosProfesionales: FormGroup;
   nombre_consultorio: string;
@@ -61,17 +64,26 @@ export class EditarComponent implements OnInit {
     });
   }
 
+
+  ngOnDestroy(): void {
+    this.subscripcion.unsubscribe();
+  }
+
   // FOTO
   
   actualizarFoto() {
-    this.cargaImagenService.cargarFoto( this.archivo, 'usuarios' )
-            .then(
-              (res) => console.log(res)
-              // actualizar usuario con url
-            ).catch(
-              error => console.log(error)
-            );
+    this.subiendo = true;
+    this.subscripcion = this.cargaImagenService.url$
+      .subscribe( (url: string) => {
+        this.subiendo = false;
+        // Actualizar usuario
+        this.usuario.foto = url;
+        this.procesarUsuario();
+      });
+    this.cargaImagenService.cargarFoto( this.archivo, 'usuarios' );
   }
+
+
 
   onFileSelected(archivo: File) {
     
@@ -108,6 +120,8 @@ export class EditarComponent implements OnInit {
   actualizarUsuario(usuarioActualizado: IUsuario) {
     this.usuarioService.actualizarUsuario(usuarioActualizado)
             .subscribe( (res:any) => {
+              this.subiendo = false;
+              this.subscripcion.unsubscribe();
               Swal.fire(
                 'Operación exitosa',
                 'Datos actualizados correctamente',

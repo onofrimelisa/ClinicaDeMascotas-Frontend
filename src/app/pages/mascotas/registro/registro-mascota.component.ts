@@ -14,6 +14,8 @@ import Swal from 'sweetalert2'
 import { MascotaService } from '../../../services/mascota/mascota.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { FichaService } from '../../../services/fichas/ficha.service';
+import { Subscription } from 'rxjs';
+import { CargaImagenService } from '../../../services/cargaImagen/carga-imagen.service';
 
 @Component({
   selector: 'app-listado-mascota',
@@ -39,7 +41,10 @@ export class RegistroMascotaComponent implements OnInit {
   imagenTemp: string;
   formFoto: FormGroup;
   foto: string;
+  subscripcion: Subscription = new Subscription();
   
+  subiendo: boolean;
+
   // Ficha publica
   datosPublicos: [{
     'nombre': '',
@@ -81,7 +86,8 @@ export class RegistroMascotaComponent implements OnInit {
   ];
 
 
-  constructor( private _formBuilder: FormBuilder, 
+  constructor( private _formBuilder: FormBuilder,
+               private _cargaService: CargaImagenService, 
                private _ms: MascotaService,
                private _as: AuthService, 
                private _fs: FichaService,
@@ -119,32 +125,38 @@ export class RegistroMascotaComponent implements OnInit {
     // 1 creo la mascota, 2 creo su ficha publica
     if (this.datosMascota.valid) {
       // subir foto y obtener url
-      let url = '';
-  
-      this.mascota = {
-        id: null,
-        nombre: this.datosMascota.value.nombre,
-        especie: this.datosMascota.value.especie,
-        raza: this.datosMascota.value.raza,
-        fecha_nacimiento: this.getFecha(),
-        sexo: this.datosMascota.value.sexo,
-        color: this.datosMascota.value.color,
-        foto: url,
-        senias: this.datosMascota.value.senias,
-        veterinario: '1', 
-        duenio: this.usuario.id
-      }
-      
-      this.registrarMascota( options );
+      this.subscripcion = this._cargaService.url$.subscribe(
+        (urlFb: string) => {
+          this.mascota = {
+            id: null,
+            nombre: this.datosMascota.value.nombre,
+            especie: this.datosMascota.value.especie,
+            raza: this.datosMascota.value.raza,
+            fecha_nacimiento: this.getFecha(),
+            sexo: this.datosMascota.value.sexo,
+            color: this.datosMascota.value.color,
+            foto: urlFb,
+            senias: this.datosMascota.value.senias,
+            veterinario: '1', 
+            duenio: this.usuario.id
+          }
+          
+          this.registrarMascota( options );
+        }
+      )
+      this.subiendo = true;
+      this._cargaService.cargarFoto(this.archivo, 'mascotas');
       
     }
-    
   }
 
 
   registrarMascota( options:any ) {
     this._ms.agregarMascota( this.mascota )
             .subscribe( ( mascota: IMascotaNueva ) => {
+              this.subscripcion.unsubscribe;
+              this.subiendo = false;
+              
               this.mascota = mascota['mascota'];
 
               // una vez que se crea la mascota, recien ahi puedo crear su ficha publica
@@ -152,6 +164,9 @@ export class RegistroMascotaComponent implements OnInit {
               this.registrarFicha();
               
             },(err) => {
+              this.subscripcion.unsubscribe;
+              this.subiendo = false;
+
               console.log(err);
               
               Swal.fire({

@@ -29,6 +29,7 @@ export class VeterinariosComponent implements OnInit {
     this.cargando = true;
     this._us.getPorRol('veterinario')
       .subscribe( (resp: any)=> {
+        console.log(resp.usuarios);
         this.veterinarios = resp.usuarios;
         this.total = resp.total;
         this.dataSource = new MatTableDataSource(this.veterinarios);

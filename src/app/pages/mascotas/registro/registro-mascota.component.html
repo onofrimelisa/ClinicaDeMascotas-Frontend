@@ -183,9 +183,20 @@
                     </ng-template>
                 </div>
                 <br>
-                <div>
+                <div *ngIf="!subiendo">
                     <button type="button" (click)="procesarMascota( ficha.selectedOptions.selected )" class="mr-2 btn btn-outline-secondary btn-sm">Finalizar</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm" (click)="stepper.reset()">Resetear</button>
+                </div>
+                <div *ngIf="subiendo" class="alert alert-info alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <div>
+                        <i><mat-icon class="animated flash">cloud_upload</mat-icon></i> 
+                        <span> Registrando mascota...
+                        </span>
+                    </div>
                 </div>
             </mat-step>
         </div>
