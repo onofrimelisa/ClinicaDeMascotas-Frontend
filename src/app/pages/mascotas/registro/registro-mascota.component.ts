@@ -5,6 +5,7 @@ import { IMascotaNueva } from '../../../interfaces/IMascota';
 import { IFicha } from '../../../interfaces/IFicha';
 import { IUsuario } from '../../../interfaces/IUsuario';
 import { DatePipe } from '@angular/common'
+import { Router } from '@angular/router';
 
 // SweetAlert
 import Swal from 'sweetalert2'
@@ -91,7 +92,8 @@ export class RegistroMascotaComponent implements OnInit {
                private _ms: MascotaService,
                private _as: AuthService, 
                private _fs: FichaService,
-               private datePipe: DatePipe ) {
+               private datePipe: DatePipe, 
+               public router: Router ) {
 
     // INICIALIZO USUARIO LOGGEADO
     this.usuario = this._as.userLogged;
@@ -188,7 +190,7 @@ export class RegistroMascotaComponent implements OnInit {
           'Mascota y ficha pública registradas',
           'Ya puedes ver los datos de tu nueva mascota en tu perfil. Su ficha se podrá ver en el home de la página.',
           'success'
-        );
+        ).then(()=> this.router.navigate(['/mascotas']));
       },(err) => {
         console.log(err);
         

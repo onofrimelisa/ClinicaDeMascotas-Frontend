@@ -19,6 +19,19 @@ export class ListadoMascotaComponent implements OnInit {
                 private _ms: MascotaService ) { 
                   this.usuario = this._as.userLogged;
 
+    this._ms.notificacion.subscribe( ()=> {
+      this.cargarMascotas();
+    });
+
+  }
+                
+  ngOnInit() {
+
+    this.cargarMascotas();
+    
+  }
+
+  cargarMascotas(){
     this._ms.getMascotasDuenio(this.usuario.id).subscribe(
       (resp) => {
         // si es null, significa que no tiene mascotas
@@ -35,29 +48,6 @@ export class ListadoMascotaComponent implements OnInit {
       
       
     );
-  }
-                
-  ngOnInit() {
-    
-    this._ms.notificacion.subscribe( ()=> {
-      this._ms.getMascotasDuenio(this.usuario.id).subscribe(
-        (resp) => {
-          // si es null, significa que no tiene mascotas
-          if (resp == null) {
-            this.mascotas = null;
-          }else{
-            this.mascotas = resp['mascotas'];
-  
-          }
-          this.cargando=false;
-          
-        }, 
-        (err) => console.log(err.error)
-        
-        
-      );
-    });
-    
   }
 
 }

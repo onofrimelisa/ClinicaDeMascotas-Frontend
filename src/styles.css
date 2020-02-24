@@ -94,6 +94,10 @@ table {
     margin: auto;
 }
 
+th {
+    font-weight: 550 !important;
+}
+
 
 /* =================================================================
                             ANIMACIONES

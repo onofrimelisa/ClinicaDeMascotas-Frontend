@@ -42,12 +42,8 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 img.desplegable {
-    height: 100%;
-    width: 100%;
-}
-
-tr {
-    font-weight: 550 !important;
+    height: 90%;
+    width: 90%;
 }
 
 td.operaciones {
