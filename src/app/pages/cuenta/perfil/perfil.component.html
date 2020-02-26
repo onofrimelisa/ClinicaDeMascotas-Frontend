@@ -1,120 +1,128 @@
 <div class="container emp-profile animated fadeIn">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="profile-img">
-                <img *ngIf="usuario && !usuario.foto" src="/assets/img/no-profile.jpg" alt="Foto de perfil" />
-                <img *ngIf="usuario && usuario.foto" [src]="usuario.foto" alt="Foto de perfil">
-            </div>
-        </div>
-        <div class="col-md-6 mt-4">
-            <div class="profile-head">
-                <h4>
-                    {{ usuario.apellido }}, {{ usuario.nombre }}
-                </h4>
-                <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos personales</a>
-                    </li>
-                    <li *ngIf="veterinario" class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos profesionales</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="profile-work">
+    <ng-container *ngIf="cargando; else finCarga">
+        <app-loading></app-loading>
 
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Apellido</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.apellido }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Nombre</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.nombre }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.email }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Teléfono</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.telefono }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Fecha de nacimiento</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.fecha_nacimiento | date: 'dd/MM/yyyy'}}</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Rol</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.roles[0] }}</p>
-                        </div>
-                    </div>
+    </ng-container>
+    <ng-template #finCarga>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img *ngIf="usuario && !usuario.foto" src="/assets/img/no-profile.jpg" alt="Foto de perfil" />
+                    <img *ngIf="usuario && usuario.foto" [src]="usuario.foto" alt="Foto de perfil">
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Consultorio</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.nombre_consultorio }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Domicilio</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.domicilio_consultorio }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Matrícula</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ usuario.matricula }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- editar profesionales -->
-                    <button [routerLink]="['/editar']" class="btn btn-outline-primary">
-                                Editar
-                            </button>
+            </div>
+            <div class="col-md-6 mt-4">
+                <div class="profile-head">
+                    <h4>
+                        {{ usuario.apellido }}, {{ usuario.nombre }}
+                    </h4>
+                    <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos personales</a>
+                        </li>
+                        <li *ngIf="veterinario" class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos profesionales</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Apellido</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.apellido }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Nombre</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.nombre }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Teléfono</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.telefono }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Fecha de nacimiento</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.fecha_nacimiento | date: 'dd/MM/yyyy'}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Rol</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.roles[0] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Consultorio</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.nombre_consultorio }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Domicilio</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.domicilio_consultorio }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Matrícula</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ usuario.matricula }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- editar profesionales -->
+                        <button [routerLink]="['/editar']" class="btn btn-outline-primary">
+                                    Editar
+                                </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
 </div>

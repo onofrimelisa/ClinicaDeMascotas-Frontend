@@ -43,6 +43,15 @@ export class MascotaService {
                 );
   }
 
+  getMascotasVeterinario( id: number){
+    let url = URL_PRIVADA + '/mascota/veterinario/' + id;
+
+    return this.http.get(url, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
   // eliminar
   eliminarMascota( id: number ){
     let url = URL_PRIVADA + '/mascota/' + id + '/' + this._as.userLogged.id;

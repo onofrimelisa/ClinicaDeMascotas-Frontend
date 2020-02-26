@@ -14,6 +14,8 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.None
 })
 export class EditarComponent implements OnInit, OnDestroy {
+
+  cargando: boolean = false;
   
 
   usuario: IUsuario = null;
@@ -48,6 +50,7 @@ export class EditarComponent implements OnInit, OnDestroy {
   }
               
   ngOnInit() {
+    this.cargando = true;
     this.datosPersonales = this._formBuilder.group({
       email: [this.usuario.email, [Validators.required, Validators.email]],
       nombre: [this.usuario.nombre, Validators.required],
@@ -62,6 +65,7 @@ export class EditarComponent implements OnInit, OnDestroy {
       domicilio_consultorio: [this.usuario.domicilio_consultorio, Validators.required],
       matricula: [this.usuario.matricula, Validators.required]
     });
+    this.cargando = false;
   }
 
 

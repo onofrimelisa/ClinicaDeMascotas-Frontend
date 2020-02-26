@@ -18,15 +18,14 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './pageNotFound/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
-import { LoadingImgComponent } from './loading-img/loading-img.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     MainNavComponent,
     FooterComponent,
     PageNotFoundComponent,
-    LoadingComponent,
-    LoadingImgComponent
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -38,13 +37,13 @@ import { LoadingImgComponent } from './loading-img/loading-img.component';
     MatSidenavModule,
     MatListModule,
     MatDividerModule,
-    RouterModule
+    RouterModule, 
+    MatProgressSpinnerModule
   ],
   exports:[
     MainNavComponent, 
     FooterComponent, 
-    LoadingComponent, 
-    LoadingImgComponent
+    LoadingComponent
   ]
 })
 export class SharedModule { }

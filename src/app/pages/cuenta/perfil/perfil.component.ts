@@ -14,10 +14,12 @@ export class PerfilComponent implements OnInit {
   admin: boolean = false;
   duenio: boolean = false;
   veterinario: boolean = false;
+  cargando: boolean = false;
 
   constructor( private authService: AuthService ) { }
 
   ngOnInit() {
+    this.cargando = true;
     this.usuario = this.authService.userLogged;
     console.log(this.usuario);
 
@@ -32,6 +34,7 @@ export class PerfilComponent implements OnInit {
      if ( roles.indexOf('veterinario') > -1 ) {
        this.veterinario = true;
      }
+     this.cargando = false;
   }
 
 }

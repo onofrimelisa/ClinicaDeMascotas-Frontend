@@ -11,6 +11,7 @@ import { MascotaService } from '../../services/service.index';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ListadoMascotaComponent } from '../../pages/mascotas/listado-duenio/listado-mascota.component';
+import { ListadoVeterinarioComponent } from '../../pages/mascotas/listado-veterinario/listado-veterinario.component';
 
 @Component({
   selector: 'app-mascota-table',
@@ -40,7 +41,8 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
 
   constructor( public _ms: MascotaService, 
                 public router: Router, 
-                public listadoMascotas: ListadoMascotaComponent ){
+                public listadoMascotas: ListadoMascotaComponent, 
+                public listadoVeterinario: ListadoVeterinarioComponent ){
   }
 
   ngOnInit() {
