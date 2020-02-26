@@ -1,0 +1,51 @@
+<table mat-table aria-label="Elements" multiTemplateDataRows>
+    <!-- Id Column -->
+    <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
+
+        <ng-container *ngIf="column == 'id' || column == 'nombre' || column == 'sexo'; else otherHeaders">
+            <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+            <td mat-cell *matCellDef="let row">{{row[column] }}</td>
+        </ng-container>
+        <ng-template #otherHeaders>
+            <ng-container *ngIf="column == 'fecha_nacimiento'; else operaciones">
+                <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
+                <td mat-cell *matCellDef="let row">{{row['fecha_nacimiento'] }}</td>
+
+            </ng-container>
+            <ng-template #operaciones>
+                <th class="text-center" mat-header-cell *matHeaderCellDef>Operaciones</th>
+                <td class="operaciones" mat-cell *matCellDef="let row">
+                    <div class="d-flex justify-content-center">
+                        <button mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota">
+                                <mat-icon>edit</mat-icon>
+                              </button>
+                        <button mat-icon-button color="warn" (click)="eliminarMascota(row['id'])" title="Eliminar mascota" aria-label="Eliminar mascota">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                    </div>
+                </td>
+            </ng-template>
+        </ng-template>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+            <div class="example-element-detail" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'">
+                <div class="example-element-diagram">
+                    <img *ngIf="row['foto']" [src]="row['foto']" class="desplegable rounded img-fluid" alt="...">
+                </div>
+                <div class="example-element-description">
+                    <p>Color: {{ row['color'] }}</p>
+                    <p>Especie: {{ row['especie'] }}</p>
+                    <p>Señas: {{ row['color'] }}</p>
+                </div>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === row" (click)="expandedElement = (expandedElement === row ? null : row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>

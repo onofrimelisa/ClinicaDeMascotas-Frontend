@@ -1,17 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { MascotaTableDataSource} from './mascota-table-datasource';
+import { Component, OnInit, Input } from '@angular/core';
 import { MascotaTableItem } from "../../interfaces/ITablaMascota";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { IMascota } from '../../interfaces/IMascota';
-import { MascotaService } from '../../services/service.index';
-
+import { MascotaService } from '../../services/mascota/mascota.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-import { ListadoMascotaComponent } from '../../pages/mascotas/listado-duenio/listado-mascota.component';
-import { ListadoVeterinarioComponent } from '../../pages/mascotas/listado-veterinario/listado-veterinario.component';
+
 
 @Component({
   selector: 'app-mascota-table',
@@ -26,11 +19,8 @@ import { ListadoVeterinarioComponent } from '../../pages/mascotas/listado-veteri
   ]
 })
 
-export class MascotaTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<MascotaTableItem>;
-  dataSource: MascotaTableDataSource;
+export class MascotaTableComponent implements OnInit {
+  
   expandedElement: MascotaTableItem | null;
 
   // creada x mi, tiene las mascotas y se supone que es la data que va a ir variando
@@ -39,27 +29,11 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'nombre', 'fecha_nacimiento', 'sexo', 'operaciones'];
 
-  constructor( public _ms: MascotaService, 
-                public router: Router, 
-                public listadoMascotas: ListadoMascotaComponent, 
-                public listadoVeterinario: ListadoVeterinarioComponent ){
+  constructor( public _ms: MascotaService ){
   }
 
   ngOnInit() {
-    this.dataSource = new MascotaTableDataSource( this.realData );
-    
-    
-    
 
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-    this.expandedElement = this.dataSource.expandedElement;
-
-    
   }
 
   // eliminar mascota
@@ -85,14 +59,13 @@ export class MascotaTableComponent implements AfterViewInit, OnInit {
                  icon: 'success',
                  confirmButtonText: 'Ok'
               });
-              // para que actualice el listado de mascotas
-              // this.listadoMascotas.ngOnInit();
-              this._ms.notificacion.emit();
-              return this.router.navigate(['/mascotas']);
+              this._ms.notificacion.emit(resp);
               
             })
         }
     });
     
   }
+
+  
 }

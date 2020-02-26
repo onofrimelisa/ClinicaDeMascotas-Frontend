@@ -1,13 +1,13 @@
 <div class="container-fluid">
-    <div class="mat-elevation-z8 table">
-        <table mat-table matSort aria-label="Elements" multiTemplateDataRows>
-            <!-- Id Column -->
-            <ng-container matColumnDef="{{ column }}" *ngFor="let column of displayedColumns">
+    <div class="mat-elevation-z8">
 
+        <table mat-table [dataSource]="realData" multiTemplateDataRows>
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
                 <ng-container *ngIf="column == 'id' || column == 'nombre' || column == 'sexo'; else noSortHeaderes">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column | titlecase }}</th>
+                    <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
                     <td mat-cell *matCellDef="let row">{{row[column] }}</td>
                 </ng-container>
+
                 <ng-template #noSortHeaderes>
                     <ng-container *ngIf="column == 'fecha_nacimiento'; else operaciones">
                         <th mat-header-cell *matHeaderCellDef>Fecha de nacimiento</th>
@@ -47,12 +47,11 @@
                 </td>
             </ng-container>
 
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === row" (click)="expandedElement = (expandedElement === row ? null : row)"></tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
 
-        <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 50, 100, 250]">
-        </mat-paginator>
     </div>
 </div>
