@@ -4,11 +4,15 @@
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
         </button>
-        <p class="mt-4"><strong class="animated heartBeat slow">Cargando...</strong></p>
+        <div class="text-center">
 
-        <p>
-            <mat-icon class="animated heartBeat slow">update</mat-icon>
-        </p>
+            <p class="mt-4"><strong>{{ mensaje }}</strong></p>
+
+            <p>
+                <mat-progress-spinner class="m-auto" color="accent" mode="indeterminate">
+                </mat-progress-spinner>
+            </p>
+        </div>
 
     </div>
 
