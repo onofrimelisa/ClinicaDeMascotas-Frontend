@@ -6,17 +6,19 @@ import { IFicha } from '../../../interfaces/IFicha';
 import { IUsuario } from '../../../interfaces/IUsuario';
 import { DatePipe } from '@angular/common'
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 // SweetAlert
 import Swal from 'sweetalert2'
 
+import { filter } from 'rxjs/operators';
 
 // Servicios
-import { MascotaService } from '../../../services/mascota/mascota.service';
-import { AuthService } from '../../../services/auth/auth.service';
-import { FichaService } from '../../../services/fichas/ficha.service';
-import { Subscription } from 'rxjs';
-import { CargaImagenService } from '../../../services/cargaImagen/carga-imagen.service';
+import { MascotaService, 
+          AuthService, 
+          FichaService,
+          CargaImagenService, 
+          UsuarioService } from '../../../services/service.index';
 
 @Component({
   selector: 'app-listado-mascota',
@@ -93,7 +95,19 @@ export class RegistroMascotaComponent implements OnInit {
                private _as: AuthService, 
                private _fs: FichaService,
                private datePipe: DatePipe, 
-               public router: Router ) {
+               public router: Router, 
+               public _us: UsuarioService ) {
+
+    // Cargo los veterinarios para el select
+    this._us.getVeterinariosActivos()
+      .subscribe( (veterinarios: any)=>{
+        this.veterinarios = veterinarios;
+        console.log(this.veterinarios);
+        
+        
+      });
+
+    
 
     // INICIALIZO USUARIO LOGGEADO
     this.usuario = this._as.userLogged;
