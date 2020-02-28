@@ -68,12 +68,10 @@
                             <input hidden (change)="onFileSelected($event.target.files[0])" #fileInput type="file" id="file">
                         </div>
 
-                        <div class="profile-img" *ngIf="!imagenTemp && !usuario.foto">
-                            <img src="/assets/img/no-profile.jpg" id="vista_previa" class="w150 mb-4" />
+                        <div class="profile-img" *ngIf="!imagenTemp">
+                            <img [src]="usuario.foto | image" id="vista_previa" class="w150 mb-4" />
                         </div>
-                        <div class="profile-img" *ngIf="!imagenTemp && usuario.foto">
-                            <img [src]="usuario.foto" id="vista_previa" class="w150 mb-4" />
-                        </div>
+
                         <div class="profile-img" *ngIf="imagenTemp">
                             <h5>Vista previa</h5>
                             <img [src]="imagenTemp" id="vista_previa" class="w150 mb-4">

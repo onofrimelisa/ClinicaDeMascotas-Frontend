@@ -32,6 +32,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { VeterinariosComponent } from './veterinarios/veterinarios.component';
 import { SharedModule } from '../shared/shared.module';
+import { PipesModule } from "../pipes/pipes.module";
 
 
 
@@ -68,7 +69,8 @@ import { SharedModule } from '../shared/shared.module';
     MatTableModule, 
     MatPaginatorModule, 
     MatSortModule, 
-    SharedModule
+    SharedModule, 
+    PipesModule
   ],
   exports: [
     RegistroMascotaComponent

@@ -28,7 +28,7 @@
 
             <ng-container matColumnDef="foto">
                 <th mat-header-cell *matHeaderCellDef> Foto </th>
-                <td mat-cell *matCellDef="let element"> <img [src]="element.foto" alt=""></td>
+                <td mat-cell *matCellDef="let element"> <img class="img-40" [src]="element.foto | image" alt="Foto de perfil del médico"></td>
             </ng-container>
             <ng-container matColumnDef="nombre">
                 <th mat-header-cell *matHeaderCellDef> Nombre </th>

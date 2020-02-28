@@ -8,8 +8,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img *ngIf="usuario && !usuario.foto" src="/assets/img/no-profile.jpg" alt="Foto de perfil" />
-                    <img *ngIf="usuario && usuario.foto" [src]="usuario.foto" alt="Foto de perfil">
+                    <img *ngIf="usuario" [src]="usuario.foto | image" alt="Foto de perfil">
                 </div>
             </div>
             <div class="col-md-6 mt-4">

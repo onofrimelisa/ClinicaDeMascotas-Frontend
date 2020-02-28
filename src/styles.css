@@ -79,11 +79,21 @@ footer {
 }
 
 
-/* REGISTRAR MASCOTA */
+/* IMAGENES */
 
 img#vista_previa {
     width: 500px;
     height: 450px;
+}
+
+img.img-50 {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+img.img-40 {
+    width: 40px !important;
+    height: 40px !important;
 }
 
 
