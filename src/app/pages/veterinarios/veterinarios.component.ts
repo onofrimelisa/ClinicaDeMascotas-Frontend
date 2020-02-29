@@ -30,13 +30,41 @@ export class VeterinariosComponent implements OnInit {
     this.cargando = true;
     this._us.getPorRol('veterinario')
       .subscribe( (resp: any)=> {
-        console.log(resp.usuarios);
+        console.log(resp);
         this.veterinarios = resp.usuarios;
         this.total = resp.total;
         this.dataSource = new MatTableDataSource(this.veterinarios);
         this.cargando = false;
         
       })
+  }
+
+  // Activar veterinario
+  activarVeterinario( usuario: IUsuario ){
+    Swal.fire({
+       title: '¿Estas seguro?',
+       text: 'Cambiarás el estado del veterinario: ' + usuario.apellido + ' ' + usuario.nombre,
+       icon: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'Si, cambiar estado.',
+       cancelButtonText: 'Cancelar'
+    })
+    .then( (result) => {
+       if (result.value) {
+          this._us.actualizarEstado( usuario )
+            .subscribe( ()  => {
+              Swal.fire({
+                title: 'Operacion exitosa',
+                text: 'Se cambio el estado del veterinario.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+             });
+            });
+
+       }
+    });
   }
 
   // Eliminar veterinarios

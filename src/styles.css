@@ -89,11 +89,13 @@ img#vista_previa {
 img.img-50 {
     width: 50px !important;
     height: 50px !important;
+    border-radius: 50px;
 }
 
 img.img-40 {
     width: 40px !important;
     height: 40px !important;
+    border-radius: 50px;
 }
 
 
