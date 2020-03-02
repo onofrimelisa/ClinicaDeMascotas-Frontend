@@ -153,7 +153,7 @@ export class RegistroMascotaComponent implements OnInit {
             color: this.datosMascota.value.color,
             foto: urlFb,
             senias: this.datosMascota.value.senias,
-            veterinario: '1', 
+            veterinario: this.datosMascota.value.veterinario, 
             duenio: this.usuario.id
           }
           
@@ -279,7 +279,7 @@ export class RegistroMascotaComponent implements OnInit {
                     fecha_nacimiento: null,
                     sexo: null,
                     color: null,
-                    foto: null,
+                    foto: this.mascota.foto,
                     senias: null,
                     email_duenio: null,
                     nombre_duenio: null,
