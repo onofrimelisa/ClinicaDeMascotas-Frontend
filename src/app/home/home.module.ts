@@ -22,6 +22,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { ServiceModule } from '../services/service.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ServiceModule } from '../services/service.module';
     MatNativeDateModule,
     MatFileUploadModule,
     SharedModule,
-    ServiceModule 
+    ServiceModule, 
+    PipesModule
   ]
 })
 export class HomeModule { }

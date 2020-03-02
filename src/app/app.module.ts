@@ -25,6 +25,9 @@ import * as firebase from 'firebase';
 // Environments
 import { environment } from 'src/environments/environment';
 
+
+import { PipesModule } from './pipes/pipes.module';
+
 firebase.initializeApp(environment.firebase);
 
 
@@ -42,7 +45,8 @@ firebase.initializeApp(environment.firebase);
     APP_ROUTING,
     HomeModule,
     SharedModule,
-    ServiceModule
+    ServiceModule, 
+    PipesModule
   ],
   providers: [
     DatePipe

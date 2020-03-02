@@ -47,45 +47,52 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
 
-            <div class="grid">
-                <figure class="effect-apollo">
-                    <img src="assets/img/walli4.jpeg" alt="img18" />
-                    <figcaption>
-                        <h2>WALLI <span>ONOFRI</span></h2>
-                        <div>
-                            <p class="info-ficha">Un perrito feliz.
-                            </p>
-                            <p class="info-ficha">Edad: 7.
-                            </p>
-                            <p class="info-ficha">Dueña: Meli.
-                            </p>
-                            <p class="info-ficha">Veterinario: Lore.
-                            </p>
-                        </div>
-                        <a href="#">Ver más</a>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="grid">
-                <figure class="effect-apollo">
-                    <img src="assets/img/raca2.jpeg" alt="img18" />
-                    <figcaption>
-                        <h2>RACA <span>REPETTO</span></h2>
-                        <div>
-                            <p class="info-ficha">Una gatita que se va de gira.
-                            </p>
-                            <p class="info-ficha">Edad: 7.
-                            </p>
-                            <p class="info-ficha">Dueña: Meli.
-                            </p>
-                            <p class="info-ficha">Veterinario: Lore.
-                            </p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
+        <div class="row mt-4 pt-4">
+
+            <ng-container *ngIf="total==0; else elseTemplate">
+                <div class="col-8 text-center m-auto pt-4 animated fadeIn">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        <strong>Ups! </strong> Parece que todavía no hay ninguna mascota cargada.
+                    </div>
+
+                    <script>
+                        $(".alert").alert();
+                    </script>
+
+                </div>
+
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div class="grid animated fadeInRight slow" *ngFor="let ficha of fichas_home">
+                    <figure class="effect-apollo">
+                        <img [src]="ficha.foto | image" alt="img18" />
+                        <figcaption>
+                            <h2>{{ ficha.nombre }} <span>{{ ficha.apellido_duenio }}</span></h2>
+                            <div>
+                                <p class="info-ficha" *ngIf="ficha.especie">{{ ficha.especie }}
+                                </p>
+                                <p class="info-ficha" *ngIf="ficha.senias">{{ ficha.senias }}
+                                </p>
+                                <p class="info-ficha" *ngIf="ficha.fecha_nacimiento">Nacimiento: {{ ficha.fecha_nacimiento }}.
+                                </p>
+                                <p class="info-ficha" *ngIf="ficha.nombre_duenio || ficha.apellido_duenio">Dueño: {{ ficha.nombre_duenio }} {{ ficha.apellido_duenio }}.
+                                </p>
+                            </div>
+                            <a href="#">Ver más</a>
+                        </figcaption>
+                    </figure>
+                </div>
+            </ng-template>
+
+
+
+
+
+
         </div>
     </div>
 

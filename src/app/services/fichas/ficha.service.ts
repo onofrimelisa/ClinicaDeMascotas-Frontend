@@ -30,4 +30,13 @@ export class FichaService {
                   catchError( err => throwError(err.error))  
                 );
   }
+
+  recuperarTodas(){
+    let url = URL_SERVICIOS + '/ficha_publica';
+
+    return this.http.get( url, httpOptions )
+    .pipe(
+      catchError( err => throwError(err.error))  
+    );
+  }
 }
