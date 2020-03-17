@@ -16,25 +16,16 @@ export class PerfilComponent implements OnInit {
   veterinario: boolean = false;
   cargando: boolean = false;
 
-  constructor( private authService: AuthService ) { }
+  constructor( public authService: AuthService ) { }
 
   ngOnInit() {
     this.cargando = true;
     this.usuario = this.authService.userLogged;
-    console.log(this.usuario);
-
-     // Inicializo roles
-     let roles = this.authService.userLogged.roles;
-     if ( roles.indexOf('admin') > -1 ) {
-       this.admin = true;
-     }
-     if ( roles.indexOf('duenio') > -1 ) {
-       this.duenio = true;
-     }
-     if ( roles.indexOf('veterinario') > -1 ) {
-       this.veterinario = true;
-     }
-     this.cargando = false;
+    // Inicializo roles
+    this.admin = this.authService.admin;
+    this.veterinario = this.authService.veterinario;
+    this.duenio = this.authService.duenio;
+    this.cargando = false;
   }
 
 }

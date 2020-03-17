@@ -34,7 +34,7 @@ export class MainNavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver,
               private router: Router,
               private title: Title,
-              private authService: AuthService) {
+              public authService: AuthService) {
       this.user = this.authService.userLogged;
     
       this.getDataRoute().subscribe( data => {
@@ -44,16 +44,9 @@ export class MainNavComponent implements OnInit {
   
   ngOnInit() {
     // Inicializo roles
-    let roles = this.authService.userLogged.roles;
-    if ( roles.indexOf('admin') > -1 ) {
-      this.admin = true;
-    }
-    if ( roles.indexOf('duenio') > -1 ) {
-      this.duenio = true;
-    }
-    if ( roles.indexOf('veterinario') > -1 ) {
-      this.veterinario = true;
-    }
+    this.admin = this.authService.admin;
+    this.veterinario = this.authService.veterinario;
+    this.duenio = this.authService.duenio;
   }
 
 

@@ -42,7 +42,7 @@ export class EditarComponent implements OnInit, OnDestroy {
   
   constructor(private _formBuilder: FormBuilder,
               private usuarioService: UsuarioService,
-              private authService: AuthService,
+              public authService: AuthService,
               private cargaImagenService: CargaImagenService,
               private datePipe: DatePipe) { 
     

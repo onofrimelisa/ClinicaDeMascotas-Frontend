@@ -87,7 +87,7 @@
                 </div>
             </mat-tab>
             <!-- TERCER TAB -->
-            <mat-tab label="Datos Profesionales">
+            <mat-tab *ngIf="authService.veterinario" label="Datos Profesionales">
                 <form [formGroup]="datosProfesionales">
                     <mat-form-field>
                         <input matInput type="text" placeholder="Matrícula" formControlName="matricula">

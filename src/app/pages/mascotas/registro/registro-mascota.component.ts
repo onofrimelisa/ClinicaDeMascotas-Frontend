@@ -140,28 +140,21 @@ export class RegistroMascotaComponent implements OnInit {
 
     // 1 creo la mascota, 2 creo su ficha publica
     if (this.datosMascota.valid) {
-      // subir foto y obtener url
-      this.subscripcion = this._cargaService.url$.subscribe(
-        (urlFb: string) => {
-          this.mascota = {
-            id: null,
-            nombre: this.datosMascota.value.nombre,
-            especie: this.datosMascota.value.especie,
-            raza: this.datosMascota.value.raza,
-            fecha_nacimiento: this.getFecha(),
-            sexo: this.datosMascota.value.sexo,
-            color: this.datosMascota.value.color,
-            foto: urlFb,
-            senias: this.datosMascota.value.senias,
-            veterinario: this.datosMascota.value.veterinario, 
-            duenio: this.usuario.id
-          }
-          
-          this.registrarMascota( options );
-        }
-      )
       this.subiendo = true;
-      this._cargaService.cargarFoto(this.archivo, 'mascotas');
+
+      // subir foto y obtener url
+      if (this.archivo) {
+        this.subscripcion = this._cargaService.url$.subscribe(
+          (urlFb: string) => {
+            this.crearMascota(urlFb); 
+            this.registrarMascota( options );
+          }
+        )
+        this._cargaService.cargarFoto(this.archivo, 'mascotas');
+      } else {
+        this.crearMascota();
+        this.registrarMascota(options);
+      }
       
     }
   }
@@ -315,4 +308,22 @@ export class RegistroMascotaComponent implements OnInit {
     }
     
   }
+
+
+  private crearMascota( url: string = null) {
+    this.mascota = {
+      id: null,
+      nombre: this.datosMascota.value.nombre,
+      especie: this.datosMascota.value.especie,
+      raza: this.datosMascota.value.raza,
+      fecha_nacimiento: this.getFecha(),
+      sexo: this.datosMascota.value.sexo,
+      color: this.datosMascota.value.color,
+      foto: url,
+      senias: this.datosMascota.value.senias,
+      veterinario: this.datosMascota.value.veterinario, 
+      duenio: this.usuario.id
+    }
+  }
+
 }

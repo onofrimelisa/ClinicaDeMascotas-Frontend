@@ -83,7 +83,7 @@
                                 <label>Rol</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ usuario.roles[0] }}</p>
+                                <p *ngFor="let rol of usuario.roles" >{{ rol | rol }}</p>
                             </div>
                         </div>
                     </div>

@@ -21,6 +21,10 @@ export class AuthService {
 
   userToken: string = '';
   userLogged: IUsuario = null;
+  // Roles
+  admin: boolean = false;
+  duenio: boolean = false;
+  veterinario: boolean = false;
 
   constructor( private http: HttpClient,
                private router: Router ) { 
@@ -39,6 +43,16 @@ export class AuthService {
       map( (res: any) => {
         this.userToken = res.token;
         this.userLogged = res.usuario;
+        let roles = res.usuario.roles;
+        if ( roles.indexOf('admin') > -1 ) {
+          this.admin = true;
+        }
+        if ( roles.indexOf('duenio') > -1 ) {
+          this.duenio = true;
+        }
+        if ( roles.indexOf('veterinario') > -1 ) {
+          this.veterinario = true;
+        }
         this.guardarStorage(res.token, res.usuario);
         return this.userLogged;
       }),
@@ -56,6 +70,9 @@ export class AuthService {
     this.userLogged = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.admin = false;
+    this.veterinario = false;
+    this.duenio = false;
     this.router.navigate(['/home']);
   }
 
@@ -76,6 +93,16 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this.userToken = localStorage.getItem('token');
       this.userLogged = JSON.parse(localStorage.getItem('user'));
+      let roles = this.userLogged.roles;
+      if ( roles.indexOf('admin') > -1 ) {
+        this.admin = true;
+      }
+      if ( roles.indexOf('duenio') > -1 ) {
+        this.duenio = true;
+      }
+      if ( roles.indexOf('veterinario') > -1 ) {
+        this.veterinario = true;
+      }
     }else{
       this.userLogged = null;
       this.userToken = '';
