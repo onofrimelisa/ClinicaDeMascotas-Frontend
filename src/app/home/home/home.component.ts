@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   registrar:boolean = false;
   fichas: IFicha [] = [];
   fichas_home: IFicha [] = [];
-  total: number;
+  total: number = 0;
 
   constructor( public _fs: FichaService ) { }
 
@@ -27,12 +27,18 @@ export class HomeComponent implements OnInit {
   cargarFichas(){
     this._fs.recuperarTodas().subscribe(
       (resp: any)=>{
-        this.fichas = resp.fichas_publicas;
-        this.total = resp.total;
-
-        this.fichas_home.push(this.fichas[0]);
-        this.fichas_home.push(this.fichas[1]);
-        console.log(this.fichas_home);
+        if (resp) {
+          
+          this.fichas = resp.fichas_publicas;
+          this.total = resp.total;
+          if (this.total >= 2) {
+            this.fichas_home.push(this.fichas[0]);
+            this.fichas_home.push(this.fichas[1]);
+            console.log(this.fichas_home);
+            
+          }
+          
+        }
         
         
         

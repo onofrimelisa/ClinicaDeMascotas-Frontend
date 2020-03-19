@@ -56,7 +56,7 @@
                                 <input matInput type="text" placeholder="Señas" formControlName="senias">
                             </mat-form-field>
                             <mat-form-field class="col-lg-5 col-md-5">
-                                <mat-select placeholder="Veterinario" formControlName="veterinario" required>
+                                <mat-select placeholder="Veterinario" formControlName="veterinario">
                                     <mat-option *ngFor="let v of veterinarios" value="{{ v.id }}">{{ v.apellido | titlecase }}, {{ v.nombre | titlecase }}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>

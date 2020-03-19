@@ -25,6 +25,7 @@ export class MascotaTableComponent implements OnInit {
 
   // creada x mi, tiene las mascotas y se supone que es la data que va a ir variando
   @Input() realData: IMascota[];
+  @Input() modo: String;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'nombre', 'fecha_nacimiento', 'sexo', 'operaciones'];
@@ -40,7 +41,7 @@ export class MascotaTableComponent implements OnInit {
   eliminarMascota( id: number){
     Swal.fire({
        title: '¿Estas seguro?',
-       text: 'Se eliminará tu mascota con id ' + id,
+       text: 'Se eliminará la mascota de tu colección',
        icon: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#3085d6',
@@ -50,18 +51,36 @@ export class MascotaTableComponent implements OnInit {
     })
     .then( (result) => {
         if (result.value) {
-          this._ms.eliminarMascota( id )
+
+          if (this.modo == 'duenio') {
+            this._ms.eliminarMascotaDuenio( id )
             .subscribe( (resp: any)=> {
               console.log(resp);
               Swal.fire({
                  title: 'Eliminado',
-                 text: 'Se eliminó tu mascota',
+                 text: 'Se eliminó tu mascota.',
                  icon: 'success',
                  confirmButtonText: 'Ok'
               });
               this._ms.notificacion.emit(resp);
               
             })
+          }else{
+            this._ms.eliminarMascotaVeterinario( id )
+            .subscribe( (resp: any)=> {
+              console.log(resp);
+              Swal.fire({
+                 title: 'Eliminado',
+                 text: 'Ya no sos el veterinario de esa mascota.',
+                 icon: 'success',
+                 confirmButtonText: 'Ok'
+              });
+              this._ms.notificacion.emit(resp);
+              
+            });
+
+          }
+          
         }
     });
     

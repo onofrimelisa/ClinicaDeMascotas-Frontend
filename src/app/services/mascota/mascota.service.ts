@@ -52,9 +52,18 @@ export class MascotaService {
                 );
   }
 
-  // eliminar
-  eliminarMascota( id: number ){
-    let url = URL_PRIVADA + '/mascota/' + id + '/' + this._as.userLogged.id;
+  // eliminar desde un duenio
+  eliminarMascotaDuenio( id: number ){
+    let url = URL_PRIVADA + '/mascota/' + id + '/duenio/' + this._as.userLogged.id;
+    return this.http.delete( url, httpOptions )
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
+  // eliminar desde un veterinario
+  eliminarMascotaVeterinario( id: number ){
+    let url = URL_PRIVADA + '/mascota/' + id + '/veterinario/' + this._as.userLogged.id;
     return this.http.delete( url, httpOptions )
                 .pipe(
                   catchError( err => throwError(err.error))  

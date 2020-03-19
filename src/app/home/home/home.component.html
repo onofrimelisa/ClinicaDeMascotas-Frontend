@@ -50,13 +50,13 @@
 
         <div class="row mt-4 pt-4">
 
-            <ng-container *ngIf="total==0; else elseTemplate">
+            <ng-container *ngIf="!(fichas_home.length >= 2); else elseTemplate">
                 <div class="col-8 text-center m-auto pt-4 animated fadeIn">
                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                        <strong>Ups! </strong> Parece que todavía no hay ninguna mascota cargada.
+                        <strong>Ups! </strong> Parece que todavía no hay ninguna Ficha Pública cargada.
                     </div>
 
                     <script>
@@ -71,7 +71,7 @@
                     <figure class="effect-apollo">
                         <img [src]="ficha.foto | image" alt="img18" />
                         <figcaption>
-                            <h2>{{ ficha.nombre }} <span>{{ ficha.apellido_duenio }}</span></h2>
+                            <h2 *ngIf="ficha.nombre">{{ ficha.nombre }} <span *ngIf="ficha.apellido_duenio">{{ ficha.apellido_duenio }}</span></h2>
                             <div>
                                 <p class="info-ficha" *ngIf="ficha.especie">{{ ficha.especie }}
                                 </p>

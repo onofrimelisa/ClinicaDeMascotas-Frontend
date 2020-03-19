@@ -121,7 +121,7 @@ export class RegistroMascotaComponent implements OnInit {
       sexo: ['', Validators.required],
       color: ['', Validators.required],
       senias: [''],
-      veterinario: ['', Validators.required ]
+      veterinario: ['' ]
     });
     
 
