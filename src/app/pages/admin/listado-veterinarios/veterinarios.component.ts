@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./veterinarios.component.css']
 })
 export class VeterinariosComponent implements OnInit {
-  displayedColumns: string[] = ['foto', 'nombre','email','consultorio', 'activo', 'operaciones'];
+  displayedColumns: string[] = ['foto', 'nombre','email','consultorio', 'activo', 'roles', 'operaciones'];
   dataSource;
   veterinarios: IUsuario[] = null;
   cargando: boolean = false;

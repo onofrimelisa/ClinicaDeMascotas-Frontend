@@ -38,11 +38,24 @@
                 <th mat-header-cell *matHeaderCellDef> Email </th>
                 <td mat-cell *matCellDef="let element"> {{element.email}} </td>
             </ng-container>
+            <ng-container matColumnDef="roles">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> Roles </th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="d-flex justify-content-center">
+
+                        <span title="{{ rol | rol | uppercase }}" *ngFor="let rol of element.roles" class="pointer"><mat-icon [class.veterinario]="rol == 'veterinario'" [class.duenio]="rol == 'duenio'" [class.admin]="rol == 'admin'" >check_circle</mat-icon></span>
+                    </div>
+
+                </td>
+            </ng-container>
             <ng-container matColumnDef="operaciones">
                 <th mat-header-cell *matHeaderCellDef class="text-center"> Operaciones </th>
                 <td mat-cell *matCellDef="let element">
-                    <div class="row d-flex justify-content-center">
-                        <button mat-icon-button color="warn" title="Eliminar usuario" (click)="eliminarDuenio( element )" aria-label="Eliminar usuario" class="col">
+                    <div class="d-flex justify-content-center">
+                        <button *ngIf="element.roles.length < 3" mat-icon-button title="Agregar roles" aria-label="Agregar roles" class="primary">
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        <button mat-icon-button color="warn" title="Eliminar usuario" (click)="eliminarDuenio( element )" aria-label="Eliminar usuario">
                             <mat-icon>delete</mat-icon>
                         </button>
 

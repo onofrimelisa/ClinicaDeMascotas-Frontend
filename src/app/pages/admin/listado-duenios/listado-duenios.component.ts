@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./listado-duenios.component.css']
 })
 export class ListadoDueniosComponent implements OnInit {
-  displayedColumns: string[] = ['foto', 'nombre','email', 'operaciones'];
+  displayedColumns: string[] = ['foto', 'nombre','email', 'roles', 'operaciones'];
   dataSource;
   duenios: IUsuario[] = null;
   cargando: boolean = false;
