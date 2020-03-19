@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // GUARDS
@@ -12,7 +11,8 @@ import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
 import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
 import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
-import { VeterinariosComponent } from "./veterinarios/veterinarios.component";
+import { VeterinariosComponent } from "./admin/listado-veterinarios/veterinarios.component";
+import { ListadoDueniosComponent } from "./admin/listado-duenios/listado-duenios.component";
 
 const PAGES_ROUTES: Routes = [
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Mi Perfil' } },
@@ -27,6 +27,7 @@ const PAGES_ROUTES: Routes = [
     
     // rutas del admin
     { path: 'veterinarios', component: VeterinariosComponent, canActivate: [ AdminGuard ],data: { titulo: 'Veterinarios' } },
+    { path: 'duenios', component: ListadoDueniosComponent, canActivate: [ AdminGuard ],data: { titulo: 'Dueños' } },
 
     { path: '', redirectTo: '/perfil', pathMatch: 'full' }    
 ]

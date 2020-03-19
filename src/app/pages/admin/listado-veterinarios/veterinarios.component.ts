@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { IUsuario } from '../../interfaces/IUsuario';
-import { UsuarioService } from '../../services/service.index';
+import { IUsuario } from '../../../interfaces/IUsuario';
+import { UsuarioService } from '../../../services/service.index';
 import Swal from 'sweetalert2';
 
 @Component({

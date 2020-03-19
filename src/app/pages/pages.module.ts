@@ -30,9 +30,11 @@ import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.com
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { VeterinariosComponent } from './veterinarios/veterinarios.component';
+import { VeterinariosComponent } from './admin/listado-veterinarios/veterinarios.component';
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from "../pipes/pipes.module";
+import { ListadoDueniosComponent } from './admin/listado-duenios/listado-duenios.component';
+import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
 
 
 
@@ -44,7 +46,7 @@ import { PipesModule } from "../pipes/pipes.module";
     ListadoMascotaComponent, 
     MascotaTableComponent, 
     ListadoVeterinarioComponent, 
-    VeterinariosComponent
+    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent
   ],
   imports: [
     CommonModule,
