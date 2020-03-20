@@ -3,8 +3,8 @@
     text-align: center;
 }
 .profile-img img{
-    max-width: 200px !important;
-    max-height: 200px !important;
+    width: 200px !important;
+    height: 200px !important;
     border-radius: 100px;
 }
 .profile-img .file {

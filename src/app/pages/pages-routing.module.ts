@@ -13,6 +13,7 @@ import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-masco
 import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
 import { VeterinariosComponent } from "./admin/listado-veterinarios/veterinarios.component";
 import { ListadoDueniosComponent } from "./admin/listado-duenios/listado-duenios.component";
+import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
 
 const PAGES_ROUTES: Routes = [
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Mi Perfil' } },
@@ -28,7 +29,9 @@ const PAGES_ROUTES: Routes = [
     // rutas del admin
     { path: 'veterinarios', component: VeterinariosComponent, canActivate: [ AdminGuard ],data: { titulo: 'Veterinarios' } },
     { path: 'duenios', component: ListadoDueniosComponent, canActivate: [ AdminGuard ],data: { titulo: 'Dueños' } },
-
+    
+    // eventos
+    { path: 'nuevo-evento', component: NuevoEventoComponent, data: { titulo: 'Nuevo Evento' } },
     { path: '', redirectTo: '/perfil', pathMatch: 'full' }    
 ]
 export const PAGES_ROUTING = RouterModule.forChild(PAGES_ROUTES);

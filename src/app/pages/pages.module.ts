@@ -35,6 +35,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from "../pipes/pipes.module";
 import { ListadoDueniosComponent } from './admin/listado-duenios/listado-duenios.component';
 import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
+import { RegistroComponent } from './eventos/registro/registro.component';
+import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
 
 
 
@@ -46,7 +48,7 @@ import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinar
     ListadoMascotaComponent, 
     MascotaTableComponent, 
     ListadoVeterinarioComponent, 
-    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent
+    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent, RegistroComponent, NuevoEventoComponent
   ],
   imports: [
     CommonModule,
