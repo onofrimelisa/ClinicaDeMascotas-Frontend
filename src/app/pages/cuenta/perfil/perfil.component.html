@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img *ngIf="usuario" [src]="usuario.foto | image" alt="Foto de perfil">
+                    <img *ngIf="usuario" [src]="usuario.foto | image" class="imagen" alt="Foto de perfil">
                 </div>
             </div>
             <div class="col-md-6 mt-4">
@@ -25,16 +25,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-
-                </div>
-            </div>
-            <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
@@ -116,12 +106,14 @@
                     <div class="row">
                         <!-- editar profesionales -->
                         <button [routerLink]="['/editar']" class="btn btn-outline-primary">
-                                    Editar
-                                </button>
+                            Editar
+                        </button>
                     </div>
-                </div>
             </div>
         </div>
+
+     
+    </div>
 
     </ng-template>
 </div>

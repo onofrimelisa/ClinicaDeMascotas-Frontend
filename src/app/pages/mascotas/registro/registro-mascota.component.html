@@ -57,6 +57,7 @@
                             </mat-form-field>
                             <mat-form-field class="col-lg-5 col-md-5">
                                 <mat-select placeholder="Veterinario" formControlName="veterinario">
+                                    <mat-option value="">Sin veterinario</mat-option>
                                     <mat-option *ngFor="let v of veterinarios" value="{{ v.id }}">{{ v.apellido | titlecase }}, {{ v.nombre | titlecase }}</mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="datosMascota.invalid">Debe completar este campo.</mat-error>

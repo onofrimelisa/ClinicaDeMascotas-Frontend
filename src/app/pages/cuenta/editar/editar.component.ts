@@ -21,7 +21,6 @@ export class EditarComponent implements OnInit, OnDestroy {
   usuario: IUsuario = null;
 
   datosPersonales: FormGroup;
-  email: string;
   nombre: string;
   apellido: string;
   fecha_nacimiento: Date;
@@ -52,7 +51,6 @@ export class EditarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.cargando = true;
     this.datosPersonales = this._formBuilder.group({
-      email: [this.usuario.email, [Validators.required, Validators.email]],
       nombre: [this.usuario.nombre, Validators.required],
       apellido: [this.usuario.apellido, Validators.required],
       fecha_nacimiento: [this.usuario.fecha_nacimiento, Validators.required],
@@ -145,7 +143,7 @@ export class EditarComponent implements OnInit, OnDestroy {
   procesarUsuario() {
     const usuarioNuevo: IUsuario = {
       id: this.usuario.id,
-      email: this.datosPersonales.value.email,
+      email: this.usuario.email,
       apellido: this.datosPersonales.value.apellido,
       nombre: this.datosPersonales.value.nombre,
       fecha_nacimiento: this.getFecha(),

@@ -36,6 +36,10 @@
                     Veterinarios
                 </a>
                 <mat-divider></mat-divider>
+                <a mat-list-item (click)="navegar('/duenios')" routerLinkActive="active">
+                    <mat-icon class="icono" aria-label="Dueños">view_list</mat-icon>
+                    Dueños
+                </a>
             </div>
 
             <div *ngIf="!admin">
@@ -45,6 +49,10 @@
                 <a *ngIf="duenio" mat-list-item (click)="navegar('/mascotas')">
                     <mat-icon class="icono" aria-label="Mis Mascotas">pets</mat-icon>
                     Mis Mascotas
+                </a>
+                <a *ngIf="veterinario" mat-list-item (click)="navegar('/mascotas_atendidas')">
+                    <mat-icon class="icono" aria-label="Mascotas sin veterinario">pets</mat-icon>
+                    Mascotas sin veterinario
                 </a>
                 <a *ngIf="veterinario" mat-list-item (click)="navegar('/mascotas_atendidas')">
                     <mat-icon class="icono" aria-label="Mascotas atendidas">pets</mat-icon>
@@ -66,17 +74,13 @@
                     <span matBadge="4" matBadgeOverlap="false">Mis Eventos</span>
                 </a>
                 <a mat-list-item href="#">
-                    <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
-                    <span matBadge="2" matBadgeOverlap="false">Mis Recordatorios</span>
-                </a>
-                <a mat-list-item href="#">
                     <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
                     Evento
                 </a>
                 <a mat-list-item href="#">
-                    <mat-icon class="icono" aria-label="Nuevo Recordatorio">alarm_add</mat-icon>
-                    Recordatorio
-                </a>
+                    <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
+                    <span matBadge="2" matBadgeOverlap="false">Mis Recordatorios</span>
+                </a>    
             </div>
         </mat-nav-list>
     </mat-sidenav>

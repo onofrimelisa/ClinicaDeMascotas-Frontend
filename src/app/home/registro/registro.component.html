@@ -60,7 +60,7 @@
 
                     <div>
                         <button (click)="mostrarLogin()" type="button" class="mr-2 btn btn-outline-secondary btn-sm">Volver</button>
-                        <button *ngIf="datosPersonales.value.rol === 'veterinario'" type="button" class="mt-2 btn btn-outline-secondary btn-sm" matStepperNext>
+                        <button *ngIf="datosPersonales.value.rol === 'veterinario'" type="button" class="btn btn-outline-secondary btn-sm" matStepperNext>
                                 Siguiente
                         </button>
                         <button *ngIf="datosPersonales.value.rol === 'duenio'" 
