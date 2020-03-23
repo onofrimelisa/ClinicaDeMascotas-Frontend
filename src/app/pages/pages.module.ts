@@ -2,16 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-//Componentes
-import { PerfilComponent } from './cuenta/perfil/perfil.component';
-import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
-import { EditarComponent } from './cuenta/editar/editar.component';
-import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
-import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
-
-//Rutas
-import { PAGES_ROUTING } from './pages-routing.module';
-
+// Modules
+import { SharedModule } from '../shared/shared.module';
+import { PipesModule } from "../pipes/pipes.module";
 // material
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -26,17 +19,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
-import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { VeterinariosComponent } from './admin/listado-veterinarios/veterinarios.component';
-import { SharedModule } from '../shared/shared.module';
-import { PipesModule } from "../pipes/pipes.module";
+
+//Componentes
+import { PerfilComponent } from './cuenta/perfil/perfil.component';
+import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.component';
+import { EditarComponent } from './cuenta/editar/editar.component';
+import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
+import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
 import { ListadoDueniosComponent } from './admin/listado-duenios/listado-duenios.component';
+import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.component';
 import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
-import { RegistroComponent } from './eventos/registro/registro.component';
+import { VeterinariosComponent } from './admin/listado-veterinarios/veterinarios.component';
 import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
+
+//Rutas
+import { PAGES_ROUTING } from './pages-routing.module';
 
 
 
@@ -48,7 +48,7 @@ import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.compon
     ListadoMascotaComponent, 
     MascotaTableComponent, 
     ListadoVeterinarioComponent, 
-    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent, RegistroComponent, NuevoEventoComponent
+    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent, NuevoEventoComponent
   ],
   imports: [
     CommonModule,
