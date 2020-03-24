@@ -1,0 +1,7 @@
+.d-grid {
+    display: grid !important;
+}
+
+.mat-form-field {
+    width: 100% !important;
+}

@@ -8,7 +8,8 @@ import { AuthGuard,
   UsuarioService, 
   MascotaService, 
   TokenInterceptorService,
-  CargaImagenService 
+  CargaImagenService,
+  EventoService 
 } from './service.index';
 
 
@@ -28,7 +29,8 @@ import { AuthGuard,
     AuthService,
     UsuarioService, 
     MascotaService,
-    CargaImagenService
+    CargaImagenService,
+    EventoService
   ]
 })
 export class ServiceModule { }

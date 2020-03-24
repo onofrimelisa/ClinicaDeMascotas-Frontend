@@ -73,7 +73,7 @@
                     <mat-icon class="icono" aria-label="Mis Eventos">event</mat-icon>
                     <span matBadge="4" matBadgeOverlap="false">Mis Eventos</span>
                 </a>
-                <a mat-list-item href="#">
+                <a mat-list-item (click)="navegar('/nuevo-evento')">
                     <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
                     Evento
                 </a>

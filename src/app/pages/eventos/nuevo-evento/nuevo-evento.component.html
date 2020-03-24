@@ -5,12 +5,36 @@
     </ng-container>
     <ng-template #finCarga class="m-4">
 
-        <form [formGroup]="form" class="mt-5">
-            <div class="row">
-
+        <div *ngIf="!mascotas && !cargando" class="container">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <div>
+    
+                    <i><mat-icon class="animated flash">info</mat-icon></i> <span> Debes tener al menos una mascota para cargar eventos. <strong><a [routerLink]="['/nueva']"> Agregar.</a> </strong></span>
+                </div>
+            </div>
+        </div>
+        <form *ngIf="mascotas" [formGroup]="form" class="m-3">
+            <span>Complete los campos que correspondan</span>
+            <div class="row mt-2">
                 <div class="col-md-6">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Descripcion" formControlName="descripcion">
+                        <mat-select placeholder="Tipo" formControlName="tipo" required>
+                            <mat-option *ngFor="let t of tipos" value="{{ t }}">{{ t }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br> 
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Descripción" formControlName="descripcion" required>
+                        <mat-error *ngIf="form.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Observaciones" formControlName="observaciones">
                     </mat-form-field>
                     <br>
                     <mat-form-field>
@@ -18,32 +42,17 @@
                     </mat-form-field>
                     <br>
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Droga" formControlName="droga">
+                        <input matInput type="number" placeholder="Peso" formControlName="peso">
                     </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Indicaciones" formControlName="indicaciones">
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Observaciones" formControlName="observaciones">
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Observaciones" formControlName="observaciones">
-                    </mat-form-field>
-                    <br>
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Tipo" formControlName="tipo">
-                    </mat-form-field>
-                    <br> 
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Mascota" formControlName="mascota">
-                    </mat-form-field>
-                    <br>
-
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6">          
+                    <mat-form-field>
+                        <mat-select placeholder="Mascota" formControlName="mascota" required>
+                            <mat-option *ngFor="let m of mascotas" value="{{ m.id }}">{{ m.nombre }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.invalid">Debe completar este campo.</mat-error>
+                    </mat-form-field>
+                    <br>
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha" required>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -51,12 +60,19 @@
                         <mat-error *ngIf="form.invalid">Debe completar este campo.</mat-error>
                     </mat-form-field>
                     <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Indicaciones" formControlName="indicaciones">
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Droga" formControlName="droga">
+                    </mat-form-field>
                 </div>
                 <!-- Fin row -->
             </div>
 
             <div>
-                <button type="button" (click)="procesarUsuario()" class="mt-2 btn btn-outline-secondary btn-sm">
+                <button [disabled]="form.invalid" (click)="procesarEvento()" type="button" class="mt-2 btn btn-outline-secondary btn-sm">
                         Guardar
                 </button>
             </div>
