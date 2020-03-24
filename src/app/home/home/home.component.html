@@ -1,22 +1,4 @@
-<!-- ENCABEZADO -->
-<header>
-    <div id="home" class="header-hero bg_cover" style="background-image: url(assets/img/header.jpeg)">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-8 col-lg-10">
-                    <div class="header-content text-center">
-                        <h3 class="header-title">Clínica de mascotas.</h3>
-                        <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vero optio aut saepe neque ipsam, fugiat, recusandae itaque nostrum iusto ipsum consectetur illum dignissimos ab harum. Quo mollitia velit distinctio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- shape -->
-        <div class="header-shape">
-            <img src="assets/img/header-shape.svg" alt="shape">
-        </div>
-    </div>
-</header>
+<app-header></app-header>
 
 <main>
 
@@ -62,29 +44,29 @@
                     <script>
                         $(".alert").alert();
                     </script>
-
                 </div>
 
             </ng-container>
             <ng-template #elseTemplate>
                 <div class="grid animated fadeInRight slow" *ngFor="let ficha of fichas_home">
-                    <figure class="effect-apollo">
-                        <img [src]="ficha.foto | image" alt="img18" />
-                        <figcaption>
-                            <h2 *ngIf="ficha.nombre">{{ ficha.nombre }} <span *ngIf="ficha.apellido_duenio">{{ ficha.apellido_duenio }}</span></h2>
-                            <div>
-                                <p class="info-ficha" *ngIf="ficha.especie">{{ ficha.especie }}
-                                </p>
-                                <p class="info-ficha" *ngIf="ficha.senias">{{ ficha.senias }}
-                                </p>
-                                <p class="info-ficha" *ngIf="ficha.fecha_nacimiento">Nacimiento: {{ ficha.fecha_nacimiento }}.
-                                </p>
-                                <p class="info-ficha" *ngIf="ficha.nombre_duenio || ficha.apellido_duenio">Dueño: {{ ficha.nombre_duenio }} {{ ficha.apellido_duenio }}.
-                                </p>
-                            </div>
-                            <a href="#">Ver más</a>
-                        </figcaption>
-                    </figure>
+                    <a [routerLink]="['/ficha', ficha.id]">
+                        <figure class="effect-apollo">
+                            <img [src]="ficha.foto | image" alt="img18" />
+                            <figcaption>
+                                <h2 *ngIf="ficha.nombre">{{ ficha.nombre }} <span *ngIf="ficha.apellido_duenio">{{ ficha.apellido_duenio }}</span></h2>
+                                <div>
+                                    <p class="info-ficha" *ngIf="ficha.especie">{{ ficha.especie }}
+                                    </p>
+                                    <p class="info-ficha" *ngIf="ficha.senias">{{ ficha.senias }}
+                                    </p>
+                                    <p class="info-ficha" *ngIf="ficha.fecha_nacimiento">Nacimiento: {{ ficha.fecha_nacimiento | date }}.
+                                    </p>
+                                    <p class="info-ficha" *ngIf="ficha.nombre_duenio || ficha.apellido_duenio">Dueño: {{ ficha.nombre_duenio }} {{ ficha.apellido_duenio }}.
+                                    </p>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </a>
                 </div>
             </ng-template>
 

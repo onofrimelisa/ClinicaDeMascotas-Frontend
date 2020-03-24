@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+
+<ng-container *ngIf="cargando; else elseTemplate">
+    <app-loading></app-loading>
+
+</ng-container>
+
+
+
+
+
+<!-- ficha -->
+<ng-template #elseTemplate>
+    <div class="text-center mt-4 mb-4 row animated fadeIn slow">
+        <div class="col-lg-6 one">
+            <mat-card class="pet-card one">
+                <mat-card-header>
+                    <div mat-card-avatar class="pet-header-image"></div>
+                    <mat-card-title>{{ ficha.nombre }} {{ ficha.apellido_duenio }}</mat-card-title>
+                    <mat-card-subtitle>{{ ficha.apellido_duenio }},{{ ficha.nombre_duenio }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="ficha.foto | image" alt="Imagen de la mascota">
+            </mat-card>
+
+        </div>
+        <div class="col-lg-6">
+            <mat-card class="pet-card pet-info">
+                <div>
+                    <mat-tab-group>
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon class="example-tab-icon" color="primary">pets</mat-icon>
+                                &nbsp;Datos de la mascota
+                            </ng-template>
+                            <mat-list>
+                                <mat-list-item *ngIf="ficha.nombre">
+                                    <mat-icon mat-list-icon color="primary">pets</mat-icon>
+                                    <div class="text-left" mat-line>Nombre:</div>
+                                    <div class="text-left" mat-line> {{ficha.nombre | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.especie">
+                                    <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                    <div class="text-left" mat-line>Especie:</div>
+                                    <div class="text-left" mat-line> {{ficha.especie | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.raza">
+                                    <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                    <div class="text-left" mat-line>Raza:</div>
+                                    <div class="text-left" mat-line> {{ficha.raza | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.color">
+                                    <mat-icon mat-list-icon color="primary">color_lens</mat-icon>
+                                    <div class="text-left" mat-line>Color:</div>
+                                    <div class="text-left" mat-line> {{ficha.color | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.senias">
+                                    <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                    <div class="text-left" mat-line>Señas:</div>
+                                    <div class="text-left" mat-line> {{ficha.senias | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.sexo">
+                                    <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                    <div class="text-left" mat-line>Sexo:</div>
+                                    <div class="text-left" mat-line> {{ficha.sexo | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.fecha_nacimiento">
+                                    <mat-icon mat-list-icon color="primary">event</mat-icon>
+                                    <div class="text-left" mat-line>Fecha de nacimiento:</div>
+                                    <div class="text-left" mat-line> {{ficha.fecha_nacimiento | date}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-list>
+                        </mat-tab>
+
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-icon class="example-tab-icon" color="primary">face</mat-icon>
+                                &nbsp;Datos del dueño
+                            </ng-template>
+                            <mat-list>
+                                <mat-list-item *ngIf="ficha.nombre_duenio">
+                                    <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                    <div class="text-left" mat-line>Nombre:</div>
+                                    <div class="text-left" mat-line> {{ficha.nombre_duenio | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.apellido_duenio">
+                                    <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                    <div class="text-left" mat-line>Apellido:</div>
+                                    <div class="text-left" mat-line> {{ficha.apellido_duenio | titlecase}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.email_duenio">
+                                    <mat-icon mat-list-icon color="primary">alternate_email</mat-icon>
+                                    <div class="text-left" mat-line>Email:</div>
+                                    <div class="text-left" mat-line> {{ficha.email_duenio}} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                                <mat-list-item *ngIf="ficha.telefono_duenio">
+                                    <mat-icon mat-list-icon color="primary">phone_iphone</mat-icon>
+                                    <div class="text-left" mat-line>Telefono:</div>
+                                    <div class="text-left" mat-line> {{ficha.telefono_duenio }} </div>
+                                </mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-list>
+                        </mat-tab>
+                    </mat-tab-group>
+
+                </div>
+            </mat-card>
+
+        </div>
+    </div>
+</ng-template>
+
+<div class="container text-center mt-4 mb-4 animated fadeIn slow">
+    <button mat-icon-button color="primary" title="Volver al inicio" type="button" [routerLink]="['/home']">
+        <mat-icon>home</mat-icon>
+      </button>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,120 @@
+/* FOTO DE FONDO EN FORMA DE ONDA */
+
+.header-hero {
+    height: 600px;
+    position: relative;
+}
+
+@media only screen and (min-width: 568px) and (max-width: 600px) {
+    .header-hero {
+        height: 500px;
+    }
+}
+
+@media (max-width: 400px) {
+    .header-hero {
+        height: 400px;
+    }
+}
+
+.header-hero::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.header-hero .header-content {
+    padding-top: 90px;
+    position: relative;
+    z-index: 9;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header-hero .header-content {
+        padding-top: 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    .header-hero .header-content {
+        padding-top: 120px;
+    }
+}
+
+.header-hero .header-content .header-title {
+    font-size: 44px;
+    line-height: 55px;
+    color: #121212;
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .header-hero .header-content .header-title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
+
+.header-hero .header-content .text {
+    font-size: 20px;
+    line-height: 32px;
+    color: #6c6c6c;
+    margin-top: 16px;
+}
+
+p.text {
+    width: 500px;
+}
+
+@media (max-width: 767px) {
+    .header-hero .header-content .text {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.header-hero .header-content {
+    margin-top: 22px;
+}
+
+.header-hero .header-content li {
+    display: inline-block;
+    margin: 10px 10px 0;
+}
+
+.header-hero .header-content li a.main-btn {
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: #fff;
+    -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: 0;
+    line-height: 50px;
+}
+
+.header-hero .header-content a.main-btn i {
+    margin-left: 5px;
+}
+
+.header-hero .header-content a.main-btn.btn-one {
+    color: #fff;
+}
+
+.header-hero .header-shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header-hero .header-shape img {
+    width: 100%;
+}
+
+img {
+    border: 0;
+}

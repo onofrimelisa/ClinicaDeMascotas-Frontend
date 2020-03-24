@@ -1,0 +1,28 @@
+.pet-card {
+    margin-right: auto;
+    margin-left: auto;
+    width: 550px;
+}
+
+.pet-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.pet-info {
+    height: 100%;
+    margin-top: 0px;
+}
+
+img {
+    width: 500px !important;
+    height: 450px !important;
+}
+
+.mat-tab-body.mat-tab-body-active {
+    overflow-y: hidden !important;
+}
+
+.mat-tab {
+    overflow-y: hidden !important;
+}

@@ -81,11 +81,10 @@ export class RegistroMascotaComponent implements OnInit {
     'HAMSTER',
     'AVE',
     'PEZ',
+    'TORTUGA',
     'OTRO'
   ];
   veterinarios: string[] = [
-    'Veterinario1',
-    'Veterinaro2'
   ];
 
 
@@ -296,10 +295,10 @@ export class RegistroMascotaComponent implements OnInit {
             this.ficha[element] = this.usuario['nombre'];
             break;
           case 'email_duenio':
-            this.ficha[element] = this.usuario['telefono'];
+            this.ficha[element] = this.usuario['email'];
             break;
           case 'telefono_duenio':
-            this.ficha[element] = this.usuario['email'];
+            this.ficha[element] = this.usuario['telefono'];
             break;
         }
 
