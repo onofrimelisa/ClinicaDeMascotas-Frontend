@@ -18,18 +18,26 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import { MatFileUploadModule } from 'angular-material-fileupload';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list'; 
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { ServiceModule } from '../services/service.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { DetalleComponent } from './fichas/detalle.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    HeaderComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +56,11 @@ import { PipesModule } from '../pipes/pipes.module';
     MatFileUploadModule,
     SharedModule,
     ServiceModule, 
-    PipesModule
+    PipesModule,
+    RouterModule,
+    MatCardModule,
+    MatTabsModule,
+    MatListModule
   ]
 })
 export class HomeModule { }
