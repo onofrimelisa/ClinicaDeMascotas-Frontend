@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IUsuario } from '../../../interfaces/IUsuario';
+import { IMascota } from '../../../interfaces/IMascota';
+import { AuthService, MascotaService } from '../../../services/service.index';
 
 @Component({
   selector: 'app-listado-sin-veterinario',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoSinVeterinarioComponent implements OnInit {
 
-  constructor() { }
+  usuario: IUsuario;
+  mascotas: IMascota[];
+  cargando:boolean = true;
+  total: number;
+
+  constructor( private _as: AuthService, 
+    public _ms: MascotaService ) { 
+      this.usuario = this._as.userLogged;
+
+    this._ms.notificacion.subscribe( ()=> {
+      this.cargarMascotas();
+    });
+    }
 
   ngOnInit() {
+    this.cargarMascotas();
+  }
+
+  cargarMascotas(){
+    this._ms.getMascotasSinVeterinario()
+      .subscribe( (resp: any) => {
+        if (resp) {
+          this.total = resp.total;
+          this.mascotas = resp.mascotas;
+        }
+        this.cargando = false;
+      })
   }
 
 }

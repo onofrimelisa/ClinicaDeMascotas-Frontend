@@ -26,6 +26,7 @@ export class MascotaTableComponent implements OnInit {
   // creada x mi, tiene las mascotas y se supone que es la data que va a ir variando
   @Input() realData: IMascota[];
   @Input() modo: String;
+  @Input() sinVeterinario: boolean;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'nombre', 'fecha_nacimiento', 'sexo', 'operaciones'];
@@ -33,7 +34,7 @@ export class MascotaTableComponent implements OnInit {
   constructor( public _ms: MascotaService ){
   }
 
-  ngOnInit() {
+  ngOnInit() {    
 
   }
 
@@ -84,6 +85,33 @@ export class MascotaTableComponent implements OnInit {
         }
     });
     
+  }
+
+  agregarAtendidas( id: number ){
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: 'Se agregará a tu colección de mascotas atendidas',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro.',
+      cancelButtonText: 'Cancelar'
+   })
+   .then( (result) => {
+       if (result.value) {
+          this._ms.agregarMascotaVeterinario( id )
+            .subscribe( (resp: any) => {
+              this._ms.notificacion.emit(resp);
+              Swal.fire({
+                title: 'Operación realizada con éxito',
+                text: 'Ya sos el veterinario de la mascota.',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+             });
+            });
+       }
+    })
   }
 
   

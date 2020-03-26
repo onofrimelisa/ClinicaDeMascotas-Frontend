@@ -52,6 +52,24 @@ export class MascotaService {
                 );
   }
 
+  getMascotasSinVeterinario(){
+    let url = URL_PRIVADA + '/mascota/sinveterinario';
+
+    return this.http.get(url, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
+  agregarMascotaVeterinario( id_mascota: number ){
+    let url = URL_PRIVADA + '/usuario/agregar_atendidas/' + id_mascota;
+
+    return this.http.put(url, this._as.userLogged, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
   // eliminar desde un duenio
   eliminarMascotaDuenio( id: number ){
     let url = URL_PRIVADA + '/mascota/' + id + '/duenio/' + this._as.userLogged.id;

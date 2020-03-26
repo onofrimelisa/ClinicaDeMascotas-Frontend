@@ -14,6 +14,7 @@ import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/list
 import { VeterinariosComponent } from "./admin/listado-veterinarios/veterinarios.component";
 import { ListadoDueniosComponent } from "./admin/listado-duenios/listado-duenios.component";
 import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
+import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
 
 const PAGES_ROUTES: Routes = [
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Mi Perfil' } },
@@ -25,6 +26,7 @@ const PAGES_ROUTES: Routes = [
     
     // rutas del veterinario
     { path: 'mascotas_atendidas', component: ListadoVeterinarioComponent, canActivate: [ VeterinarioGuard ],data: { titulo: 'Mis mascotas atendidas' } },
+    { path: 'mascotas_sin_vet', component: ListadoSinVeterinarioComponent, canActivate: [ VeterinarioGuard ],data: { titulo: 'Mascotas sin veterinario' } },
     
     // rutas del admin
     { path: 'veterinarios', component: VeterinariosComponent, canActivate: [ AdminGuard ],data: { titulo: 'Veterinarios' } },
