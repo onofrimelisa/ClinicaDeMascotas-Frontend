@@ -124,19 +124,19 @@
                                 Fecha de nacimiento: {{ datosMascota.controls['fecha_nacimiento'].value | date }}
                             </mat-list-option>
                             <mat-list-option value="especie">
-                                Especie: {{ datosMascota.controls['especie'].value }}
+                                Especie: {{ datosMascota.controls['especie'].value | titlecase}}
                             </mat-list-option>
                             <mat-list-option value="raza" *ngIf="datosMascota.controls['raza'].value !== ''">
-                                Raza: {{ datosMascota.controls['raza'].value }}
+                                Raza: {{ datosMascota.controls['raza'].value | titlecase}}
                             </mat-list-option>
                             <mat-list-option value="sexo">
-                                Sexo: {{ datosMascota.controls['sexo'].value }}
+                                Sexo: {{ datosMascota.controls['sexo'].value | titlecase}}
                             </mat-list-option>
                             <mat-list-option value="color">
-                                Color: {{ datosMascota.controls['color'].value }}
+                                Color: {{ datosMascota.controls['color'].value | titlecase}}
                             </mat-list-option>
                             <mat-list-option value="senias" *ngIf="datosMascota.controls['senias'].value !== ''">
-                                Senias: {{ datosMascota.controls['senias'].value }}
+                                Senias: {{ datosMascota.controls['senias'].value | titlecase}}
                             </mat-list-option>
 
 

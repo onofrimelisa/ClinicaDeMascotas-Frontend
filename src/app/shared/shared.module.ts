@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Componentes
-import { MainNavComponent } from './main-nav/main-nav.component';
+import { MainNavComponent, BottomSheetOverviewExampleSheet } from './main-nav/main-nav.component';
 
 
 // Material
@@ -19,13 +19,16 @@ import { PageNotFoundComponent } from './pageNotFound/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PipesModule } from '../pipes/pipes.module';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 @NgModule({
   declarations: [
     MainNavComponent,
     FooterComponent,
     PageNotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     CommonModule,
@@ -38,12 +41,19 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatListModule,
     MatDividerModule,
     RouterModule, 
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PipesModule,
+    MatBottomSheetModule
+  ],
+  entryComponents: [
+    BottomSheetOverviewExampleSheet
+
   ],
   exports:[
     MainNavComponent, 
     FooterComponent, 
-    LoadingComponent
+    LoadingComponent,
+    BottomSheetOverviewExampleSheet
   ]
 })
 export class SharedModule { }

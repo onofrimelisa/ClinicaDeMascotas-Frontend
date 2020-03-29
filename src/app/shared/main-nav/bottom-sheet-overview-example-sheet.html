@@ -1,0 +1,36 @@
+<mat-nav-list>
+    <a *ngIf="!admin" mat-list-item (click)="navegar('/perfil')" class="active" (click)="openLink($event)">
+        <span mat-line><mat-icon class=" icono " aria-label="Mi Perfil ">account_circle</mat-icon>
+        Mi Perfil</span>
+        <span mat-line>Ver mi información personal</span>
+    </a>
+    <a *ngIf="!admin " mat-list-item (click)="navegar( '/editar') " (click)="openLink($event)">
+        <span mat-line><mat-icon class="icono" aria-label="Editar Perfil">brush</mat-icon>
+        Editar Perfil</span>
+        <span mat-line>Editar datos personales, profesionales y foto de perfil</span>
+    </a>
+    <a mat-list-item (click)="logout()" (click)="openLink($event)">
+        <span mat-line><mat-icon class="icono" aria-label="Cerrar sesión ">first_page</mat-icon>
+        <span>Cerrar sesión</span></span>
+        <span mat-line>¡Hasta la próxima!</span>
+    </a>
+    <!-- <a href="https://keep.google.com/ " mat-list-item (click)="openLink($event) ">
+        <span mat-line>Google Keep</span>
+        <span mat-line>Add to a note</span>
+    </a>
+
+    <a href="https://docs.google.com/ " mat-list-item (click)="openLink($event) ">
+        <span mat-line>Google Docs</span>
+        <span mat-line>Embed in a document</span>
+    </a>
+
+    <a href="https://plus.google.com/ " mat-list-item (click)="openLink($event) ">
+        <span mat-line>Google Plus</span>
+        <span mat-line>Share with your friends</span>
+    </a>
+
+    <a href="https://hangouts.google.com/ " mat-list-item (click)="openLink($event) ">
+        <span mat-line>Google Hangouts</span>
+        <span mat-line>Show to your coworkers</span>
+    </a> -->
+</mat-nav-list>
