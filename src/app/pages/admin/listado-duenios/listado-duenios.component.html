@@ -52,7 +52,7 @@
                 <th mat-header-cell *matHeaderCellDef class="text-center"> Operaciones </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="d-flex justify-content-center">
-                        <button *ngIf="element.roles.length < 3" mat-icon-button title="Agregar roles" aria-label="Agregar roles" class="primary">
+                        <button data-toggle="modal" data-target="#exampleModal" *ngIf="!element.roles.includes('veterinario')" mat-icon-button title="Agregar roles" aria-label="Agregar roles" class="primary" (click)="agregarRol( element )">
                             <mat-icon>add</mat-icon>
                           </button>
                         <button mat-icon-button color="warn" title="Eliminar usuario" (click)="eliminarDuenio( element )" aria-label="Eliminar usuario">
@@ -70,3 +70,28 @@
     </div>
 
 </ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar roles al usuario: </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-around">
+                    <mat-slide-toggle *ngIf="mostrar_vet" class="example-margin" color="secondary" [checked]="vet" [(ngModel)]="vet">
+                        Veterinario
+                    </mat-slide-toggle>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mat-raised-button color="warn" data-dismiss="modal" (click)="reset()">Cancelar</button>
+                <button type="button" mat-raised-button color="primary" (click)="agregarRoles()" [disabled]="(!vet)" data-dismiss="modal">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

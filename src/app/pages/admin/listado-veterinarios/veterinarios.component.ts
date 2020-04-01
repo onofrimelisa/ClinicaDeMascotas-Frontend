@@ -16,6 +16,11 @@ export class VeterinariosComponent implements OnInit {
   cargando: boolean = false;
   total: number;
 
+  // variables para agregar rol
+  duenio: boolean;
+  mostrar_duenio: boolean;
+  usuario: any;
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -96,4 +101,40 @@ export class VeterinariosComponent implements OnInit {
        }
     });
   }
+
+  agregarRol( usuario: any ){
+    this.usuario = {...usuario}
+    this.mostrar_duenio = true;
+   
+    
+  }
+
+  agregarRoles(){
+    this._us.agreagrRol('duenio', this.usuario)
+      .subscribe( (resp)=>{
+        this.cargarVeterinarios();
+        Swal.fire({
+           title: 'Operación realizada con éxito',
+           text: 'Se le agregó el rol DUEÑO al usuario ' + this.usuario.nombre + " " + this.usuario.apellido,
+           icon: 'success',
+           confirmButtonText: 'Ok'
+        })
+      },
+        (err)=>{
+          console.log(err);
+            Swal.fire({
+               title: 'Error al realizar la operación',
+               text: 'No se pudo agregar el rol DUEÑO al usuario ' + this.usuario.nombre + " " + this.usuario.apellido,
+               icon: 'error',
+               confirmButtonText: 'Ok'
+            })
+        });
+
+  }
+
+  reset(){
+    this.duenio = false;
+    this.mostrar_duenio = false;
+  }
+
 }

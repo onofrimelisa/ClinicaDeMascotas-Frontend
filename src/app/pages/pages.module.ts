@@ -22,6 +22,7 @@ import {MatListModule} from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 //Componentes
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
@@ -48,7 +49,10 @@ import { PAGES_ROUTING } from './pages-routing.module';
     ListadoMascotaComponent, 
     MascotaTableComponent, 
     ListadoVeterinarioComponent, 
-    VeterinariosComponent, ListadoDueniosComponent, ListadoSinVeterinarioComponent, NuevoEventoComponent
+    VeterinariosComponent, 
+    ListadoDueniosComponent, 
+    ListadoSinVeterinarioComponent, 
+    NuevoEventoComponent, 
   ],
   imports: [
     CommonModule,
@@ -74,10 +78,11 @@ import { PAGES_ROUTING } from './pages-routing.module';
     MatPaginatorModule, 
     MatSortModule, 
     SharedModule, 
-    PipesModule
+    PipesModule,
+    MatSlideToggleModule
   ],
   exports: [
-    RegistroMascotaComponent
+    RegistroMascotaComponent,
   ], 
   providers:[
     MatNativeDateModule

@@ -28,6 +28,7 @@ import { environment } from 'src/environments/environment';
 
 import { PipesModule } from './pipes/pipes.module';
 
+
 firebase.initializeApp(environment.firebase);
 
 

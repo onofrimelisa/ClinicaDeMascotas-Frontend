@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { IUsuario } from '../../../interfaces/IUsuario';
 import { UsuarioService } from '../../../services/service.index';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listado-duenios',
@@ -16,11 +17,17 @@ export class ListadoDueniosComponent implements OnInit {
   cargando: boolean = false;
   total: number;
 
+  // variables para agregar rol
+  vet: boolean;
+  mostrar_vet: boolean;
+  usuario: any;
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor( public _us: UsuarioService ) { }
+  constructor( public _us: UsuarioService,
+                  public dialog: MatDialog) { }
 
   ngOnInit() {
     this.cargarDuenios();
@@ -68,6 +75,41 @@ export class ListadoDueniosComponent implements OnInit {
              })
        }
     });
+  }
+
+  agregarRol( usuario: any ){
+    this.usuario = {...usuario}
+    this.mostrar_vet = true;
+   
+    
+  }
+
+  agregarRoles(){
+    this._us.agreagrRol('veterinario', this.usuario)
+      .subscribe( (resp)=>{
+        this.cargarDuenios();
+        Swal.fire({
+           title: 'Operación realizada con éxito',
+           text: 'Se le agregó el rol VETERINARIO al usuario ' + this.usuario.nombre + " " + this.usuario.apellido,
+           icon: 'success',
+           confirmButtonText: 'Ok'
+        })
+      },
+        (err)=>{
+          console.log(err);
+            Swal.fire({
+               title: 'Error al realizar la operación',
+               text: 'No se pudo agregar el rol VETERINARIO al usuario ' + this.usuario.nombre + " " + this.usuario.apellido,
+               icon: 'error',
+               confirmButtonText: 'Ok'
+            })
+        });
+
+  }
+
+  reset(){
+    this.vet = false;
+    this.mostrar_vet = false;
   }
 
 }

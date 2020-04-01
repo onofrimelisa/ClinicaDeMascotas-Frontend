@@ -67,7 +67,7 @@ export class UsuarioService {
   //										OPERACIONES POR ROL
   // ###############################################################################
   getPorRol( rol: string ){
-    let url = `${ URL_PRIVADA }/usuario/rol/${ rol }`;
+    let url = `${ URL_PRIVADA }/usuario/rol/${ rol }`;    
 
     return this.http.get( url, httpOptions ).pipe(
       catchError( err => throwError(err.error)) 
@@ -90,6 +90,14 @@ export class UsuarioService {
     let url = `${ URL_PRIVADA }/usuario/${ rol }/${ id }`;
 
     return this.http.delete( url, httpOptions ).pipe(
+      catchError( err => throwError(err.error)) 
+    )
+  }
+
+  agreagrRol( rol:string , usuario: IUsuario ){
+    let url = `${ URL_PRIVADA }/usuario/${ usuario.id }/${ rol }`;
+
+    return this.http.put( url, usuario, httpOptions ).pipe(
       catchError( err => throwError(err.error)) 
     )
   }
