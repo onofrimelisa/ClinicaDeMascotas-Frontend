@@ -1,0 +1,80 @@
+<div class="container-fluid animated fadeIn">
+
+    <ng-container *ngIf="cargando; else finCarga">
+        <app-loading></app-loading>
+    </ng-container>
+    <ng-template #finCarga class="m-4">
+
+        <div *ngIf="!eventos && !cargando" class="container">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <div>
+    
+                    <i><mat-icon class="animated flash">info</mat-icon></i> <span> No tienes ningún evento cargado. <strong><a [routerLink]="['/nuevo-evento']"> Agregar.</a> </strong></span>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="eventos" class="m-3">
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let evento of eventos" li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <p>
+                                <mat-icon class="icono mr-1" aria-label="Fecha">event</mat-icon>
+                                <strong>Fecha: </strong>{{ getFecha(evento.fecha) }}
+                            </p>
+                            <p>
+                                <mat-icon class="icono mr-1" aria-label="Tipo">list</mat-icon>
+                                <strong>Tipo: </strong>{{ evento.tipo }}
+                            </p>
+                            <p>
+                                <mat-icon class="icono mr-1" aria-label="Mascota">pets</mat-icon>
+                                <strong>Mascota: </strong>{{ evento.nombre_mascota }}
+                            </p>
+                            <p>
+                                <mat-icon class="icono mr-1" aria-label="Descripción">description</mat-icon>
+                                <strong>Descripción: </strong>{{ evento.descripcion }}
+                            </p>
+                            
+                           
+                        </div>
+                        <div class="col-6">
+                            <mat-slide-toggle class="example-margin" color="primary" [(ngModel)]="recordar">
+                                Recordar
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <p>
+                                <mat-icon class="icono" aria-label="Observaciones">-</mat-icon>
+                                <strong>Observaciones: </strong>{{ evento.observaciones | evento}}
+                            </p>
+                            <p>
+                                <mat-icon class="icono" aria-label="Diagnóstico">-</mat-icon>
+                                <strong>Diagnóstico: </strong>{{ evento.diagnostico | evento }}
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p>
+                                <mat-icon class="icono" aria-label="Droga">-</mat-icon>
+                                <strong>Droga: </strong>{{ evento.droga | evento}}
+                            </p>
+                            <p>
+                                <mat-icon class="icono" aria-label="Indicaciones">-</mat-icon>
+                                <strong>Indicaciones: </strong>{{ evento.indicaciones | evento }}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+    </ng-template>
+
+</div>

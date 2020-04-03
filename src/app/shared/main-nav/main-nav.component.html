@@ -58,9 +58,9 @@
                 <h3 mat-subheader><strong>Eventos</strong></h3>
                 <mat-divider></mat-divider>
 
-                <a mat-list-item href="#">
+                <a mat-list-item (click)="navegar('/listado-eventos')">
                     <mat-icon class="icono" aria-label="Mis Eventos">event</mat-icon>
-                    <span matBadge="4" matBadgeOverlap="false">Mis Eventos</span>
+                    Mis Eventos
                 </a>
                 <a mat-list-item (click)="navegar('/nuevo-evento')">
                     <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
@@ -87,7 +87,6 @@
 
             <span class="spacer"></span>
             <span *ngIf="!admin">
-                <mat-icon class="icono mr-3" matBadge="4" matBadgeColor="warn">notifications</mat-icon>
                 <a class="pointer" (click)="openBottomSheet(admin)" title="Opciones de mi cuenta">
                         <img [src]="user.foto | image" alt="" class="img-40">
 

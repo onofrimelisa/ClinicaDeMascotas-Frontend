@@ -38,6 +38,7 @@ import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.compon
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
+import { ListadoEventosComponent } from './eventos/listado-eventos/listado-eventos.component';
 
 
 
@@ -52,7 +53,7 @@ import { PAGES_ROUTING } from './pages-routing.module';
     VeterinariosComponent, 
     ListadoDueniosComponent, 
     ListadoSinVeterinarioComponent, 
-    NuevoEventoComponent, 
+    NuevoEventoComponent, ListadoEventosComponent, 
   ],
   imports: [
     CommonModule,

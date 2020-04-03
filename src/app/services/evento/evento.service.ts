@@ -19,6 +19,16 @@ export class EventoService {
   constructor( private http: HttpClient ) { }
 
   
+  recuperarPorCreador( id_creador: number ) {
+    let url = `${ URL_PRIVADA }/evento/${ id_creador }`;
+    
+    return this.http.get(url, httpOptions)
+      .pipe(
+        catchError( err => throwError(err.error))
+      )
+  }
+
+
   agregarEvento( evento: IEventoNuevo ) {
     let url = `${ URL_PRIVADA }/evento`;
 

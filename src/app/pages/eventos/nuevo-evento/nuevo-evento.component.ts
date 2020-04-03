@@ -81,7 +81,6 @@ export class NuevoEventoComponent implements OnInit {
           this.mascotas = null;
         }else{
           this.mascotas = resp['mascotas'];
-          console.log(this.mascotas);
         }
         this.cargando=false;
         
