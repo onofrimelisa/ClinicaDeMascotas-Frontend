@@ -29,7 +29,7 @@ export class MascotaTableComponent implements OnInit {
   @Input() sinVeterinario: boolean;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'fecha_nacimiento', 'sexo', 'operaciones'];
+  displayedColumns = ['nombre', 'fecha_nacimiento', 'sexo', 'operaciones'];
 
   constructor( public _ms: MascotaService ){
   }

@@ -1,0 +1,14 @@
+mat-icon {
+    font-size: 90px !important;
+    width: 100px;
+    height: 100px;
+}
+
+a {
+    color: white;
+    font-weight: bolder;
+}
+
+a:hover {
+    color: white;
+}

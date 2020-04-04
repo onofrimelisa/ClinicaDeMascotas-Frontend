@@ -19,7 +19,7 @@
                         <td class="operaciones" mat-cell *matCellDef="let row">
 
                             <div class="d-flex justify-content-center">
-                                <button *ngIf="!sinVeterinario" mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota">
+                                <button *ngIf="!sinVeterinario && (modo !== 'veterinario')" mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota" [routerLink]="['/editar-mascota', row['id']]">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                 <button *ngIf="!sinVeterinario" mat-icon-button color="warn" (click)="eliminarMascota(row['id'])" title="Eliminar mascota" aria-label="Eliminar mascota">

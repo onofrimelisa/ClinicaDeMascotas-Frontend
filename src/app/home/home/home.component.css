@@ -165,4 +165,30 @@ figure.effect-apollo:hover div {
 p.info-ficha {
     font-size: 15px;
     font-weight: 600;
+    margin-top: 0;
+}
+
+div.rounded-circle {
+    background-color: #3b1d71;
+    width: 90px !important;
+    height: 90px !important;
+}
+
+mat-icon {
+    margin: auto;
+    width: 90px;
+    height: 90px;
+    font-size: 80px;
+    color: white;
+}
+
+.cando {
+    font-size: 25px;
+    width: 400px !important;
+    line-height: 25px !important;
+}
+
+span.cando {
+    font-style: italic;
+    font-size: 17px !important;
 }

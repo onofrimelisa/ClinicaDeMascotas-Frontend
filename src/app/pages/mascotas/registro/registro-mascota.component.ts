@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 // SweetAlert
 import Swal from 'sweetalert2'
 
-import { filter } from 'rxjs/operators';
 
 // Servicios
 import { MascotaService, 

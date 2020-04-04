@@ -10,6 +10,7 @@ import { RegistroMascotaComponent } from './mascotas/registro/registro-mascota.c
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
 import { EditarComponent } from './cuenta/editar/editar.component';
 import { ListadoMascotaComponent } from './mascotas/listado-duenio/listado-mascota.component';
+import { EditarMascotaComponent } from './mascotas/editar-mascota/editar-mascota.component';
 import { ListadoVeterinarioComponent } from './mascotas/listado-veterinario/listado-veterinario.component';
 import { VeterinariosComponent } from "./admin/listado-veterinarios/veterinarios.component";
 import { ListadoDueniosComponent } from "./admin/listado-duenios/listado-duenios.component";
@@ -24,6 +25,7 @@ const PAGES_ROUTES: Routes = [
 
     // rutas del duenio
     { path: 'mascotas', component: ListadoMascotaComponent, canActivate: [ DuenioGuard ], data: { titulo: 'Mis mascotas' } },
+    { path: 'editar-mascota/:id', component: EditarMascotaComponent, canActivate: [ DuenioGuard ], data: { titulo: 'Editar mascota' } },
     
     // rutas del veterinario
     { path: 'mascotas_atendidas', component: ListadoVeterinarioComponent, canActivate: [ VeterinarioGuard ],data: { titulo: 'Mis mascotas atendidas' } },

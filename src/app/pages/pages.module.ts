@@ -35,10 +35,11 @@ import { MascotaTableComponent } from '../tables/mascota-table/mascota-table.com
 import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
 import { VeterinariosComponent } from './admin/listado-veterinarios/veterinarios.component';
 import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
+import { ListadoEventosComponent } from './eventos/listado-eventos/listado-eventos.component';
+import { EditarMascotaComponent } from './mascotas/editar-mascota/editar-mascota.component';
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
-import { ListadoEventosComponent } from './eventos/listado-eventos/listado-eventos.component';
 
 
 
@@ -53,7 +54,8 @@ import { ListadoEventosComponent } from './eventos/listado-eventos/listado-event
     VeterinariosComponent, 
     ListadoDueniosComponent, 
     ListadoSinVeterinarioComponent, 
-    NuevoEventoComponent, ListadoEventosComponent, 
+    NuevoEventoComponent, 
+    ListadoEventosComponent, EditarMascotaComponent, 
   ],
   imports: [
     CommonModule,
@@ -80,7 +82,7 @@ import { ListadoEventosComponent } from './eventos/listado-eventos/listado-event
     MatSortModule, 
     SharedModule, 
     PipesModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   exports: [
     RegistroMascotaComponent,

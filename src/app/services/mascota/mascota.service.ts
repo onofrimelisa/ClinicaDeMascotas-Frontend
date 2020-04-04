@@ -25,6 +25,15 @@ export class MascotaService {
   //                          Operaciones
   // =================================================================
 
+  getMascota(id: number){
+    let url = URL_PRIVADA + '/mascota/' + id;
+    
+    return this.http.get( url, httpOptions )
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
   agregarMascota (mascota: IMascotaNueva ) {
     let url = URL_PRIVADA + '/mascota';
     
