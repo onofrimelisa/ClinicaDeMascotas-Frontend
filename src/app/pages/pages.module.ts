@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // Modules
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from "../pipes/pipes.module";
+import { NgxPaginationModule } from 'ngx-pagination';
+
 // material
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -86,7 +88,8 @@ import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.com
     SharedModule, 
     PipesModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxPaginationModule
   ],
   exports: [
     RegistroMascotaComponent,

@@ -30,7 +30,7 @@
             </div>
             <hr>
             <div class="card-columns">
-                <div *ngFor="let evento of eventos" class="card">
+                <div *ngFor="let evento of eventos | paginate: paginationConfig" class="card">
                     
                     <div class="card-body">
                         <h5 class="card-title mb-4">
@@ -67,6 +67,66 @@
                 </div>
               </div>
         </div>
+        <div class="col-12 mt-3 d-flex justify-content-center">
+            <pagination-template
+              #p="paginationApi"
+              [id]="paginationConfig.id"
+              [maxSize]="maxSizePagination"
+              autoHide="true"
+              (pageChange)="paginationConfig.currentPage = $event"
+            >
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li
+                    [className]="p.isFirstPage() ? 'page-item disabled' : 'page-item'"
+                  >
+                    <a
+                      class="page-link pointer"
+                      (click)="p.previous()"
+                      
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">«</span>
+                    </a>
+                  </li>
+                  <li
+                    *ngFor="let page of p.pages"
+                    [className]="
+                      p.getCurrent() === page.value
+                        ? 'page-item disabled'
+                        : 'page-item'
+                    "
+                  >
+                    <a
+                      class="page-link pointer"
+                      
+                      (click)="p.setCurrent(page.value)"
+                      *ngIf="p.getCurrent() !== p.value"
+                    >
+                      {{ page.label }}
+                    </a>
+                    <a class="page-link pointer"  *ngIf="p.getCurrent() === p.value">
+                      {{ page.label }}
+                    </a>
+                  </li>
+                  <li
+                    [className]="
+                      p.isLastPage() ? 'page-item disabled' : 'page-item disabled'
+                    "
+                  >
+                    <a
+                      class="page-link pointer"
+                      
+                      (click)="p.next()"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">»</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </pagination-template>
+          </div>
         
     </ng-template>
 

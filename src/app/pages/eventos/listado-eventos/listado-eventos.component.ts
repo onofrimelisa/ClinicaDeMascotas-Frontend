@@ -4,6 +4,7 @@ import { IEvento } from 'src/app/interfaces/IEvento';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../services/auth/auth.service';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-listado-eventos',
@@ -11,6 +12,23 @@ import { AuthService } from '../../../services/auth/auth.service';
   styleUrls: ['./listado-eventos.component.css']
 })
 export class ListadoEventosComponent implements OnInit {
+  
+  maxSizePagination: string = '3';
+  paginationConfig: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 3,
+    currentPage: 1
+  };
+  labels: object = {
+    previousLabel: 'Back',
+    nextLabel: 'Next',
+    screenReaderPaginationLabel: 'Pagination',
+    screenReaderPageLabel: 'page',
+    screenReaderCurrentLabel: `You're on page`
+  };
+  onPageChange(number: number) {
+    this.paginationConfig.currentPage = number;
+  }
 
   cargando: boolean = true;
   eventos: IEvento[] = null;

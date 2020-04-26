@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { EventoService } from '../../../services/evento/evento.service';
 import { IEvento } from 'src/app/interfaces/IEvento';
 import Swal from 'sweetalert2';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-listado-recordatorios',
@@ -10,6 +11,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./listado-recordatorios.component.css']
 })
 export class ListadoRecordatoriosComponent implements OnInit {
+  
+  maxSizePagination: string = '6';
+  paginationConfig: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 6,
+    currentPage: 1
+  };
+  labels: object = {
+    previousLabel: 'Back',
+    nextLabel: 'Next',
+    screenReaderPaginationLabel: 'Pagination',
+    screenReaderPageLabel: 'page',
+    screenReaderCurrentLabel: `You're on page`
+  };
+  onPageChange(number: number) {
+    this.paginationConfig.currentPage = number;
+  }
 
   eventos: IEvento[] = [];
   cargando: boolean = true;
