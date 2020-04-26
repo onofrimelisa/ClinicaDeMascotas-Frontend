@@ -63,6 +63,15 @@ export class UsuarioService {
                 
   }
 
+  recuperarMascotasAsociadas(id: number) {
+    let url = `${ URL_PRIVADA }/usuario/mascotas_asociadas/${ id }`;
+    
+    return this.http.get(url, httpOptions)
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
   // ###############################################################################
   //										OPERACIONES POR ROL
   // ###############################################################################

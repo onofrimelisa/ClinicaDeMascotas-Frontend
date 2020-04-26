@@ -5,7 +5,7 @@
     </ng-container>
     <ng-template #finCarga class="m-4">
 
-        <div *ngIf="!eventos && !cargando" class="container">
+        <div *ngIf="eventos && eventos.length == 0" class="container">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -19,13 +19,23 @@
         </div>
         
         <div *ngIf="eventos" class="m-3">
+            
+            <div class="alert alert-light d-inline-flex" role="alert">
+                <h6>Mostrando tus eventos como <strong>{{ modo | rol }}</strong></h6>
+                <mat-icon (click)="cambiarModo()"
+                          class="animated flash ml-3 pointer" 
+                          aria-label="Cambiar"
+                          *ngIf="authService.veterinario && authService.duenio">
+                    swap_horizontal_circle
+                </mat-icon>
+            </div>
             <ul class="list-group list-group-flush">
                 <li *ngFor="let evento of eventos" li class="list-group-item">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-4">
                             <p>
                                 <mat-icon class="icono mr-1" aria-label="Fecha">event</mat-icon>
-                                <strong>Fecha: </strong>{{ getFecha(evento.fecha) }}
+                                <strong>Fecha: </strong>{{ evento.fecha | date:'dd-MM-yyyy' }}
                             </p>
                             <p>
                                 <mat-icon class="icono mr-1" aria-label="Tipo">list</mat-icon>
@@ -42,33 +52,46 @@
                             
                            
                         </div>
-                        <div class="col-6">
-                            <mat-slide-toggle class="example-margin" color="primary" [(ngModel)]="recordar">
+                        <div class="col-sm-8">
+                            <mat-slide-toggle *ngIf="!fechaExpirada(evento.fecha)" 
+                                              (click)="toggleRecordatorio( evento )" 
+                                              class="example-margin" 
+                                              color="primary" 
+                                              [ngModel]="getToggleControl(evento)"
+                                              (ngModelChange)="getToggleControl(evento)">
                                 Recordar
                             </mat-slide-toggle>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-6">
-                            <p>
-                                <mat-icon class="icono" aria-label="Observaciones">-</mat-icon>
-                                <strong>Observaciones: </strong>{{ evento.observaciones | evento}}
-                            </p>
-                            <p>
-                                <mat-icon class="icono" aria-label="Diagnóstico">-</mat-icon>
-                                <strong>Diagnóstico: </strong>{{ evento.diagnostico | evento }}
-                            </p>
-                        </div>
-                        <div class="col-6">
-                            <p>
-                                <mat-icon class="icono" aria-label="Droga">-</mat-icon>
-                                <strong>Droga: </strong>{{ evento.droga | evento}}
-                            </p>
-                            <p>
-                                <mat-icon class="icono" aria-label="Indicaciones">-</mat-icon>
-                                <strong>Indicaciones: </strong>{{ evento.indicaciones | evento }}
-                            </p>
+                            <button mat-icon-button color="primary" class="m-3" title="Editar" aria-label="Editar" 
+                                    [routerLink]="['/editar-evento', evento.id]">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="eliminarEvento( evento )" 
+                                    title="Eliminar" aria-label="Eliminar">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                      <mat-icon class="icono mr-1" aria-label="Más información">remove_red_eye</mat-icon>
+                                      Más información
+                                    </mat-panel-title>
+                                  </mat-expansion-panel-header>
+                                    <p>
+                                        <strong>Observaciones: </strong>{{ evento.observaciones | evento}}
+                                    </p>
+                                    <p>
+                                        <strong>Diagnóstico: </strong>{{ evento.diagnostico | evento }}
+                                    </p>
+                                    <p>
+                                        <strong>Droga: </strong>{{ evento.droga | evento}}
+                                    </p>
+                                    <p>
+                                        <strong>Indicaciones: </strong>{{ evento.indicaciones | evento }}
+                                    </p>
+                                </mat-expansion-panel>
+                            </mat-accordion>
                         </div>
                     </div>
                 </li>

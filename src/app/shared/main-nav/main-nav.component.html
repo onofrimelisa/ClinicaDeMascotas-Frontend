@@ -57,7 +57,11 @@
             <div *ngIf="!admin">
                 <h3 mat-subheader><strong>Eventos</strong></h3>
                 <mat-divider></mat-divider>
-
+                
+                <a mat-list-item (click)="navegar('/listado-recordatorios')">
+                    <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
+                    Mis Recordatorios
+                </a>
                 <a mat-list-item (click)="navegar('/listado-eventos')">
                     <mat-icon class="icono" aria-label="Mis Eventos">event</mat-icon>
                     Mis Eventos
@@ -65,10 +69,6 @@
                 <a mat-list-item (click)="navegar('/nuevo-evento')">
                     <mat-icon class="icono" aria-label="Nuevo Evento">post_add</mat-icon>
                     Evento
-                </a>
-                <a mat-list-item href="#">
-                    <mat-icon class="icono" aria-label="Mis Recordatorios">alarm</mat-icon>
-                    <span matBadge="2" matBadgeOverlap="false">Mis Recordatorios</span>
                 </a>
             </div>
         </mat-nav-list>

@@ -7,6 +7,8 @@ import { IUsuario } from '../../../interfaces/IUsuario';
 import { IEventoNuevo } from '../../../interfaces/IEvento';
 import { EventoService } from '../../../services/evento/evento.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-nuevo-evento',
@@ -44,13 +46,20 @@ export class NuevoEventoComponent implements OnInit {
 
   constructor( private _formBuilder: FormBuilder,
     public authService: AuthService,
+    private usuarioService: UsuarioService,
     private mascotaService: MascotaService,
     private eventoService: EventoService,
-    private datePipe: DatePipe ) { }
+    private datePipe: DatePipe,
+    private router: Router ) { }
 
   ngOnInit() {
     this.usuario = this.authService.userLogged;
-    this.cargarMascotas();
+    if( this.authService.duenio && this.authService.veterinario) {
+      this.cargarMascotasAsociadas();
+    } else if(this.authService.duenio) {
+      this.cargarMascotasDuenio();
+    } else this.cargarMascotasVet();
+    
     this.inicializarForm();
   }
 
@@ -72,8 +81,24 @@ export class NuevoEventoComponent implements OnInit {
     this.registrarEvento( nuevo_evento );
   }
 
-  
-  private cargarMascotas(){
+  private cargarMascotasAsociadas(){
+    this.usuarioService.recuperarMascotasAsociadas(this.usuario.id).subscribe(
+      (resp) => {
+        // si es null, significa que no tiene mascotas
+        if (resp == null) {
+          this.mascotas = null;
+        }else{
+          this.mascotas = resp['mascotas'];
+        }
+        this.cargando=false;
+        
+      }, 
+      (err) => console.log(err.error)
+      );
+  }
+
+
+  private cargarMascotasDuenio(){
     this.mascotaService.getMascotasDuenio(this.usuario.id).subscribe(
       (resp) => {
         // si es null, significa que no tiene mascotas
@@ -87,7 +112,23 @@ export class NuevoEventoComponent implements OnInit {
       }, 
       (err) => console.log(err.error)
       );
-    }
+  }
+
+  private cargarMascotasVet(){
+    this.mascotaService.getMascotasVeterinario(this.usuario.id).subscribe(
+      (resp) => {
+        // si es null, significa que no tiene mascotas
+        if (resp == null) {
+          this.mascotas = null;
+        }else{
+          this.mascotas = resp['mascotas'];
+        }
+        this.cargando=false;
+        
+      }, 
+      (err) => console.log(err.error)
+      );
+  }
     
   private registrarEvento( evento: IEventoNuevo ) {
     this.eventoService.agregarEvento( evento )
@@ -97,7 +138,8 @@ export class NuevoEventoComponent implements OnInit {
           `Se registro el evento de tipo ${ resp.evento.tipo } para ${ resp.evento.nombre_mascota }`,
           'success'
         );
-        // redireccionar al listado
+        this.eventoService.recuperarPorRol('duenio', this.authService.userLogged.id );
+        this.router.navigate(["/listado-eventos"])
       }, (err) => {
         Swal.fire({
           icon: 'error',

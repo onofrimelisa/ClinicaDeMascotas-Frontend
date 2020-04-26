@@ -17,6 +17,8 @@ import { ListadoDueniosComponent } from "./admin/listado-duenios/listado-duenios
 import { NuevoEventoComponent } from './eventos/nuevo-evento/nuevo-evento.component';
 import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinario/listado-sin-veterinario.component';
 import { ListadoEventosComponent } from './eventos/listado-eventos/listado-eventos.component';
+import { ListadoRecordatoriosComponent } from './eventos/listado-recordatorios/listado-recordatorios.component';
+import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.component';
 
 const PAGES_ROUTES: Routes = [
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Mi Perfil' } },
@@ -37,7 +39,9 @@ const PAGES_ROUTES: Routes = [
     
     // eventos
     { path: 'nuevo-evento', component: NuevoEventoComponent, data: { titulo: 'Nuevo Evento' } },
+    { path: 'editar-evento/:id', component: EditarEventoComponent, data: { titulo: 'Editar Evento' } },
     { path: 'listado-eventos', component: ListadoEventosComponent, data: { titulo: 'Listado de Eventos' } },
+    { path: 'listado-recordatorios', component: ListadoRecordatoriosComponent, data: { titulo: 'Listado de Recordatorios' } },
     { path: '', redirectTo: '/perfil', pathMatch: 'full' }    
 ]
 export const PAGES_ROUTING = RouterModule.forChild(PAGES_ROUTES);

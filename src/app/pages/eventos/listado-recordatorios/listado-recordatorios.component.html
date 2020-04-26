@@ -1,0 +1,73 @@
+<div class="container-fluid animated fadeIn">
+
+    <ng-container *ngIf="cargando; else finCarga">
+        <app-loading></app-loading>
+    </ng-container>
+    <ng-template #finCarga class="m-4">
+
+        <div *ngIf="eventos && eventos.length === 0" class="container">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <div>
+    
+                    <i><mat-icon class="animated flash">info</mat-icon></i> <span> No tienes nada para recordar. <strong><a [routerLink]="['/listado-eventos']"> Ir al listado de eventos</a> </strong></span>
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="eventos" class="m-3">
+            <div class="alert alert-light d-inline-flex" role="alert">
+                <h6>Mostrando tus recordatorios como <strong>{{ modo | rol }}</strong></h6>
+                <mat-icon (click)="cambiarModo()"
+                          class="animated flash ml-3 pointer" 
+                          aria-label="Cambiar"
+                          *ngIf="authService.veterinario && authService.duenio">
+                    swap_horizontal_circle
+                </mat-icon>
+            </div>
+            <hr>
+            <div class="card-columns">
+                <div *ngFor="let evento of eventos" class="card">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">
+                            <mat-icon class="icono" aria-label="Descripción">event</mat-icon>
+                            
+                            {{ evento.tipo }}  
+                            <small class="text-muted">{{ getMensajeDias( evento.fecha ) }}</small>
+                        </h5>
+                        
+                        
+                        <p class="card-text">
+                            <mat-icon>description</mat-icon>
+                            {{ evento.descripcion }}
+                            <br>
+                            <mat-icon>pets</mat-icon>
+                            {{ evento.nombre_mascota }}
+                        </p>
+                        <div class="row">
+                            <div class="col">
+                                <p class="cart-text">
+                                    <small>
+                                        {{ evento.fecha | date:'dd/MM/yyyy' }}
+                                    </small>
+                                </p> 
+                            </div>
+                            <div class="col">
+                                <p class="card-text text-right pointer" (click)="eliminar(evento)">
+                                    <mat-icon>delete</mat-icon>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+              </div>
+        </div>
+        
+    </ng-template>
+
+</div>

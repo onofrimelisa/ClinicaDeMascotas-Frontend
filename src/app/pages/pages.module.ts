@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 //Componentes
 import { PerfilComponent } from './cuenta/perfil/perfil.component';
@@ -40,6 +41,8 @@ import { EditarMascotaComponent } from './mascotas/editar-mascota/editar-mascota
 
 //Rutas
 import { PAGES_ROUTING } from './pages-routing.module';
+import { ListadoRecordatoriosComponent } from './eventos/listado-recordatorios/listado-recordatorios.component';
+import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.component';
 
 
 
@@ -55,7 +58,7 @@ import { PAGES_ROUTING } from './pages-routing.module';
     ListadoDueniosComponent, 
     ListadoSinVeterinarioComponent, 
     NuevoEventoComponent, 
-    ListadoEventosComponent, EditarMascotaComponent, 
+    ListadoEventosComponent, EditarMascotaComponent, ListadoRecordatoriosComponent, EditarEventoComponent, 
   ],
   imports: [
     CommonModule,
@@ -83,6 +86,7 @@ import { PAGES_ROUTING } from './pages-routing.module';
     SharedModule, 
     PipesModule,
     MatSlideToggleModule,
+    MatExpansionModule
   ],
   exports: [
     RegistroMascotaComponent,
