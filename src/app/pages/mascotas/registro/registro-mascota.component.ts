@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { IFoto } from "../../../interfaces/IFoto";
 import { IMascotaNueva } from '../../../interfaces/IMascota';
@@ -24,7 +24,7 @@ import { MascotaService,
   templateUrl: './registro-mascota.component.html',
   styleUrls: ['./registro-mascota.component.css']
 })
-export class RegistroMascotaComponent implements OnInit {
+export class RegistroMascotaComponent implements OnInit, OnDestroy {
 
   // FORMULARIO PARA AGREGAR MASCOTA
   datosMascota: FormGroup;
@@ -133,6 +133,10 @@ export class RegistroMascotaComponent implements OnInit {
     
   }
 
+  ngOnDestroy() {
+    this.subscripcion.unsubscribe();
+  }
+
   // CREAR MASCOTA Y FICHA PUBLICA
   procesarMascota( options:any ){
 
@@ -161,7 +165,7 @@ export class RegistroMascotaComponent implements OnInit {
   registrarMascota( options:any ) {
     this._ms.agregarMascota( this.mascota )
             .subscribe( ( mascota: IMascotaNueva ) => {
-              this.subscripcion.unsubscribe;
+              this.subscripcion.unsubscribe();
               this.subiendo = false;
               
               this.mascota = mascota['mascota'];
@@ -171,7 +175,7 @@ export class RegistroMascotaComponent implements OnInit {
               this.registrarFicha();
               
             },(err) => {
-              this.subscripcion.unsubscribe;
+              this.subscripcion.unsubscribe();
               this.subiendo = false;
 
               console.log(err);

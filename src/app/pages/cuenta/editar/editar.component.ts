@@ -131,6 +131,7 @@ export class EditarComponent implements OnInit, OnDestroy {
               );
               console.log(res.usuario);
               this.usuario = res.usuario;
+              this.authService.userLogged = res.usuario;
             },(err) => {
               Swal.fire({
                 icon: 'error',
