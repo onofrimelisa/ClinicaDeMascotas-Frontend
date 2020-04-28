@@ -36,11 +36,16 @@ export class ListadoRecordatoriosComponent implements OnInit {
 
   constructor( public authService: AuthService, 
                public eventoService: EventoService ) { 
-                if (this.authService.duenio) {
-                  this.modo = 'duenio';
-                } else if( this.authService.veterinario){
-                  this.modo = 'veterinario';
-                }  
+                if( localStorage.getItem('modo') ) {
+                  this.modo = localStorage.getItem('modo');
+                } else {
+                  if (this.authService.duenio) {
+                    this.modo = 'duenio';
+                  } else if( this.authService.veterinario){
+                    this.modo = 'veterinario';
+                  }
+                  localStorage.setItem('modo', this.modo);      
+                }
                }
 
   ngOnInit() {
@@ -68,6 +73,7 @@ export class ListadoRecordatoriosComponent implements OnInit {
         this.modo = 'duenio';
         break;
     }
+    localStorage.setItem('modo', this.modo);
     this.eventoService.recuperarPorRol(this.modo, this.authService.userLogged.id);
   }
   

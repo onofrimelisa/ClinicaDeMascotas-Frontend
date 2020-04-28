@@ -4,6 +4,15 @@
         <app-loading></app-loading>
     </ng-container>
     <ng-template #finCarga class="m-4">
+      
+      <div class="alert alert-light d-inline-flex" role="alert" *ngIf="authService.veterinario && authService.duenio">
+        <h6>Mostrando tus eventos como <strong>{{ modo | rol }}</strong></h6>
+        <mat-icon (click)="cambiarModo()"
+                  class="animated flash ml-3 pointer" 
+                  aria-label="Cambiar">
+            swap_horizontal_circle
+        </mat-icon>
+      </div>
 
         <div *ngIf="eventos && eventos.length == 0" class="container">
             <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -18,19 +27,9 @@
             </div>
         </div>
         
-        <div *ngIf="eventos" class="m-3">
-            
-            <div class="alert alert-light d-inline-flex" role="alert">
-                <h6>Mostrando tus eventos como <strong>{{ modo | rol }}</strong></h6>
-                <mat-icon (click)="cambiarModo()"
-                          class="animated flash ml-3 pointer" 
-                          aria-label="Cambiar"
-                          *ngIf="authService.veterinario && authService.duenio">
-                    swap_horizontal_circle
-                </mat-icon>
-            </div>
-            
-            <ul class="list-group list-group-flush">
+        
+        <div *ngIf="eventos && eventos.length > 0" class="m-3">
+            <ul class="list-group list-group-flush animated fadeIn">
                 <li *ngFor="let evento of eventos | paginate: paginationConfig" li class="list-group-item">
                     <div class="row">
                         <div class="col-sm-4">
@@ -103,53 +102,34 @@
                   [id]="paginationConfig.id"
                   [maxSize]="maxSizePagination"
                   autoHide="true"
-                  (pageChange)="paginationConfig.currentPage = $event"
-                >
+                  (pageChange)="paginationConfig.currentPage = $event">
+                  
                   <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                      <li
-                        [className]="p.isFirstPage() ? 'page-item disabled' : 'page-item'"
-                      >
-                        <a
-                          class="page-link pointer"
-                          (click)="p.previous()"
-                          
-                          aria-label="Previous"
-                        >
+                      <li [className]="p.isFirstPage() ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link pointer"
+                           (click)="p.previous()"
+                           aria-label="Anterior">
                           <span aria-hidden="true">«</span>
                         </a>
                       </li>
-                      <li
-                        *ngFor="let page of p.pages"
-                        [className]="
-                          p.getCurrent() === page.value
+                      <li *ngFor="let page of p.pages"
+                          [className]="p.getCurrent() === page.value
                             ? 'page-item disabled'
-                            : 'page-item'
-                        "
-                      >
-                        <a
-                          class="page-link pointer"
-                          
+                            : 'page-item'">
+                        <a class="page-link pointer"
                           (click)="p.setCurrent(page.value)"
-                          *ngIf="p.getCurrent() !== p.value"
-                        >
+                          *ngIf="p.getCurrent() !== page.value">
                           {{ page.label }}
                         </a>
-                        <a class="page-link pointer"  *ngIf="p.getCurrent() === p.value">
+                        <a class="page-link pointer"  *ngIf="p.getCurrent() === page.value">
                           {{ page.label }}
                         </a>
                       </li>
-                      <li
-                        [className]="
-                          p.isLastPage() ? 'page-item disabled' : 'page-item disabled'
-                        "
-                      >
-                        <a
-                          class="page-link pointer"
-                          
+                      <li [className]="p.isLastPage() ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link pointer"
                           (click)="p.next()"
-                          aria-label="Next"
-                        >
+                           aria-label="Next">
                           <span aria-hidden="true">»</span>
                         </a>
                       </li>
