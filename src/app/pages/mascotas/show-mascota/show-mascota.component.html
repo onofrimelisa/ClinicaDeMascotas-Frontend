@@ -1,11 +1,11 @@
-<div class="container-fluid animated fadeIn pr-5 pl-5">
+<div class="container-fluid animated fadeIn mr-5 ml-3 pr-5 pl-5">
 
     <ng-container *ngIf="cargando; else elseTemplate">
         <app-loading></app-loading>
     
     </ng-container>
 
-    <ng-template #elseTemplate class="row">
+    <ng-template #elseTemplate>
         <mat-tab-group>
             <mat-tab>
                 <ng-template mat-tab-label>
