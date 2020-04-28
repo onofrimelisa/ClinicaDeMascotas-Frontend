@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from "../pipes/pipes.module";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { QRCodeModule } from 'angular2-qrcode';
 
 // material
 import {MatStepperModule} from '@angular/material/stepper';
@@ -90,7 +91,8 @@ import { ShowMascotaComponent } from './mascotas/show-mascota/show-mascota.compo
     PipesModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    QRCodeModule
   ],
   exports: [
     RegistroMascotaComponent,

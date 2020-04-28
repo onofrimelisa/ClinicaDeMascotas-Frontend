@@ -290,7 +290,22 @@
                 </div>
 
             </mat-tab>
-            
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon" color="primary">print</mat-icon>
+                    &nbsp;Código QR
+                </ng-template>
+                <p class="text-center text-muted mt-5">
+                    Escaneando este código desde cualquier dispositivo, podrás dirigirte a la ficha pública de {{ mascota.nombre }}.
+                </p>
+                <br>
+                <div class="container text-center">
+                    <qr-code [value]="codigo_qr_url" [size]="300"></qr-code>
+                    <br>
+                    <br>
+                    <a id="qrCode" [href]="href" (click)="downloadImage()" download>Descargar</a>
+                </div>
+            </mat-tab>
 
         </mat-tab-group>
     </ng-template>

@@ -7,6 +7,7 @@ import { IEvento } from 'src/app/interfaces/IEvento';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../services/auth/auth.service';
 import { EventoService } from '../../../services/evento/evento.service';
+import { URL_SERVICIOS } from 'src/app/config/config';
 
 @Component({
   selector: 'app-show-mascota',
@@ -36,6 +37,8 @@ export class ShowMascotaComponent implements OnInit {
     this.paginationConfig.currentPage = number;
   }
   
+  
+
   cargando:boolean = true;
 
   constructor( private activatedRoute: ActivatedRoute, 
@@ -143,6 +146,12 @@ export class ShowMascotaComponent implements OnInit {
       `No se recordará el evento de tipo ${ evento.tipo } para la mascota ${ evento.nombre_mascota }`,
       'success'
     )
+  }
+
+  codigo_qr_url: string = URL_SERVICIOS + '/ficha_publica/' + this.id;
+  href : string;
+  downloadImage(){
+    this.href = document.getElementsByTagName('img')[1].src;
   }
 
 }
