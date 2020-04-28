@@ -10,7 +10,7 @@ export interface IMascotaNueva {
     color: string;
     foto: string;
     senias: string;
-    veterinario: string;
+    veterinario: number;
     duenio: number;
 }
 
@@ -25,7 +25,7 @@ export interface IMascota {
     color: string;
     foto: string;
     senias: string;
-    veterinario: string;
+    veterinario: number;
     duenio: number;
     ficha_publica: number;
 }

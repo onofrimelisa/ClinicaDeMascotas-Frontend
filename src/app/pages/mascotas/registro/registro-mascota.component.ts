@@ -83,7 +83,7 @@ export class RegistroMascotaComponent implements OnInit, OnDestroy {
     'TORTUGA',
     'OTRO'
   ];
-  veterinarios: string[] = [
+  veterinarios: IUsuario[] = [
   ];
 
 

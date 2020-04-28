@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { IFoto } from '../../../interfaces/IFoto';
-import { IMascotaNueva } from '../../../interfaces/IMascota';
+import { IMascotaNueva, IMascota } from '../../../interfaces/IMascota';
 import { IUsuario } from '../../../interfaces/IUsuario';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -25,7 +25,9 @@ import { MascotaService,
 })
 export class EditarMascotaComponent implements OnInit {
   id: number;
-
+  tiene_vet: boolean = false;
+  veterinario_actual: IUsuario = null;
+  cambiarVetControl: boolean = false;
   // FORMULARIO PARA AGREGAR MASCOTA
   datosMascota: FormGroup;
   nombre:string; 
@@ -35,8 +37,10 @@ export class EditarMascotaComponent implements OnInit {
   sexo:string; 
   color:string; 
   senias:string; 
-  veterinario:string;
   
+  // VETERINARIO
+  formVeterinario: FormGroup;
+  veterinario:string;
  
   // Foto
   archivo: IFoto = null;
@@ -49,7 +53,7 @@ export class EditarMascotaComponent implements OnInit {
   cargando: boolean;
 
   // VARIABLES
-  mascota: IMascotaNueva;
+  mascota: IMascota;
   usuario: IUsuario = null;
 
   // Campos select
@@ -67,7 +71,7 @@ export class EditarMascotaComponent implements OnInit {
     'TORTUGA',
     'OTRO'
   ];
-  veterinarios: string[] = [
+  veterinarios: IUsuario[] = [
   ];
 
 
@@ -90,11 +94,9 @@ export class EditarMascotaComponent implements OnInit {
   this._us.getVeterinariosActivos()
   .subscribe( (veterinarios: any)=>{
     this.veterinarios = veterinarios;
-    
-    
   });
 
-
+  
   this.cargarMascota();
 
   // INICIALIZO USUARIO LOGGEADO
@@ -142,8 +144,66 @@ export class EditarMascotaComponent implements OnInit {
     return this.datePipe.transform(this.datosMascota.value.fecha_nacimiento, 'yyyy-MM-dd');
   }
 
-  guardarCambios(){
+  actualizarFoto(){
+    this.subiendo = true;
+    this.subscripcion = this._cargaService.url$
+      .subscribe( (url: string) => {
+        this.subiendo = false;
+        // Actualizar mascota
+        this.mascota.foto = url;
+        this.procesarMascota();
+      });
+    this._cargaService.cargarFoto( this.archivo, 'mascotas' );
+  }
 
+  limpiarFoto(){
+    this.archivo = null;
+    this.imagenTemp = null;
+  }
+
+
+  procesarMascota() {
+    const mascotaActualizada: IMascota = {
+      id: this.mascota.id,
+      nombre: this.datosMascota.value.nombre,
+      especie: this.datosMascota.value.especie,
+      raza: this.datosMascota.value.raza,
+      fecha_nacimiento: this.getFecha(),
+      sexo: this.datosMascota.value.sexo,
+      color: this.datosMascota.value.color,
+      foto: this.mascota.foto,
+      senias: this.datosMascota.value.senias,
+      veterinario: this.datosMascota.value.veterinario,
+      duenio: this.mascota.duenio,
+      ficha_publica: this.mascota.ficha_publica
+    }
+    console.log(mascotaActualizada);
+    this.actualizarMascota(mascotaActualizada);
+  }
+
+  actualizarMascota(mascotaActualizada: IMascota) {
+    this._ms.editarMascota(mascotaActualizada)
+            .subscribe( (res:any) => {
+              this.subiendo = false;
+              this.subscripcion.unsubscribe();
+              Swal.fire(
+                'Operación exitosa',
+                'Datos actualizados correctamente',
+                'success'
+                );
+              console.log(res);
+              this.mascota = res.mascota;
+              this.veterinario_actual = this.veterinarios.find( v => v.id == this.mascota.veterinario);
+              this.cambiarVetControl = false;
+              if(!this.veterinario_actual) 
+                this.cambiarVetControl = true;
+            },(err) => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: err.error,
+              })
+            });
   }
 
   cargarMascota(){
@@ -152,7 +212,18 @@ export class EditarMascotaComponent implements OnInit {
       .subscribe( (resp: any)=>{
         if (resp) {
           this.mascota = resp.mascota;
+          this.mascota.duenio = this._as.userLogged.id;
           // DATOS PRIVADOS STEP 1
+          this.veterinario_actual = this.veterinarios.find( v => v.id == this.mascota.veterinario);
+          
+          let valor_vet;
+          if(!this.veterinario_actual) {
+            this.cambiarVetControl = true;
+            valor_vet = 0;
+          } else {
+            valor_vet = this.veterinario_actual.id;
+          }
+        
           this.datosMascota = this._formBuilder.group({
             nombre: [this.mascota.nombre, Validators.required],
             fecha_nacimiento: [this.mascota.fecha_nacimiento, Validators.required],
@@ -161,7 +232,7 @@ export class EditarMascotaComponent implements OnInit {
             sexo: [this.mascota.sexo, Validators.required],
             color: [this.mascota.color, Validators.required],
             senias: [this.mascota.senias],
-            veterinario: [this.mascota.veterinario ]
+            veterinario: [valor_vet],
           });
           this.imagenTemp = this.mascota.foto;
           this.cargando = false;
@@ -169,5 +240,6 @@ export class EditarMascotaComponent implements OnInit {
       }
       )
   }
+
 
 }

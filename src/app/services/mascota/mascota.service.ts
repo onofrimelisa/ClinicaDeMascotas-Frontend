@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { URL_PRIVADA } from 'src/app/config/config';
-import { IMascotaNueva } from 'src/app/interfaces/IMascota';
+import { IMascotaNueva, IMascota } from 'src/app/interfaces/IMascota';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -38,6 +38,14 @@ export class MascotaService {
     let url = URL_PRIVADA + '/mascota';
     
     return this.http.post( url, mascota, httpOptions )
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+  
+  editarMascota ( mascota: IMascota ) {
+    let url = URL_PRIVADA + '/mascota/' + mascota.id;
+    return this.http.put( url, mascota, httpOptions )
                 .pipe(
                   catchError( err => throwError(err.error))  
                 );
