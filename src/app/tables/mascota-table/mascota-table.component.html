@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="mat-elevation-z8">
 
-        <table mat-table [dataSource]="realData" multiTemplateDataRows>
+        <table mat-table class="pointer" [dataSource]="realData" multiTemplateDataRows>
             <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
                 <ng-container *ngIf="column == 'id' || column == 'nombre' || column == 'sexo'; else noSortHeaderes">
                     <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
