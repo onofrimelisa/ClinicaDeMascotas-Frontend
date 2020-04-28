@@ -45,6 +45,7 @@ import { EditarMascotaComponent } from './mascotas/editar-mascota/editar-mascota
 import { PAGES_ROUTING } from './pages-routing.module';
 import { ListadoRecordatoriosComponent } from './eventos/listado-recordatorios/listado-recordatorios.component';
 import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.component';
+import { ShowMascotaComponent } from './mascotas/show-mascota/show-mascota.component';
 
 
 
@@ -60,7 +61,7 @@ import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.com
     ListadoDueniosComponent, 
     ListadoSinVeterinarioComponent, 
     NuevoEventoComponent, 
-    ListadoEventosComponent, EditarMascotaComponent, ListadoRecordatoriosComponent, EditarEventoComponent, 
+    ListadoEventosComponent, EditarMascotaComponent, ListadoRecordatoriosComponent, EditarEventoComponent, ShowMascotaComponent, 
   ],
   imports: [
     CommonModule,

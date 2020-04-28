@@ -19,16 +19,19 @@ import { ListadoSinVeterinarioComponent } from './mascotas/listado-sin-veterinar
 import { ListadoEventosComponent } from './eventos/listado-eventos/listado-eventos.component';
 import { ListadoRecordatoriosComponent } from './eventos/listado-recordatorios/listado-recordatorios.component';
 import { EditarEventoComponent } from './eventos/editar-evento/editar-evento.component';
+import { ShowMascotaComponent } from './mascotas/show-mascota/show-mascota.component';
 
 const PAGES_ROUTES: Routes = [
     { path: 'perfil', component: PerfilComponent, data: { titulo: 'Mi Perfil' } },
     { path: 'editar', component: EditarComponent ,data: { titulo: 'Editar' } },
     { path: 'nueva', component: RegistroMascotaComponent, data: { titulo: 'Nueva mascota' } },
-
+    
+    
     // rutas del duenio
     { path: 'mascotas', component: ListadoMascotaComponent, canActivate: [ DuenioGuard ], data: { titulo: 'Mis mascotas' } },
     { path: 'editar-mascota/:id', component: EditarMascotaComponent, canActivate: [ DuenioGuard ], data: { titulo: 'Editar mascota' } },
     
+    { path: 'show-mascota/:id', component: ShowMascotaComponent, data: { titulo: 'Detalle de mascota' } },
     // rutas del veterinario
     { path: 'mascotas_atendidas', component: ListadoVeterinarioComponent, canActivate: [ VeterinarioGuard ],data: { titulo: 'Mis mascotas atendidas' } },
     { path: 'mascotas_sin_vet', component: ListadoSinVeterinarioComponent, canActivate: [ VeterinarioGuard ],data: { titulo: 'Mascotas sin veterinario' } },

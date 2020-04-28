@@ -19,12 +19,16 @@
                         <td class="operaciones" mat-cell *matCellDef="let row">
 
                             <div class="d-flex justify-content-center">
+                                <button mat-icon-button color="primary" title="Ver mascota" aria-label="Ver mascota" [routerLink]="['/show-mascota', row['id']]">
+                                    <mat-icon>remove_red_eye</mat-icon>
+                                </button>
                                 <button *ngIf="!sinVeterinario && (modo !== 'veterinario')" mat-icon-button color="primary" title="Editar mascota" aria-label="Editar mascota" [routerLink]="['/editar-mascota', row['id']]">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                 <button *ngIf="!sinVeterinario" mat-icon-button color="warn" (click)="eliminarMascota(row['id'])" title="Eliminar mascota" aria-label="Eliminar mascota">
                                         <mat-icon>delete</mat-icon>
                                     </button>
+                                   
                                 <button *ngIf="sinVeterinario" (click)="agregarAtendidas( row['id'] )" mat-icon-button color="primary" title="Agregar a mis mascotas atendidas" aria-label="Agregar a mis mascotas atendidas">
                                         <mat-icon>queue</mat-icon>
                                     </button>

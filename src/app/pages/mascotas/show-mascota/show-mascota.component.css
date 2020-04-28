@@ -1,0 +1,6 @@
+.imagen {
+    max-height: 550px !important;
+}
+mat-expansion-panel {
+    display: table !important;
+}

@@ -34,6 +34,16 @@ export class MascotaService {
                 );
   }
 
+  getMascotaShow(id: number){
+    let url = URL_PRIVADA + '/mascota/show/' + id;
+    
+    return this.http.get( url, httpOptions )
+                .pipe(
+                  catchError( err => throwError(err.error))  
+                );
+  }
+
+
   agregarMascota (mascota: IMascotaNueva ) {
     let url = URL_PRIVADA + '/mascota';
     

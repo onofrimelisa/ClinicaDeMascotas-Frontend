@@ -1,0 +1,299 @@
+<div class="container-fluid animated fadeIn pr-5 pl-5">
+
+    <ng-container *ngIf="cargando; else elseTemplate">
+        <app-loading></app-loading>
+    
+    </ng-container>
+
+    <ng-template #elseTemplate class="row">
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon" color="primary">pets</mat-icon>
+                    &nbsp;Detalle
+                </ng-template>
+                <!-- ACA VA EL DETALLE TIPO FICHA -->
+                <div class="text-center mt-4 mb-4 row animated fadeIn slow">
+                    <div class="col-lg-6 one">
+                        <mat-card class="pet-card one">
+                            <mat-card-header>
+                                <div mat-card-avatar class="pet-header-image"></div>
+                                <mat-card-title>{{ mascota.nombre }} {{ mascota.duenio.apellido }}</mat-card-title>
+                                <mat-card-subtitle>{{ mascota.duenio.apellido }},{{ mascota.duenio.nombre }}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="mascota.foto | image" class="imagen" alt="Imagen de la mascota">
+                        </mat-card>
+            
+                    </div>
+                    <div class="col-lg-6">
+                        <mat-card class="pet-card pet-info">
+                            <div>
+                                <mat-tab-group>
+                                    <mat-tab>
+                                        <ng-template mat-tab-label>
+                                            <mat-icon class="example-tab-icon" color="primary">pets</mat-icon>
+                                            &nbsp;Datos de la mascota
+                                        </ng-template>
+                                        <mat-list>
+                                            <mat-list-item *ngIf="mascota.nombre">
+                                                <mat-icon mat-list-icon color="primary">pets</mat-icon>
+                                                <div class="text-left" mat-line>Nombre:</div>
+                                                <div class="text-left" mat-line> {{mascota.nombre | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.especie">
+                                                <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                                <div class="text-left" mat-line>Especie:</div>
+                                                <div class="text-left" mat-line> {{mascota.especie | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.raza">
+                                                <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                                <div class="text-left" mat-line>Raza:</div>
+                                                <div class="text-left" mat-line> {{mascota.raza | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.color">
+                                                <mat-icon mat-list-icon color="primary">color_lens</mat-icon>
+                                                <div class="text-left" mat-line>Color:</div>
+                                                <div class="text-left" mat-line> {{mascota.color | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.senias">
+                                                <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                                <div class="text-left" mat-line>Señas:</div>
+                                                <div class="text-left" mat-line> {{mascota.senias | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.sexo">
+                                                <mat-icon mat-list-icon color="primary">bubble_chart</mat-icon>
+                                                <div class="text-left" mat-line>Sexo:</div>
+                                                <div class="text-left" mat-line> {{mascota.sexo | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.fecha_nacimiento">
+                                                <mat-icon mat-list-icon color="primary">event</mat-icon>
+                                                <div class="text-left" mat-line>Fecha de nacimiento:</div>
+                                                <div class="text-left" mat-line> {{mascota.fecha_nacimiento | date}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                        </mat-list>
+                                    </mat-tab>
+            
+                                    <mat-tab>
+                                        <ng-template mat-tab-label>
+                                            <mat-icon class="example-tab-icon" color="primary">face</mat-icon>
+                                            &nbsp;Datos del dueño
+                                        </ng-template>
+                                        <mat-list>
+                                            <mat-list-item *ngIf="mascota.duenio.nombre">
+                                                <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                                <div class="text-left" mat-line>Nombre:</div>
+                                                <div class="text-left" mat-line> {{mascota.duenio.nombre | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.duenio.apellido">
+                                                <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                                <div class="text-left" mat-line>Apellido:</div>
+                                                <div class="text-left" mat-line> {{mascota.duenio.apellido | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.duenio.email">
+                                                <mat-icon mat-list-icon color="primary">alternate_email</mat-icon>
+                                                <div class="text-left" mat-line>Email:</div>
+                                                <div class="text-left" mat-line> {{mascota.duenio.email}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.duenio.telefono">
+                                                <mat-icon mat-list-icon color="primary">phone_iphone</mat-icon>
+                                                <div class="text-left" mat-line>Telefono:</div>
+                                                <div class="text-left" mat-line> {{mascota.duenio.telefono }} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                        </mat-list>
+                                    </mat-tab>
+                                    <mat-tab *ngIf="mascota.veterinario">
+                                        <ng-template mat-tab-label>
+                                            <mat-icon class="example-tab-icon" color="primary">face</mat-icon>
+                                            &nbsp;Datos del veterinario
+                                        </ng-template>
+                                        <mat-list>
+                                            <mat-list-item *ngIf="mascota.veterinario.nombre">
+                                                <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                                <div class="text-left" mat-line>Nombre:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.nombre | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.veterinario.apellido">
+                                                <mat-icon mat-list-icon color="primary">face</mat-icon>
+                                                <div class="text-left" mat-line>Apellido:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.apellido | titlecase}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.veterinario.email">
+                                                <mat-icon mat-list-icon color="primary">alternate_email</mat-icon>
+                                                <div class="text-left" mat-line>Email:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.email}} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.veterinario.telefono">
+                                                <mat-icon mat-list-icon color="primary">phone_iphone</mat-icon>
+                                                <div class="text-left" mat-line>Telefono:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.telefono }} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.veterinario.nombre_consultorio">
+                                                <mat-icon mat-list-icon color="primary">apartment</mat-icon>
+                                                <div class="text-left" mat-line>Nombre Consultorio:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.nombre_consultorio }} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item *ngIf="mascota.veterinario.domicilio_consultorio">
+                                                <mat-icon mat-list-icon color="primary">room</mat-icon>
+                                                <div class="text-left" mat-line>Domicilio Consultorio:</div>
+                                                <div class="text-left" mat-line> {{mascota.veterinario.domicilio_consultorio }} </div>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                        </mat-list>
+                                    </mat-tab>
+                                </mat-tab-group>
+            
+                            </div>
+                        </mat-card>
+            
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon" color="primary">event</mat-icon>
+                    &nbsp;Eventos
+                </ng-template>
+                <!-- ACA VA EL LISTADO DE EVENTOS -->
+                <div *ngIf="mascota.eventos && mascota.eventos.length == 0" class="container m-3">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <div>
+            
+                            <i><mat-icon class="animated flash">info</mat-icon></i> <span> No tienes ningún evento cargado. <strong><a [routerLink]="['/nuevo-evento']"> Agregar.</a> </strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="mascota.eventos && mascota.eventos.length > 0" class="m-3">
+                    <ul class="list-group list-group-flush animated fadeIn">
+                        <li *ngFor="let evento of mascota.eventos | paginate: paginationConfig" li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p>
+                                        <mat-icon class="icono mr-1" aria-label="Fecha">event</mat-icon>
+                                        <strong>Fecha: </strong>{{ evento.fecha | date:'dd-MM-yyyy' }}
+                                    </p>
+                                    <p>
+                                        <mat-icon class="icono mr-1" aria-label="Tipo">list</mat-icon>
+                                        <strong>Tipo: </strong>{{ evento.tipo }}
+                                    </p>
+                                    <p>
+                                        <mat-icon class="icono mr-1" aria-label="Descripción">description</mat-icon>
+                                        <strong>Descripción: </strong>{{ evento.descripcion }}
+                                    </p>
+                                    
+                                   
+                                </div>
+                                <div class="col-sm-8">
+                                    <mat-slide-toggle *ngIf="!fechaExpirada(evento.fecha)" 
+                                                      (click)="toggleRecordatorio( evento )" 
+                                                      class="example-margin" 
+                                                      color="primary" 
+                                                      [ngModel]="getToggleControl(evento)"
+                                                      (ngModelChange)="getToggleControl(evento)">
+                                        Recordar
+                                    </mat-slide-toggle>
+                                    <button mat-icon-button color="primary" class="m-3" title="Editar" aria-label="Editar" 
+                                            [routerLink]="['/editar-evento', evento.id]">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="eliminarEvento( evento )" 
+                                            title="Eliminar" aria-label="Eliminar">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+        
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                              <mat-icon class="icono mr-1" aria-label="Más información">remove_red_eye</mat-icon>
+                                              Más información
+                                            </mat-panel-title>
+                                          </mat-expansion-panel-header>
+                                            <p>
+                                                <strong>Observaciones: </strong>{{ evento.observaciones | evento}}
+                                            </p>
+                                            <p>
+                                                <strong>Diagnóstico: </strong>{{ evento.diagnostico | evento }}
+                                            </p>
+                                            <p>
+                                                <strong>Droga: </strong>{{ evento.droga | evento}}
+                                            </p>
+                                            <p>
+                                                <strong>Indicaciones: </strong>{{ evento.indicaciones | evento }}
+                                            </p>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="col-12 mt-3 d-flex justify-content-center">
+                        <pagination-template
+                          #p="paginationApi"
+                          [id]="paginationConfig.id"
+                          [maxSize]="maxSizePagination"
+                          autoHide="true"
+                          (pageChange)="paginationConfig.currentPage = $event">
+                          
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li [className]="p.isFirstPage() ? 'page-item disabled' : 'page-item'">
+                                <a class="page-link pointer"
+                                   (click)="p.previous()"
+                                   aria-label="Anterior">
+                                  <span aria-hidden="true">«</span>
+                                </a>
+                              </li>
+                              <li *ngFor="let page of p.pages"
+                                  [className]="p.getCurrent() === page.value
+                                    ? 'page-item disabled'
+                                    : 'page-item'">
+                                <a class="page-link pointer"
+                                  (click)="p.setCurrent(page.value)"
+                                  *ngIf="p.getCurrent() !== page.value">
+                                  {{ page.label }}
+                                </a>
+                                <a class="page-link pointer"  *ngIf="p.getCurrent() === page.value">
+                                  {{ page.label }}
+                                </a>
+                              </li>
+                              <li [className]="p.isLastPage() ? 'page-item disabled' : 'page-item'">
+                                <a class="page-link pointer"
+                                  (click)="p.next()"
+                                   aria-label="Next">
+                                  <span aria-hidden="true">»</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                        </pagination-template>
+                      </div>
+                </div>
+
+            </mat-tab>
+            
+
+        </mat-tab-group>
+    </ng-template>
+
+
+</div>
