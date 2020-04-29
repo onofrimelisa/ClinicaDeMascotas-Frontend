@@ -65,7 +65,8 @@ export class AuthService {
   //                          Logout
   // =================================================================
 
-  logout() {  
+  logout() {
+    localStorage.removeItem('modo');  
     this.userToken = '';
     this.userLogged = null;
     localStorage.removeItem('token');
